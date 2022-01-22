@@ -4,7 +4,7 @@
     <title>Reverse the curse</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/reset.css">
-    <script src="js/babylon.max.js"></script>
+    <script src="js/lib/babylon.max.js"></script>
     <style>
         body,#renderCanvas { width: 100%; height: 100%;}
     </style>
@@ -12,7 +12,7 @@
 
   <body>
     <canvas id="renderCanvas">   </canvas>
-    
+
     <script>
         const canvas = document.getElementById("renderCanvas");
         const engine = new BABYLON.Engine(canvas, true);
@@ -34,6 +34,22 @@
             const box = BABYLON.MeshBuilder.CreateBox("box", {});
             box.position.x = 0.5;
             box.position.y = 1;
+
+            const boxMaterial = new BABYLON.StandardMaterial("material", scene);
+            boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
+            box.material = boxMaterial;
+
+            //console log out which key is pressed
+            scene.onKeyboardObservable.add((kbInfo) => {
+                switch (kbInfo.type) {
+                    case BABYLON.KeyboardEventTypes.KEYDOWN:
+                    console.log("KEY DOWN: ", kbInfo.event.key);
+                    break;
+                    case BABYLON.KeyboardEventTypes.KEYUP:
+                    console.log("KEY UP: ", kbInfo.event.code);
+                    break;
+                }
+             });
 
             return scene;
         };
