@@ -1,6 +1,12 @@
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
-
+let textureURL = '/assets/';
+if (location.hostname === "localhost" || location.hostname === ""){
+    /** to avoid CORs loading erros
+     * https://doc.babylonjs.com/toolsAndResources/assetLibraries/availableTextures */
+    textureURL = 'https://www.babylonjs-playground.com/';
+}
+    
 /**
  * Creates Player Object that has a mesh and newly defined abilities
  */
@@ -11,7 +17,8 @@ class Player {
         box.position.y = 1;
 
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
-        boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
+        boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
+        // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
         box.material = boxMaterial;
 
         this.mesh = box;
