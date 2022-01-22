@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/reset.css">
     <script src="js/lib/babylon.max.js"></script>
+    <script src="js/lib/cannon.js"></script>
     <style>
         body,#renderCanvas { width: 100%; height: 100%;}
     </style>
@@ -39,6 +40,8 @@
             boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
             box.material = boxMaterial;
 
+            const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50, height:50} , scene); 
+
             //console log out which key is pressed
             scene.onKeyboardObservable.add((kbInfo) => {
                 switch (kbInfo.type) {
@@ -50,6 +53,14 @@
                     break;
                 }
              });
+
+             //Init physics engine
+            const gravityVector = new BABYLON.Vector3(0,-9.81, 0);
+            const physicsPlugin = new BABYLON.CannonJSPlugin();
+            scene.enablePhysics(gravityVector, physicsPlugin);
+             //set physics models to objects made
+            box.physicsImpostor = new BABYLON.PhysicsImpostor(box, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
+            ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
 
             return scene;
         };
