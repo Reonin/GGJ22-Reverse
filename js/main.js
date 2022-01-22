@@ -29,7 +29,13 @@ class Player {
     mesh = {};
 
     jump = function() {
-        this.mesh.position.y += 3;
+        //Force Settings
+        var forceDirection = new BABYLON.Vector3(0, 10, 0);
+        var forceMagnitude = 50;
+        var contactLocalRefPoint = BABYLON.Vector3.Zero();
+
+        this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
+        this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
     }
 }
 
@@ -43,15 +49,32 @@ const createScene = function() {
     const radius = 8;
     const target = new BABYLON.Vector3(0, 0, 0);
 
-    const camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);
+    // const camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);
+    const camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 10, -5), scene);
     camera.attachControl(canvas, true);
     // remove by instance
     camera.inputs.attached.pointers.detachControl();
+
+    // The goal distance of camera from target
+    camera.radius = 30;
+
+    // The goal height of camera above local origin (centre) of target
+    camera.heightOffset = 10;
+
+    // The goal rotation of camera around local origin (centre) of target in x y plane
+    camera.rotationOffset = 0;
+
+    // Acceleration of camera in moving from current to goal position
+    camera.cameraAcceleration = 0.005;
+
+    // The speed at which acceleration is halted
+    camera.maxCameraSpeed = 10;
 
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
 
     const player = new Player(scene);
 
+    camera.lockedTarget = player.mesh;
     // sets inputs for player on the scene
     scene.actionManager = new BABYLON.ActionManager(scene);
 
