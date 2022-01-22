@@ -11,6 +11,11 @@ if (location.hostname === "localhost" || location.hostname === ""){
  * Creates Player Object that has a mesh and newly defined abilities
  */
 class Player {
+    jumpForceDirection = new BABYLON.Vector3();
+    moveForceDirection = new BABYLON.Vector3();
+    jumpForceMagnitude = 0;
+    moveForceMagnitude = 0;
+
     constructor(scene){
         const box = BABYLON.MeshBuilder.CreateBox("box", {});
         box.position.x = 0.5;
@@ -30,12 +35,16 @@ class Player {
 
     jump = function() {
         //Force Settings
-        var forceDirection = new BABYLON.Vector3(0, 10, 0);
-        var forceMagnitude = 50;
+        var jumpForceDirection = new BABYLON.Vector3(0, 10, 0);
+        var jumpForceMagnitude = 50;
         var contactLocalRefPoint = BABYLON.Vector3.Zero();
 
         this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
         this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
+    }
+
+    move = function() {
+        var forceDirection
     }
 }
 
@@ -120,5 +129,3 @@ const sceneToRender = createScene();
 engine.runRenderLoop(function(){
     sceneToRender.render();
 });
-
-
