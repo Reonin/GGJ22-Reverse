@@ -28,6 +28,8 @@ const createScene = function() {
     camera.lockedTarget = player.mesh;
    
     ActionManager.establishInputs(scene, player);
+    const skybox = new Skybox(scene);
+
 
     const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50, height:50} , scene); 
 
