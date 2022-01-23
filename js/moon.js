@@ -9,7 +9,7 @@
 
 
         const sphereMaterial = new BABYLON.StandardMaterial("material", scene);
-        sphereMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/moon.png"), scene);
+        sphereMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/sphereMap.png"), scene);
         sphere.material = sphereMaterial;
 
         this.mesh = sphere;
