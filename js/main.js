@@ -13,18 +13,14 @@ const createScene = function() {
     const scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color3.Black;
 
-    const alpha =  Math.PI/4;
-    const beta = Math.PI/3;
-    const radius = 8;
-    const target = new BABYLON.Vector3(0, 0, 0);
 
 
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
 
     const player = new Player(scene);
+    const moon = new Moon(scene)
     const camera = new Camera(scene);
 
-    camera.lockedTarget = player.mesh;
    
     ActionManager.establishInputs(scene, player);
     const skybox = new Skybox(scene);
