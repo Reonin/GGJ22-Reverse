@@ -30,8 +30,10 @@ const createScene = function() {
     ActionManager.establishInputs(scene, player);
     const skybox = new Skybox(scene);
 
+    const ObsFactory = new ObstacleFactory(scene);
 
-    const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50, height:50} , scene); 
+
+    const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50, height:10} , scene); 
 
      //Init physics engine
     const gravityVector = new BABYLON.Vector3(0,-9.81, 0);
