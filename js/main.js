@@ -1,7 +1,7 @@
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
 let textureURL = '/assets/';
-if (location.hostname === "localhost" || location.hostname === ""){
+if (location.hostname === ""){
     /** to avoid CORs loading erros
      * https://doc.babylonjs.com/toolsAndResources/assetLibraries/availableTextures */
     textureURL = 'https://www.babylonjs-playground.com/';
