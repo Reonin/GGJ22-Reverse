@@ -60,30 +60,11 @@
         this.scene.registerBeforeRender(() => {
             // Player move
             this.command.frameTime = Date.now();
-            // this.command.cameraAlpha = camera.alpha;
-            // this.command.cameraBeta = camera.beta;
-            //this._updateGroundDetection();
             this.move(this.command);
             // this._updateCamera();
     
         })
-    //     this.scene.onKeyboardObservable.add(kbInfo => {
-    //         switch (kbInfo.type) {
-    //                 case BABYLON.KeyboardEventTypes.KEYDOWN:
-    //                 switch (kbInfo.event.key) {
-    //                     case ' ':
-    //                         console.log(`Key down in player`)
-    //                         this.command.jumpKeyDown = true;
-    //                     break;
-    //             }
-    //             case BABYLON.KeyboardEventTypes.KEYUP:
-    //                 switch (kbInfo.event.key) {
-    //                     case ' ':
-    //                         this.command.jumpKeyDown = false;
-    //                         break;
-    //                 }
-    //     break;
-    // }});
+
         return this;
     }
 
@@ -102,7 +83,7 @@
             this.prevFrameTime = this.command.frameTime;
             return;
         }
-        const delta = command.frameTime - this.prevFrameTime;
+        const delta = this.command.frameTime - this.prevFrameTime;
 
             // Raycast Method 1
             const pick = this.scene.pickWithRay(this.ray);
@@ -131,105 +112,16 @@
                 //console.log(`Veloctiy on hit ${this.velocity}`)
             }
             
-            console.log(`Command key down ${this.jumpKeyDown}`)
             if (this.jumpKeyDown && this.onObject) {        
                 this.jump();
                 
             }
 
-            //const rotationAxis = BABYLON.Matrix.RotationAxis(BABYLON.Axis.Y, viewAngleY);
-            //const rotatedVelocity = BABYLON.Vector3.TransformCoordinates(velocity, rotationAxis);
+
             this.mesh.moveWithCollisions(this.velocity);    
             //console.log(`Y velocity ${this.velocity.y}`)
             this.prevFrameTime = this.command.frameTime;
     }
-    // jump = function() {
-    //     //if(this.mesh.x < 40){
-    //     //Force Settings
-    //                 //Jump detection
-    //     //this._updateGroundDetection();
-    //     if(this._isJumping == true && this._jumpCount > 0){
-    //         var impulseDirection = new BABYLON.Vector3(0, 1, 0);
-    //         var impulseMagnitude = 1;
-    //         var contactLocalRefPoint = BABYLON.Vector3.Zero();
-    //         console.log(`Mesh y is ${this.mesh.position.y}`)
-    //         if(this.mesh.position.y < 10){
-    //             var forceVector = new BABYLON.Vector3(0, this.mesh.position.y + this.JUMP_FORCE, 0)
-    //             //.clone().subtract(this.mesh.position)
-    //             console.log(`Applying force ${new BABYLON.Vector3(0, this.mesh.position.y + this.JUMP_FORCE, 0)} - ${this.mesh.position} = ${forceVector}`)
-    //             this.mesh.physicsImpostor.applyImpulse(forceVector.scale(impulseMagnitude), this.mesh.getAbsolutePosition());                 
-    //         }
-    //     }
-    //     //     this.mesh.physicsImpostor.applyForce(jumpForceDirection.scale(jumpForceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
-    //     //     this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
-    //     //  //}
-    // }
-
-    // _isGrounded = function(){
-    //     if (this._floorRaycast(0, 0, .6).equals(BABYLON.Vector3.Zero())) {
-    //         return false;
-    //     } else {
-    //         return true;
-    //     }
-    // }
-
-    // _updateGroundDetection = function(){
-    //     if (!this._isGrounded()) {
-    //         console.log(`Is not on the ground`)
-    //         //if the body isnt grounded, check if it's on a slope and was either falling or walking onto it
-    //         // if (this._checkSlope() && this._gravity.y <= 0) {
-    //         //     //if you are considered on a slope, you're able to jump and gravity wont affect you
-    //         //     this._gravity.y = 0;
-    //         //     this._jumpCount = 1;
-    //         //     this._grounded = true;
-    //         // } else {
-    //             //keep applying gravity
-    //             this._gravity = this._gravity.addInPlace(BABYLON.Vector3.Up().scale(this._deltaTime * this.GRAVITY));
-    //             this._grounded = false;
-    //             //console.log(`In the air gravity.y is ${this._gravity.y}`)
-    //         // }
-    //     }
-    //         if (this._gravity.y < -this.JUMP_FORCE) {
-    //             this._gravity.y = -this.JUMP_FORCE;
-    //         }
-    //         //this.mesh.moveWithCollisions(this._moveDirection.addInPlace(this._gravity));
-            
-    //         if (this._isGrounded()) {
-    //             //console.log(`Is on the ground`)
-    //             this._gravity.y = 0;
-    //             this._grounded = true;
-    //             this._lastGroundPos.copyFrom(this.mesh.position);
-    //             this._jumpCount = 1; //allow for jumping
-    //         }
-    //         //console.log(`Jumping button ${this._isJumping}\nJump count is ${this._jumpCount}`)
-    //         if (this._isJumping && this._jumpCount > 0 ) {
-    //             //console.log('Is jumping')
-    //             this._gravity.y = this.JUMP_FORCE;
-    //             this._jumpCount--;
-    //             //console.log(`Current mesh y position ${this.mesh.position.y}\nGravity with current position is ${this.mesh.position.y + this._gravity.y}`);
-    //             // BABYLON.Animation.CreateAndStartAnimation("anim", this.mesh, "position", 30, 60, this.mesh.position, new BABYLON.Vector3(this.mesh.position.x, this.mesh.position.y + this._gravity.y, 0), BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
-    //             // this._isJumping = false;
-
-    //         }
-    //         var originalY = this.mesh.position.y
-            
-        
-    // }
-
-    // _floorRaycast(offsetx, offsetz, raycastlen) {
-    //     let raycastFloorPos = new BABYLON.Vector3(this.mesh.position.x + offsetx, this.mesh.position.y + 0.5, this.mesh.position.z + offsetz);
-    //     let ray = new BABYLON.Ray(raycastFloorPos, BABYLON.Vector3.Up().scale(-1), raycastlen);
-
-    //     let predicate = function (mesh) {
-    //         return mesh.isPickable && mesh.isEnabled();
-    //     }
-    //     let pick = this.scene.pickWithRay(ray, predicate);
-    //     if (pick.hit) { 
-    //         return pick.pickedPoint;
-    //     } else { 
-    //         return BABYLON.Vector3.Zero();
-    //     }
-
-    // }
+    
 
 }
