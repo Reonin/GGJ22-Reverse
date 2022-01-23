@@ -19,8 +19,8 @@ const createScene = function() {
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
 
     const player = new Player(scene);
-    const camera = new Camera(scene,player);
-
+    const moon = new Moon(scene)
+    const camera = new Camera(scene);
 
    
     ActionManager.establishInputs(scene, player);
