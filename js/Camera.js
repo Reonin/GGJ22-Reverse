@@ -1,4 +1,5 @@
 class Camera{
+
     constructor(scene, player) {
         
         // // const camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);
@@ -23,6 +24,11 @@ class Camera{
         // camera.maxCameraSpeed = 10;
 
         // camera.lockedTarget = player.mesh;
+        // Camera target mesh (invisible) for third-person camera
+        const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 2 }, scene);        
+        cameraTargetMesh.visibility = 0;
+        cameraTargetMesh.setParent(player.mesh);
+        cameraTargetMesh.position = new BABYLON.Vector3(0, 0, 1);
 
         const alpha =  Math.PI/2;
         const beta = Math.PI/2.2;
@@ -33,6 +39,12 @@ class Camera{
         camera.attachControl(canvas, true);
         // remove by instance
         camera.inputs.attached.pointers.detachControl();
+        scene.registerBeforeRender(() => {
+            // Update camera target
+            const cameraTargetMeshOffsetPosition = cameraTargetMesh.absolutePosition.add(new BABYLON.Vector3(0, 1, 0));
+            camera.target.copyFrom(cameraTargetMeshOffsetPosition);
+
+        });
         return camera;
     }
 }

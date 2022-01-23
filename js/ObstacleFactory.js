@@ -8,6 +8,7 @@ class ObstacleFactory {
         boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
 
         box.material = boxMaterial;
+        box.checkCollisions = true;
 
     }
 

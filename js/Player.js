@@ -17,6 +17,7 @@
     jumpForceMagnitude = 50;
     moveForceMagnitude = 0; 
     velocity = new BABYLON.Vector3();
+    speed = 0;
     GRAVITY = -2.8;
     _deltaTime = 0;
     JUMP_FORCE = 0.80;
@@ -40,16 +41,11 @@
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
         box.material = boxMaterial;
+        this.speed = -.01;
         // Player movement
         this.command = {
             frameTime: 0,
-            moveForwardKeyDown: false,
-            moveBackwardKeyDown: false,
-            moveLeftKeyDown: false,
-            moveRightKeyDown: false,
-            jumpKeyDown: false,
-            cameraAlpha: 0,
-            cameraBeta: 0
+            jumpKeyDown: false
         }
         this.mesh = box;
         this.mesh.isPickable = false;
@@ -103,7 +99,8 @@
             this.velocity.x = 0;
             this.velocity.z = 0;
             // if (this.command.moveRightKeyDown || this.command.moveLeftKeyDown) this.velocity.z = this.direction.z * delta / 300;
-            // if (this.command.moveForwardKeyDown || this.command.moveBackwardKeyDown) this.velocity.x = this.direction.x * delta / 300;
+            // if (this.command.moveForwardKeyDown || this.command.moveBackwardKeyDown) 
+            this.velocity.x = this.speed;
 
             // velocity.y = command.startVelocityY;
             this.velocity.y -= delta / 3000;
