@@ -1,35 +1,56 @@
 class ActionManager {
-    
-    constructor (){
+
+    constructor() {
     }
 
-    static establishInputs(scene, player){
-    //console log out which key is pressed
-    scene.onKeyboardObservable.add((kbInfo) => {
-        switch (kbInfo.type) {
-            case BABYLON.KeyboardEventTypes.KEYDOWN:
-            console.log("KEY DOWN: ", kbInfo.event.key);
-            break;
-            // case BABYLON.KeyboardEventTypes.KEYUP:
-            // console.log("KEY UP: ", kbInfo.event.code);
-            // break;
-        }
-     });
-
-    // sets inputs for player on the scene
-    scene.actionManager = new BABYLON.ActionManager(scene);
-
-    scene.actionManager.registerAction(
-        new BABYLON.ExecuteCodeAction(
-            {
-                trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                parameter: ' '
-            },
-            function () { 
-                player.setIsJumping(true);
-                player.jump();
+    static establishInputs(scene, player) {
+        //console log out which key is pressed
+        scene.onKeyboardObservable.add((kbInfo) => {
+            switch (kbInfo.type) {
+                case BABYLON.KeyboardEventTypes.KEYDOWN:
+                    switch (kbInfo.event.key) {
+                        case ' ':
+                            console.log("KEY DOWN: ", kbInfo.event.key);
+                            player.setJumpKeyDown(true);
+                            break;
+                    }
+                case BABYLON.KeyboardEventTypes.KEYUP:
+                    switch (kbInfo.event.key) {
+                        case ' ':
+                            console.log("KEY DOWN: ", kbInfo.event.key);
+                            player.setJumpKeyDown(false);
+                            break;
+                    }
+                // case BABYLON.KeyboardEventTypes.KEYUP:
+                // console.log("KEY UP: ", kbInfo.event.code);
+                // break;
             }
-        )
-    );
+        });
+
+        // sets inputs for player on the scene
+        scene.actionManager = new BABYLON.ActionManager(scene);
+
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
+                    parameter: ' '
+                },
+                function () { 
+                    player.setJumpKeyDown(true);
+                    // player.jump();
+                }
+            ),
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: ' '
+                },
+                function () { 
+                    player.setJumpKeyDown(false);
+                    // player.jump();
+                }
+            )
+        );
     }
 }
