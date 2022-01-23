@@ -18,61 +18,21 @@ const createScene = function() {
     const radius = 8;
     const target = new BABYLON.Vector3(0, 0, 0);
 
-    // const camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);
-    const camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 10, -5), scene);
-    camera.attachControl(canvas, true);
-    // remove by instance
-    camera.inputs.attached.pointers.detachControl();
-
-    // The goal distance of camera from target
-    camera.radius = 30;
-
-    // The goal height of camera above local origin (centre) of target
-    camera.heightOffset = 10;
-
-    // The goal rotation of camera around local origin (centre) of target in x y plane
-    camera.rotationOffset = 0;
-
-    // Acceleration of camera in moving from current to goal position
-    camera.cameraAcceleration = 0.005;
-
-    // The speed at which acceleration is halted
-    camera.maxCameraSpeed = 10;
 
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
 
     const player = new Player(scene);
+    const camera = new Camera(scene);
 
     camera.lockedTarget = player.mesh;
-    // sets inputs for player on the scene
-    scene.actionManager = new BABYLON.ActionManager(scene);
+   
+    ActionManager.establishInputs(scene, player);
+    const skybox = new Skybox(scene);
 
-        scene.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                    parameter: 'r'
-                },
-                function () { 
-                    console.log('r button was pressed'); 
-                    player.jump();
-                }
-            )
-        );
+    const ObsFactory = new ObstacleFactory(scene);
 
-    const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50, height:50} , scene); 
 
-    //console log out which key is pressed
-    // scene.onKeyboardObservable.add((kbInfo) => {
-    //     switch (kbInfo.type) {
-    //         case BABYLON.KeyboardEventTypes.KEYDOWN:
-    //         console.log("KEY DOWN: ", kbInfo.event.key);
-    //         break;
-    //         case BABYLON.KeyboardEventTypes.KEYUP:
-    //         console.log("KEY UP: ", kbInfo.event.code);
-    //         break;
-    //     }
-    //  });
+    const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50, height:10} , scene); 
 
      //Init physics engine
     const gravityVector = new BABYLON.Vector3(0,-9.81, 0);
