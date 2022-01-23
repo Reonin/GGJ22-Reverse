@@ -16,7 +16,6 @@ const createScene = function() {
 
 
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
-
     const player = new Player(scene);
     const moon = new Moon(scene)
     const camera = new Camera(scene);
@@ -35,8 +34,9 @@ const createScene = function() {
     const physicsPlugin = new BABYLON.CannonJSPlugin();
     scene.enablePhysics(gravityVector, physicsPlugin);
      //set physics models to objects made
-    player.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(player.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
-    ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+    // player.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(player.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
+    // ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+    ground.checkCollisions = true;
 
     return scene;
 };
