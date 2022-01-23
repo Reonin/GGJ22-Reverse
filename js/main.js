@@ -23,6 +23,7 @@ const createScene = function() {
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
 
     const player = new Player(scene);
+    const moon = new Moon(scene)
     const camera = new Camera(scene);
 
     camera.lockedTarget = player.mesh;
