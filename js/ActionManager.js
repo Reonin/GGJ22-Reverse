@@ -22,7 +22,7 @@ class ActionManager {
         new BABYLON.ExecuteCodeAction(
             {
                 trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                parameter: 'r'
+                parameter: ' '
             },
             function () { 
                 player.jump();
