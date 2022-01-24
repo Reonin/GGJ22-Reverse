@@ -43,6 +43,7 @@ const createScene = function() {
     const moon = new Moon(scene)
     const camera = new Camera(scene);
 
+    const audioMan = new AudioAssetManager(scene);
    
     ActionManager.establishInputs(scene, player);
     const skybox = new Skybox(scene);
