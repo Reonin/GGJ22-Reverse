@@ -41,6 +41,7 @@
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
         box.material = boxMaterial;
+        box.checkCollisions = true;
         this.speed = -.01;
         // Player movement
         this.command = {
@@ -100,7 +101,7 @@
             this.velocity.z = 0;
             // if (this.command.moveRightKeyDown || this.command.moveLeftKeyDown) this.velocity.z = this.direction.z * delta / 300;
             // if (this.command.moveForwardKeyDown || this.command.moveBackwardKeyDown) 
-            this.velocity.x = this.speed;
+            // this.velocity.x = this.speed;
 
             // velocity.y = command.startVelocityY;
             this.velocity.y -= delta / 3000;

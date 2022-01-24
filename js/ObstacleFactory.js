@@ -1,35 +1,56 @@
-class ObstacleFactory {
-    constructor (scene) {
 
+
+class ObstacleFactory {
+
+    ROCK_START_X = 0;
+    ROCK_START_Y = 0; 
+    FACTORY_START_X = 0;
+    FACTORY_START_Y = 0;
+    obstacles = [];
+    scene = null;
+    mesh = null;
+
+    constructor (scene) {
+        this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("box", {height: 5});
-        box.position.x = -20;
-        box.position.y = 2;
+        this.ROCK_START_X = -10;
+        this.ROCK_START_Y = 2; 
+        this.FACTORY_START_X = -10;
+        this.FACTORY_START_Y = 2;
+        box.position.x = this.FACTORY_START_X;
+        box.position.y = this.FACTORY_START_Y;
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
         boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
 
         box.material = boxMaterial;
         box.checkCollisions = true;
-
+        this.mesh = box;
+        this.spawnRocks(scene);
+        this.scene.registerBeforeRender(() => {
+            // ground move
+            this.moveRockGenerationX();
+            // console.log(`Mesh x ${this.mesh.position.x}`)
+            // this._updateCamera();
+    
+        })
+        return this;
+        
+    
+    }
+    
+    moveRockGenerationX = () => {
+        this.mesh.position.x -= .01;
     }
 
-    static generateRock (scene){
 
-        const rock = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
-        rock.position.x = -20;
-        rock.position.y = 2;
-        const rockMaterial = new BABYLON.StandardMaterial("material", scene);
-        rockMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat('/textures/rock.png'));
+    spawnRocks = (scene) => {
 
-        rock.material = rockMaterial;
-        rock.physicsImpostor = new BABYLON.PhysicsImpostor(rock, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.85, restitution: 0.9 }, scene);
-
-        //Force Settings
-        const forceDirection = new BABYLON.Vector3(10, 0, 0);
-        const forceMagnitude = 50;
-        const contactLocalRefPoint = BABYLON.Vector3.Zero();
-
-        rock.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), rock.getAbsolutePosition().add(contactLocalRefPoint));
-        rock.getAbsolutePosition().add(contactLocalRefPoint);
-
+        setInterval(function(){
+            var rock = new Rock(scene);
+            // rock.mesh.setParent(this.mesh);
+            console.log(`rock ${rock.mesh.position}`)
+        }, 2000);
     }
+
+    
 }
