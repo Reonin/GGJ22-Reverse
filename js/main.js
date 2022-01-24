@@ -1,6 +1,6 @@
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
-let textureURL = '/assets/';
+let textureURL = '/GGJ22-Reverse/assets/';
 if (location.hostname === ""){
     /** to avoid CORs loading erros
      * https://doc.babylonjs.com/toolsAndResources/assetLibraries/availableTextures */

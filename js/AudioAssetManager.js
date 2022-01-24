@@ -1,7 +1,7 @@
 class AudioAssetManager {
   constructor(scene) {
     let music1, music2, music3;
-    const audioURL = 'assets/audio/';
+    const audioURL = '/GGJ22-Reverse/assets/audio/';
     // Assets manager
     const assetsManager = new BABYLON.AssetsManager(scene);
 
