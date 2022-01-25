@@ -49,7 +49,7 @@ const createScene = function() {
     
     const audioMan = new AudioAssetManager(scene);
    
-    ActionManager.establishInputs(scene, player);
+    ActionManager.establishInputs(scene, player, moon);
     const skybox = new Skybox(scene);
     
     const ObsFactory = new ObstacleFactory(scene);

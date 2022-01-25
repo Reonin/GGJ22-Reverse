@@ -3,7 +3,7 @@ class ActionManager {
     constructor() {
     }
 
-    static establishInputs(scene, player) {
+    static establishInputs(scene, player, moon) {
         //console log out which key is pressed
         scene.onKeyboardObservable.add((kbInfo) => {
             switch (kbInfo.type) {
@@ -66,8 +66,21 @@ class ActionManager {
                     console.log(player.transformationState);
                 }
             )
-        )
-
+        );
+        /**
+         * Handles the moon shifting in and out of forms
+         */
+        moon.mesh.actionManager = new BABYLON.ActionManager(scene);
+        const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
+   
+        moon.mesh.actionManager.registerAction(
+            new BABYLON.InterpolateValueAction(
+                BABYLON.ActionManager.OnPickTrigger, light, "diffuse", BABYLON.Color3.Black(), 1000)
+            )
+            .then(new BABYLON.InterpolateValueAction(
+                BABYLON.ActionManager.OnPickTrigger, light, "diffuse", BABYLON.Color3.White(), 1000)
+            )
+          
     }
 }
 
