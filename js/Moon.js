@@ -18,32 +18,12 @@ class Moon {
     sphere.material = sphereMaterial;
 
     this.mesh = sphere;
-
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
     this.mesh.actionManager = new BABYLON.ActionManager(scene);
-    this.mesh.actionManager
-    
-    // FADE OUT MOON
-      .registerAction(
-        new BABYLON.InterpolateValueAction(
-          BABYLON.ActionManager.OnPickTrigger,
-          light,
-          'diffuse',
-          BABYLON.Color3.Black(),
-          1000
-        )
-      )
+    this.mesh.actionManager.registerAction(
+        new BABYLON.InterpolateValueAction(BABYLON.ActionManager.OnPickTrigger, light, "diffuse", BABYLON.Color3.Black(), 1000))
+        .then(new BABYLON.InterpolateValueAction(BABYLON.ActionManager.OnPickTrigger, light, "diffuse", BABYLON.Color3.White(), 1000));
 
-    // UNFADE MOON
-      .then(
-        new BABYLON.InterpolateValueAction(
-          BABYLON.ActionManager.OnPickTrigger,
-          light,
-          'diffuse',
-          BABYLON.Color3.White(),
-          1000
-        )
-      );
 
     return this;
   }
