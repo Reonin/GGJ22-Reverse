@@ -31,6 +31,7 @@
     rayHelper = null;
     onObject = false;
     direction = new BABYLON.Vector3();
+    transformationState = 'wolfTop';
         
     constructor(scene){
         this.scene = scene;
@@ -119,6 +120,15 @@
             this.mesh.moveWithCollisions(this.velocity);    
             //console.log(`Y velocity ${this.velocity.y}`)
             this.prevFrameTime = this.command.frameTime;
+    }
+
+    changeForm = () => {
+        if(this.transformationState === 'wolfTop'){
+            this.transformationState = 'humanTop';
+        }
+        else if(this.transformationState === 'humanTop'){
+            this.transformationState = 'wolfTop';
+        }
     }
     
 

@@ -38,7 +38,10 @@ class ActionManager {
                     player.setJumpKeyDown(true);
                     // player.jump();
                 }
-            ),
+            )
+        );
+
+        scene.actionManager.registerAction( 
             new BABYLON.ExecuteCodeAction(
                 {
                     trigger: BABYLON.ActionManager.OnKeyUpTrigger,
@@ -49,6 +52,25 @@ class ActionManager {
                     // player.jump();
                 }
             )
+
         );
+        /** Press Z to transform between states */
+        scene.actionManager.registerAction( 
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'z'
+                },
+                function () { 
+                    player.changeForm();
+                    console.log(player.transformationState);
+                }
+            )
+        )
+
     }
 }
+
+
+
+
