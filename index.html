@@ -4,18 +4,22 @@
     <title>Reverse the curse</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <script src="js/lib/babylon.max.js"></script>
     <script src="js/lib/cannon.js"></script>
 
-    <style>
-        body,#renderCanvas { width: 100%; height: 100%;}
-    </style>
   </head>
 
   <body>
-    <canvas id="renderCanvas">   </canvas>
-    <input type="button" value="Generate Rock" onclick="Rock.generateRock();">
+    <div id="gamecontainer" class="sketchy">
+        <canvas id="renderCanvas" ></canvas>
+        <div id="HUD" style="position: absolute" ></div>
+    </div>
+ 
+        <input type="button" value="Generate Rock" onclick="ObstacleFactory.generateRock();">
+    
   </body>
   <script src="js/ActionManager.js"></script>
   <script src="js/Camera.js"></script>
@@ -24,6 +28,8 @@
   <script src="js/Rock.js"></script>
   <script src="js/Skybox.js"></script>
   <script src="js/ObstacleFactory.js"></script>
-  <script src="js/moon.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/Moon.js"></script>
+  <script src="js/HUD.js"></script>
+  <script src="js/AudioAssetManager.js"></script>
+  <script src="js/Main.js"></script>
 </html>
