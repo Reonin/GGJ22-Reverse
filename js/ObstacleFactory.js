@@ -9,8 +9,16 @@ class ObstacleFactory {
     obstacles = [];
     scene = null;
     mesh = null;
+    frameTime = 0;
+    prevFrameTime = 0;
+    spawnRockTimer = 0;
 
     constructor (scene) {
+
+        if (ObstacleFactory._instance) {
+            return ObstacleFactory._instance
+        }
+        ObstacleFactory._instance = this;
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("box", {height: 5});
         this.ROCK_START_X = -10;
@@ -25,31 +33,50 @@ class ObstacleFactory {
         box.material = boxMaterial;
         box.checkCollisions = true;
         this.mesh = box;
-        this.spawnRocks(scene);
-        this.scene.registerBeforeRender(() => {
+        
+        this.spawnRockTimer = 0;
+
+        
+
+        scene.onBeforeRenderObservable.add(() => {
+            this.frameTime = Date.now();
+
             // ground move
             this.moveRockGenerationX();
-            // console.log(`Mesh x ${this.mesh.position.x}`)
+            //console.log(`Mesh x ${this.mesh.position.x}`)
+            if(this.spawnRockTimer > 200){
+                this.spawnRocks(this.mesh.position.x)
+                this.spawnRockTimer = 0;
+            }
+            this.spawnRockTimer++;
             // this._updateCamera();
     
         })
         return this;
-        
-    
     }
     
     moveRockGenerationX = () => {
         this.mesh.position.x -= .01;
+        //console.log(`Obs Factory x : ${this.mesh.position.x}`)
     }
 
+    getCurrentX = () => {
+        return this.mesh.position.x;
+    }
 
-    spawnRocks = (scene) => {
+    spawnRocks = (rock_start_x) => {
+        if (this.prevFrameTime === undefined) {
+            this.prevFrameTime = this.frameTime;
+            return;
+        }
 
-        setInterval(function(){
-            var rock = new Rock(scene);
-            // rock.mesh.setParent(this.mesh);
-            console.log(`rock ${rock.mesh.position}`)
-        }, 2000);
+        const delta = this.frameTime - this.prevFrameTime;
+        // ObsFactory.moveRockGenerationX();
+        //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
+
+
+        var rock = new Rock(this.scene,rock_start_x);
+        this.prevFrameTime = this.frameTime;
     }
 
     

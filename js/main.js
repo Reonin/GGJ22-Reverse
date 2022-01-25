@@ -10,7 +10,6 @@ if (location.hostname === ""){
 }
     
 
-
 const createScene = function() {
     const scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color3.Black;
@@ -26,9 +25,9 @@ const createScene = function() {
    
     ActionManager.establishInputs(scene, player);
     const skybox = new Skybox(scene);
-
+    
     const ObsFactory = new ObstacleFactory(scene);
-
+    
 
     const ground = new Ground(scene);
     
@@ -55,4 +54,5 @@ const createScene = function() {
 const sceneToRender = createScene();
 engine.runRenderLoop(function(){
     sceneToRender.render();
+    
 });

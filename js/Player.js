@@ -85,7 +85,7 @@
             // Raycast Method 1
             const pick = this.scene.pickWithRay(this.ray);
             if (pick){
-            //  console.log(pick);
+             console.log(pick);
              this.onObject = pick.hit;
             }
             // Raycast Method 2
