@@ -36,8 +36,8 @@ const createScene = function() {
     const physicsPlugin = new BABYLON.CannonJSPlugin();
     scene.enablePhysics(gravityVector, physicsPlugin);
      //set physics models to objects made
-    //player.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(player.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1 }, scene);
-    ground.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(ground.mesh, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.3 }, scene);
+    player.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(player.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1 , restitution: 0.9 }, scene);
+    ground.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(ground.mesh, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
     ground.checkCollisions = true;
 
     

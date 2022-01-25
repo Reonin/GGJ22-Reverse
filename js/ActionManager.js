@@ -21,9 +21,7 @@ class ActionManager {
                             player.setJumpKeyDown(false);
                             break;
                     }
-                // case BABYLON.KeyboardEventTypes.KEYUP:
-                // console.log("KEY UP: ", kbInfo.event.code);
-                // break;
+
             }
         });
 

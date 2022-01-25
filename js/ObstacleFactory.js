@@ -2,8 +2,6 @@
 
 class ObstacleFactory {
 
-    ROCK_START_X = 0;
-    ROCK_START_Y = 0; 
     FACTORY_START_X = 0;
     FACTORY_START_Y = 0;
     obstacles = [];
@@ -21,8 +19,6 @@ class ObstacleFactory {
         ObstacleFactory._instance = this;
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("box", {height: 5});
-        this.ROCK_START_X = -10;
-        this.ROCK_START_Y = 2; 
         this.FACTORY_START_X = -10;
         this.FACTORY_START_Y = 2;
         box.position.x = this.FACTORY_START_X;
@@ -43,13 +39,12 @@ class ObstacleFactory {
 
             // ground move
             this.moveRockGenerationX();
-            //console.log(`Mesh x ${this.mesh.position.x}`)
             if(this.spawnRockTimer > 200){
+                //generate rocks and reset timer
                 this.spawnRocks(this.mesh.position.x)
                 this.spawnRockTimer = 0;
             }
             this.spawnRockTimer++;
-            // this._updateCamera();
     
         })
         return this;

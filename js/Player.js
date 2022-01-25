@@ -27,7 +27,7 @@
     _lastGroundPos = BABYLON.Vector3.Zero(); // keep track of the last grounded position
     command = {};
     prevFrameTime = 0;
-    ray = new BABYLON.Ray();
+    downwardsRay = new BABYLON.Ray();
     rayHelper = null;
     onObject = false;
     direction = new BABYLON.Vector3();
@@ -50,7 +50,7 @@
         }
         this.mesh = box;
         this.mesh.isPickable = false;
-        this.rayHelper = new BABYLON.RayHelper(this.ray);
+        this.rayHelper = new BABYLON.RayHelper(this.downwardsRay);
         this.rayHelper.attachToMesh(this.mesh, new BABYLON.Vector3(0, -0.995, 0), new BABYLON.Vector3(0, -1, 0), 0.1);
         this.rayHelper.show(this.scene, new BABYLON.Color3(1, 0, 0));
 
@@ -83,9 +83,9 @@
         const delta = this.command.frameTime - this.prevFrameTime;
 
             // Raycast Method 1
-            const pick = this.scene.pickWithRay(this.ray);
+            const pick = this.scene.pickWithRay(this.downwardsRay);
             if (pick){
-             console.log(pick);
+             //console.log(pick);
              this.onObject = pick.hit;
             }
             // Raycast Method 2
