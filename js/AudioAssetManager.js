@@ -1,7 +1,11 @@
 class AudioAssetManager {
   constructor(scene) {
     let music1, music2, music3;
-    const audioURL = '/GGJ22-Reverse/assets/audio/';
+    let audioURL = '/GGJ22-Reverse/assets/audio/';
+    if (location.hostname === '192.168.20.112') {
+      audioURL = '/assets/audio/';
+    }
+
     // Assets manager
     const assetsManager = new BABYLON.AssetsManager(scene);
 

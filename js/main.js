@@ -8,6 +8,9 @@ if (location.hostname === ""){
      * https://doc.babylonjs.com/toolsAndResources/assetLibraries/availableTextures */
     textureURL = 'https://www.babylonjs-playground.com/';
 }
+else if(location.hostname === '192.168.20.112') {
+    textureURL = '/assets/';
+}
 // Generate the Canvas
 const CANVAS_WIDTH = 1920;
 const CANVAS_HEIGHT = 1080;
