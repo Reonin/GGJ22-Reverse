@@ -31,7 +31,7 @@ class ObstacleFactory {
         this.mesh = box;
         
         this.spawnRockTimer = 0;
-
+        
         
 
         scene.onBeforeRenderObservable.add(() => {

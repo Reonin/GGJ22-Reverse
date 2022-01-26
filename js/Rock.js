@@ -7,7 +7,7 @@ class Rock {
 
     constructor(scene, rock_start_x){
         this.scene = scene;
-        const rock = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
+        const rock = BABYLON.MeshBuilder.CreateSphere("rock", {}, scene);
         rock.position.x = rock_start_x;
         rock.position.y = this.ROCK_START_Y;
         const rockMaterial = new BABYLON.StandardMaterial("material", scene);
