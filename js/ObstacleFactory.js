@@ -10,6 +10,7 @@ class ObstacleFactory {
     frameTime = 0;
     prevFrameTime = 0;
     spawnRockTimer = 0;
+    spawnWoodsmanTimer =0;
 
     constructor (scene) {
 
@@ -31,6 +32,7 @@ class ObstacleFactory {
         this.mesh = box;
         
         this.spawnRockTimer = 0;
+        this.spawnWoodsmanTimer = 0;
         
         
 
@@ -45,6 +47,15 @@ class ObstacleFactory {
                 this.spawnRockTimer = 0;
             }
             this.spawnRockTimer++;
+            this.moveWoodsmanGenerationX();
+            if(this.spawnWoodsmanTimer > 400){
+                //generate woodsmans and reset timer
+                this.spawnWoodsmans(this.mesh.position.x)
+                this.spawnWoodsmanTimer = 0;
+            }
+            this.spawnWoodsmanTimer++;
+
+
     
         })
         return this;
@@ -74,5 +85,24 @@ class ObstacleFactory {
         this.prevFrameTime = this.frameTime;
     }
 
+    moveWoodsmanGenerationX = () => {
+        this.mesh.position.x -= .01;
+        //console.log(`Obs Factory x : ${this.mesh.position.x}`)
+    }
+
+    spawnWoodsmans = (woodsman_start_x) => {
+        if (this.prevFrameTime === undefined) {
+            this.prevFrameTime = this.frameTime;
+            return;
+        }
+
+        const delta = this.frameTime - this.prevFrameTime;
+        // ObsFactory.moveRockGenerationX();
+        //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
+
+
+        var woodsman = new Woodsman(this.scene,woodsman_start_x);
+        this.prevFrameTime = this.frameTime;
+    }
     
 }
