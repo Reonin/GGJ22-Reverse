@@ -1,6 +1,6 @@
 class Woodsman {
 
-    woodsman_START_Y = .5;
+    woodsman_START_Y = 4.5;
     scene = null;
     obstacles = [];
     mesh = null;
@@ -15,20 +15,39 @@ class Woodsman {
         woodsman.material = woodsmanMaterial;
         woodsman.checkCollisions = true;
 
-        //Force Settings
+        //axeSpin face UVs
+        const axeSpinUV = [];
+        axeSpinUV[0] = new BABYLON.Vector4(0, 0, 1, 1);
+        axeSpinUV[1] = new BABYLON.Vector4(0, 0.5, 0, 0.5);
+        axeSpinUV[2] = new BABYLON.Vector4(0, 0, 1, 1);
         
-        const forceDirection = new BABYLON.Vector3(10, 0, 0);
-        const forceMagnitude = 5;
-        const contactLocalRefPoint = BABYLON.Vector3.Zero();
-        
-        woodsman.physicsImpostor = new BABYLON.PhysicsImpostor(woodsman, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.85, restitution: 0.9 }, scene);
-        woodsman.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), woodsman.getAbsolutePosition().add(contactLocalRefPoint));
-        woodsman.getAbsolutePosition().add(contactLocalRefPoint);
-        this.mesh = woodsman;
+        //Animate the axeSpins
+        const animaxeSpin = new BABYLON.Animation("axeSpinAnimation", "rotation.z", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE,scene);
+        const axeSpinKeys = []; 
+
+        //At the animation key 0, the value of rotation.y is 0
+        axeSpinKeys.push({
+            frame: 0,
+            value: 0
+        });
+
+        //At the animation key 30, (after 1 sec since animation fps = 30) the value of rotation.y is 2PI for a complete rotation
+        axeSpinKeys.push({
+            frame: 30,
+            value: 2 * Math.PI
+        });
+
+        //set the keys
+        animaxeSpin.setKeys(axeSpinKeys);
+
+        //Link this animation to a axeSpin
+        woodsman.animations = [];
+        woodsman.animations.push(animaxeSpin);
+        scene.beginAnimation(woodsman, 0, 30, true);
+
 
         this.mesh = woodsman;
-        this.scene.registerBeforeRender(() => {
-            
+        this.scene.registerBeforeRender(() => { 
             this.move();
             // this._updateCamera();
     
