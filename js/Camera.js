@@ -49,4 +49,22 @@ class Camera{
         camera.cameraDirection.z = 1;
         return camera;
     }
+
+
+   static setCamAnterior = function(scene) {
+        var cam = scene.activeCamera;
+        cam.alpha = 0;
+        cam.beta = Math.PI/2; // 1.57
+        cam.radius = 8;
+       
+    };
+
+    static setCamLateralLeft = function(scene) {
+        var cam = scene.activeCamera;
+        cam.alpha =  Math.PI/2;
+        cam.beta = Math.PI/2.2;
+        cam.radius = 18;
+      
+    };
+
 }
