@@ -6,7 +6,7 @@ class Ground{
 
     constructor(scene) {
         this.scene = scene;
-        const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50000, height:10} , this.scene); 
+        const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50000, height:40} , this.scene); 
         //ground.position.x = -20;
         //ground.position.y = 2;
         const groundMaterial = new BABYLON.StandardMaterial("material", this.scene);
@@ -26,7 +26,7 @@ class Ground{
     }
     
     move = () => {
-        this.mesh.position.x += -.006;
+        this.mesh.position.x += -.05;
         //console.log(this.mesh.position.x)
     }
 }

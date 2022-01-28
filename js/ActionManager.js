@@ -5,25 +5,7 @@ class ActionManager {
 
     static establishInputs(scene, player, moon) {
         //console log out which key is pressed
-        scene.onKeyboardObservable.add((kbInfo) => {
-            switch (kbInfo.type) {
-                case BABYLON.KeyboardEventTypes.KEYDOWN:
-                    switch (kbInfo.event.key) {
-                        case ' ':
-                            console.log("KEY DOWN: ", kbInfo.event.key);
-                            player.setJumpKeyDown(true);
-                            break;
-                    }
-                case BABYLON.KeyboardEventTypes.KEYUP:
-                    switch (kbInfo.event.key) {
-                        case ' ':
-                            console.log("KEY DOWN: ", kbInfo.event.key);
-                            player.setJumpKeyDown(false);
-                            break;
-                    }
-
-            }
-        });
+        // 
 
         // sets inputs for player on the scene
         scene.actionManager = new BABYLON.ActionManager(scene);
@@ -31,37 +13,73 @@ class ActionManager {
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
                 {
-                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                    parameter: ' '
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'd'
                 },
-                function () { 
-                    player.setJumpKeyDown(true);
+                function () {
+                    player.setForwardKeyDown(false);
                     // player.jump();
+                }
+            )
+
+        );
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
+                    parameter: 'd'
+                },
+                function () {
+                    player.setForwardKeyDown(true);
                 }
             )
         );
 
-        scene.actionManager.registerAction( 
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
+                    parameter: 'a'
+                },
+                function () {
+                    player.setMoveBackwards(true);
+                }
+            )
+        );
+
+        
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
+                    parameter: ' '
+                },
+                function () {
+                    player.setJumpKeyDown(true);
+                }
+            )
+        );
+
+        scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
                 {
                     trigger: BABYLON.ActionManager.OnKeyUpTrigger,
                     parameter: ' '
                 },
-                function () { 
+                function () {
                     player.setJumpKeyDown(false);
-                    // player.jump();
                 }
             )
 
         );
         /** Press Z to transform between states */
-        scene.actionManager.registerAction( 
+        scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
                 {
                     trigger: BABYLON.ActionManager.OnKeyUpTrigger,
                     parameter: 'z'
                 },
-                function () { 
+                function () {
                     player.changeForm();
                     console.log(player.transformationState);
                 }
@@ -72,7 +90,7 @@ class ActionManager {
          */
         moon.mesh.actionManager = new BABYLON.ActionManager(scene);
         const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
-   
+
         moon.mesh.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
                     player.changeForm();
@@ -86,7 +104,7 @@ class ActionManager {
                     moon.phaselight();
         })
             )
-          
+
     }
 }
 
