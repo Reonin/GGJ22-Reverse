@@ -27,7 +27,9 @@ class ObstacleFactory {
         box.position.x = this.FACTORY_START_X;
         box.position.y = this.FACTORY_START_Y;
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
-        boxMaterial.emissiveColor = new BABYLON.Color3(1, 1, 1);
+        // boxMaterial.emissiveColor = new BABYLON.Color3(155, 1, 1);
+        boxMaterial.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+
         this.player = player;
         box.material = boxMaterial;
         box.checkCollisions = true;
