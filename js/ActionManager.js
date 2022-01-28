@@ -106,13 +106,13 @@ class ActionManager {
         moon.mesh.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
                     player.changeForm();
-                    alert(player.transformationState)
+                    console.warn(player.transformationState)
                     moon.phaseDark();
             }))
             .then(            
                 new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
                     player.changeForm();
-                    alert(player.transformationState)
+                    console.warn(player.transformationState)
                     moon.phaselight();
         })
             )

@@ -32,7 +32,7 @@ class Camera{
 
         const alpha =  Math.PI/2;
         const beta = Math.PI/2.2;
-        const radius = 18;
+        const radius = 29;
         const target = new BABYLON.Vector3(0, 0, 0);
     
         const camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);

@@ -2,13 +2,13 @@
  * Creates Moon Object that will be clickable to change the player object
  */
 class Moon {
-  constructor(scene) {
+  constructor(scene, player) {
     const sphere = BABYLON.MeshBuilder.CreateSphere('sphere', {
-      diameter: 4,
+      diameter: 20,
       segments: 32,
     });
-    sphere.position.x = -20;
-    sphere.position.y = 17;
+    sphere.position.x = -19;
+    sphere.position.y = 12;
 
     const sphereMaterial = new BABYLON.StandardMaterial('material', scene);
     // sphereMaterial.diffuseTexture = new BABYLON.Texture(
@@ -17,9 +17,14 @@ class Moon {
     // );
     sphereMaterial.emissiveColor = BABYLON.Color3.Yellow();
     sphere.material = sphereMaterial;
+    sphere.setParent(player.mesh);
+
+    var hl = new BABYLON.HighlightLayer("hl1", scene);
+    hl.addMesh(sphere, BABYLON.Color3.Green());
 
     this.mesh = sphere;
- 
+
+   
 
     return this;
   }
