@@ -47,6 +47,18 @@ class ActionManager {
             )
         );
 
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'a'
+                },
+                function () {
+                    player.setMoveBackwards(false);
+                }
+            )
+        );
+
         
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
