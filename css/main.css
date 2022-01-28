@@ -5,7 +5,7 @@ body, #renderCanvas {
     }
 @font-face {
    font-family: DarkHeart;
-   src: url('../assets/fonts/DarkHeart-Script.otf');
+   src: url('../GGJ22-Reverse/assets/fonts/DarkHeart-Script.otf');
 }
 #gamecontainer {
    width: 1200px;

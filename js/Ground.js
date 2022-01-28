@@ -26,7 +26,7 @@ class Ground{
     }
     
     move = () => {
-        this.mesh.position.x += -.006;
+        this.mesh.position.x += -.05;
         //console.log(this.mesh.position.x)
     }
 }
