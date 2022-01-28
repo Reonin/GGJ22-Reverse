@@ -19,6 +19,7 @@ class Player {
     moveBackwards = false;
     jumpForceMagnitude = 50;
     moveForceMagnitude = 0;
+    moveRight = false;
     velocity = new BABYLON.Vector3();
     speed = 0;
     GRAVITY = -2.8;
@@ -46,7 +47,10 @@ class Player {
         box.position.z = -2;
         this.forwardKeyDown = false;
         this.moveBackwards = false;
+        this.moveLeft = false;
+        this.moveRight = false;
         this.collidedWithGround = false;
+        
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
@@ -92,9 +96,23 @@ class Player {
         this.jumpKeyDown = jumpKeyDown;
     }
 
-    setForwardKeyDown(forwardKeyDown) {
+    setMoveForwards(forwardKeyDown) {
         // console.log(`forwardKeyDown set to ${forwardKeyDown}`);
         this.forwardKeyDown = forwardKeyDown;
+    }
+
+    setMoveBackwards = (moveBackwards) => {
+        //console.log(jumpKeyDown)
+        this.moveBackwards = moveBackwards;
+    }
+
+    setMoveLeft = (moveLeft) => {
+        //console.log(jumpKeyDown)
+        this.moveLeft = moveLeft;
+    }
+    setMoveRight = (moveRight) => {
+        //console.log(jumpKeyDown)
+        this.moveRight = moveRight;
     }
 
     setCollidedWithGround(collidedWithGround) {
@@ -122,10 +140,6 @@ class Player {
 
     }
 
-    setMoveBackwards = (moveBackwards) => {
-        //console.log(jumpKeyDown)
-        this.moveBackwards = moveBackwards;
-    }
 
     move = () => {
         // if (this.prevFrameTime === undefined) {
@@ -158,14 +172,25 @@ class Player {
         //console.log(`Forward Key down is ${this.forwardKeyDown}`)
         if (this.forwardKeyDown) {
             //  console.log('Moving forward')
-            this.mesh.position.x -= .01;
+            this.mesh.position.x -= .06;
         }
 
         if (this.moveBackwards) {
-              console.log('Moving backwards')
-            this.mesh.position.x += .01;
+              
+            this.mesh.position.x += .06;
         }
 
+        if (this.moveLeft) {
+           
+          this.mesh.position.z -= .06;
+      }
+
+      if (this.moveRight) {
+      
+      this.mesh.position.z += .06;
+  }
+
+        
 
         // this.mesh.moveWithCollisions(this.velocity);    
         //console.log(`Y velocity ${this.velocity.y}`)

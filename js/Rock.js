@@ -25,8 +25,16 @@ class Rock {
         rock.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), rock.getAbsolutePosition().add(contactLocalRefPoint));
         rock.getAbsolutePosition().add(contactLocalRefPoint);
         this.mesh = rock;
-
+        
+        // scene.onBeforeRenderObservable.add(() => {
+        //     setTimeout(function(){
+        //         //this.scene.removeMesh(this.mesh)
+        //         this.mesh.dispose();
+        //     });
+        // });
+        
         return this;
+        
     
     }
     
@@ -35,5 +43,5 @@ class Rock {
     }
 
     
-
+   
 }

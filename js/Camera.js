@@ -30,9 +30,9 @@ class Camera{
         cameraTargetMesh.setParent(player.mesh);
         cameraTargetMesh.position = new BABYLON.Vector3(0, 0, 1);
 
-        const alpha =  Math.PI/2;
+        const alpha =  0;
         const beta = Math.PI/2.2;
-        const radius = 18;
+        const radius = 8;
         const target = new BABYLON.Vector3(0, 0, 0);
     
         const camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);
@@ -45,6 +45,26 @@ class Camera{
             camera.target.copyFrom(cameraTargetMeshOffsetPosition);
 
         });
+
+        camera.cameraDirection.z = 1;
         return camera;
     }
+
+
+   static setCamAnterior = function(scene) {
+        var cam = scene.activeCamera;
+        cam.alpha = 0;
+        cam.beta = Math.PI/2; // 1.57
+        cam.radius = 8;
+       
+    };
+
+    static setCamLateralLeft = function(scene) {
+        var cam = scene.activeCamera;
+        cam.alpha =  Math.PI/2;
+        cam.beta = Math.PI/2.2;
+        cam.radius = 18;
+      
+    };
+
 }
