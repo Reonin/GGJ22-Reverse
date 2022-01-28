@@ -45,7 +45,7 @@ class Woodsman {
         woodsman.animations.push(animaxeSpin);
         scene.beginAnimation(woodsman, 0, 30, true);
 
-
+        woodsman.isPickable = false;
         this.mesh = woodsman;
         this.scene.registerBeforeRender(() => { 
             this.move();

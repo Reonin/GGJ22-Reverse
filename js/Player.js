@@ -59,7 +59,7 @@ class Player {
             jumpKeyDown: false
         }
         this.mesh = box;
-
+        this.mesh.isPickable = false;
         // console.log(`Mesh position ${this.mesh.position}`)
 
         this.downwardsRay = new BABYLON.Ray(this.mesh.position, new BABYLON.Vector3(0, -1, 0), 1)

@@ -58,11 +58,10 @@ const createScene = function() {
     const skybox = new Skybox(scene);
     const ground = new Ground(scene);
     const ObsFactory = new ObstacleFactory(scene,player);
-    const hud = new HUD();
+    const hud = new HUD(scene);
 
     
-    
-    
+
      //set physics models to objects made
    
     ground.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(ground.mesh, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);

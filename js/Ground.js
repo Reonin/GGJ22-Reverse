@@ -12,8 +12,10 @@ class Ground{
         const groundMaterial = new BABYLON.StandardMaterial("material", this.scene);
         groundMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
 
+
         ground.material = groundMaterial;
         ground.checkCollisions = true;
+        ground.isPickable = false;
         this.mesh = ground;
         this.scene.registerBeforeRender(() => {
             
