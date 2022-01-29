@@ -66,7 +66,7 @@ const createScene = function() {
     const ObsFactory = new ObstacleFactory(scene,player, wall, -10, 0, true);
     const ObsFactory2 = new ObstacleFactory(scene,player, wall, -10, 5, false);
     const ObsFactory3 = new ObstacleFactory(scene,player, wall, -10, -3, false);
-    const hud = new HUD(scene, player, moon, engine);
+    const hud = new HUD(scene, engine);
     ActionManager.establishInputs(scene, player, moon, hud, engine);
     
     
@@ -90,13 +90,12 @@ const createScene = function() {
     return scene;
 };
 
-
-
 const sceneToRender = createScene();
 engine.runRenderLoop(function(){
     sceneToRender.render();
     
 });
+
 
 randomIntFromInterval = (min, max) => { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
