@@ -47,7 +47,7 @@ class Player {
         const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
         box.visibility = 0.2;
         box.position.x = 0.5;
-        box.position.y = 8;
+        box.position.y = 3;
         box.position.z = -2;
         // importedMesh.position = box.position;
         importedMesh.position.y = box.position.y;

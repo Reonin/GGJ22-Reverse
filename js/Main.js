@@ -40,8 +40,9 @@ let importedMesh = null;
 // let moon = null;
 
 
-BABYLON.SceneLoader.ImportMesh(null, "https://raw.githubusercontent.com/BabylonJS/Assets/master/meshes/", "alien.glb", scene, function (meshes, particleSystems, skeletons) {
-       
+// BABYLON.SceneLoader.ImportMesh(null, "https://raw.githubusercontent.com/BabylonJS/Assets/master/meshes/", "alien.glb", scene, function (meshes, particleSystems, skeletons) {
+BABYLON.SceneLoader.ImportMesh(null, "/GGJ22-Reverse/assets/models/", "wereman.glb", scene, function (meshes, particleSystems, skeletons) {
+    
     console.log('loaded in');
     importedMesh = meshes[0];
     importedMesh.scaling = new BABYLON.Vector3(1, 1, 1);
