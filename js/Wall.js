@@ -25,7 +25,7 @@ class Wall {
         this.player = player;
         this.spawnWallTimer = 0;
         this.gameStart = true;
-        this.start_x = -60;
+        this.start_x = -100;
         this.ray1 = new BABYLON.Ray(new BABYLON.Vector3(0,0,0), new BABYLON.Vector3(-1, 0, 0), 1)
         this.rayHelper1 = new BABYLON.RayHelper(this.ray1);
         
@@ -105,7 +105,7 @@ class Wall {
         else if(numWall === 2){
             const wall1 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
             wall1.position.x = this.start_x;
-           wall1.position.y = 7.5;
+            wall1.position.y = 7.5;
             wall1.position.z = 0;
             const wall1Material = new BABYLON.StandardMaterial("material", scene);
             wall1Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);

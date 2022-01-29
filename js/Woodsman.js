@@ -5,7 +5,7 @@ class Woodsman {
     obstacles = [];
     mesh = null;
 
-    constructor(scene, woodsman_start_x,woodsman_start_z){
+    constructor(scene, player, woodsman_start_x,woodsman_start_z){
         this.scene = scene;
         const woodsman = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
         woodsman.position.x = woodsman_start_x;
@@ -54,6 +54,9 @@ class Woodsman {
     
         })
         this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0 }, scene);
+        this.mesh.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
+            player.mesh.dispose();
+        });
         return this;
     
     }

@@ -135,14 +135,14 @@ class Player {
     }
 
     jump = () => {
-        console.log('Jumping')
+        // console.log('Jumping')
         // this.velocity.y = 0.15;
         //Force Settings
         try {
             var forceDirection = new BABYLON.Vector3(0, 10, 0);
             var forceMagnitude = 20;
             var contactLocalRefPoint = BABYLON.Vector3.Zero();
-            console.log('Applying force')
+            // console.log('Applying force')
             this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
             this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
 
@@ -167,7 +167,7 @@ class Player {
         if (pick) {
            // console.log(`Type of : ${JSON.stringify(pick)}`);
             if (pick.pickedMesh !== null) {
-                console.log(pick);
+                // console.log(pick);
                 if (pick.pickedMesh.name === "ground") {
                     // 
                     this.onObject = pick.hit;
