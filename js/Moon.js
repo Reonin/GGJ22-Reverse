@@ -2,11 +2,11 @@
  * Creates Moon Object that will be clickable to change the player object
  */
 class Moon {
-  constructor(scene, player, importedMesh) {
-    // const sphere = BABYLON.MeshBuilder.CreateSphere('moon', {
-    //   diameter: 4,
-    // });
-    const sphere = importedMesh;
+  constructor(scene, player) {
+    const sphere = BABYLON.MeshBuilder.CreateSphere('moon', {
+      diameter: 4,
+    });
+  
     sphere.position.x = -9;
     sphere.position.y = 8;
     sphere.position.z = 0

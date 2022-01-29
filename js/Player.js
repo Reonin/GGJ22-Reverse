@@ -42,12 +42,16 @@ class Player {
     wolfTopMesh = null;
     onGround = true;
     
-    constructor(scene) {
+    constructor(scene, importedMesh) {
         this.scene = scene;
-        const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
+        // const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
+        const box = importedMesh;
         box.position.x = 0.5;
-        box.position.y = 3;
+        box.position.y = 8;
         box.position.z = -2;
+        box.showBoundingBox = true;
+        scene.getBoundingBoxRenderer().frontColor.set(1, 0, 0);
+        scene.getBoundingBoxRenderer().backColor.set(0, 1, 0);
         this.forwardKeyDown = false;
         this.moveBackwards = false;
         this.moveLeft = false;

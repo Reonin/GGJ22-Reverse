@@ -34,36 +34,46 @@ function windowWidth() {
         body = window.document.body;
     return window.document.compatMode === "CSS1Compat" && docElemProp || body && body.clientWidth || docElemProp;
 }
+const scene = new BABYLON.Scene(engine);
+let importedMesh = null;
+// let player = null;
+// let moon = null;
 
 
+BABYLON.SceneLoader.ImportMesh(null, "https://raw.githubusercontent.com/BabylonJS/Assets/master/meshes/", "alien.glb", scene, function (meshes, particleSystems, skeletons) {
+       
+    console.log('loaded in');
+    importedMesh = meshes[0];
+    // importedMesh.scaling = new BABYLON.Vector3(1, 1, 1);
 
-const createScene = function() {
-    const scene = new BABYLON.Scene(engine);
+
+    const sceneToRender = createScene(scene, importedMesh);
+    engine.runRenderLoop(function(){
+     sceneToRender.render();
+    
+    });
+
+});
+
+const createScene = function(scene, importedMesh) {
+    
     scene.clearColor = new BABYLON.Color3.Black;
 
     window.onresize = scaletosmallest(ratio);
     //Init physics engine
     const gravityVector = new BABYLON.Vector3(0,-9.81, 0);
     const physicsPlugin = new BABYLON.CannonJSPlugin();
-    scene.enablePhysics(gravityVector,physicsPlugin);
+    scene.enablePhysics(gravityVector, physicsPlugin);
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
     
     const audioMan = new AudioAssetManager(scene);
-    let importedMesh = null;
-    let moon = null;
-    BABYLON.SceneLoader.ImportMesh(null, "https://raw.githubusercontent.com/BabylonJS/Assets/master/meshes/", "alien.glb", scene, function (meshes, particleSystems, skeletons) {
-       
-        console.log('loaded in');
-        importedMesh = meshes[0];
-        importedMesh.scaling = new BABYLON.Vector3(30, 30, 30);
-        moon = new Moon(scene, player, importedMesh);
-  
-    });
+ 
+
     
-    const skybox = new Skybox(scene);
-    const player = new Player(scene);
-    const ground = new Ground(scene,player);
-    
+    const skybox = new Skybox(scene); 
+    const player = new Player(scene, importedMesh);
+    const ground = new Ground(scene, player);
+    const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
     const wall = new Wall(scene, player);
@@ -86,8 +96,3 @@ const createScene = function() {
 
 
 
-const sceneToRender = createScene();
-engine.runRenderLoop(function(){
-    sceneToRender.render();
-    
-});
