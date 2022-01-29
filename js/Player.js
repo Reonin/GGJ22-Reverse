@@ -53,7 +53,7 @@ class Player {
         importedMesh.position.y = box.position.y;
         importedMesh.position.x = box.position.x;
         importedMesh.position.z = box.position.z;
-        // importedMesh.setParent(box);
+        importedMesh.position.y += -1;
         box.showBoundingBox = true;
         scene.getBoundingBoxRenderer().frontColor.set(1, 0, 0);
         scene.getBoundingBoxRenderer().backColor.set(0, 1, 0);

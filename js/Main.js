@@ -45,7 +45,7 @@ BABYLON.SceneLoader.ImportMesh(null, "/GGJ22-Reverse/assets/models/", "wereman.g
     
     console.log('loaded in');
     importedMesh = meshes[0];
-    importedMesh.scaling = new BABYLON.Vector3(1, 1, 1);
+    importedMesh.scaling = new BABYLON.Vector3(30, 30, 30);
     importedMesh.isPickable = false;
 
     const sceneToRender = createScene(scene, importedMesh);
