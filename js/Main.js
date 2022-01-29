@@ -2,6 +2,7 @@
 
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true, { stencil: true });
+engine.loadingUIBackgroundColor = "red";
 let textureURL = '/GGJ22-Reverse/assets/';
 if (location.hostname === ""){
     /** to avoid CORs loading erros
@@ -49,6 +50,11 @@ const createScene = function() {
     
     const audioMan = new AudioAssetManager(scene);
    
+    BABYLON.SceneLoader.Append("/GGJ22-Reverse/assets/models/", "wereman.glb", scene, function (newMeshes) {
+
+
+    
+    });
     
     
     const skybox = new Skybox(scene);
@@ -69,17 +75,7 @@ const createScene = function() {
 
     
 
-     //set physics models to objects made
-   
     
-
-    // ground.mesh.physicsImpostor.onCollideEvent = function(collisionObject) {
-    //     console.log(`Collided with ${collisionObject.object}`)
-    // }
-  
-    //player.mesh.setParent(ground.mesh)
-    //ObsFactory.mesh.setParent(ground.mesh)
-    //moon.mesh.setParent(ground.mesh)
 
     return scene;
 };
