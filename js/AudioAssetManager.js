@@ -1,6 +1,6 @@
 class AudioAssetManager {
   constructor(scene) {
-    let music1, music2, music3;
+    let music1, music2, music3, music4;
     let audioURL = '/GGJ22-Reverse/assets/audio/';
     if (location.hostname === '192.168.20.112') {
       audioURL = '/assets/audio/';
