@@ -14,10 +14,10 @@ class ActionManager {
             new BABYLON.ExecuteCodeAction(
                 {
                     trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                    parameter: 'd'
+                    parameter: 'w'
                 },
                 function () {
-                    player.setForwardKeyDown(false);
+                    player.setMoveForwards(false);
                     // player.jump();
                 }
             )
@@ -27,10 +27,10 @@ class ActionManager {
             new BABYLON.ExecuteCodeAction(
                 {
                     trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                    parameter: 'd'
+                    parameter: 'w'
                 },
                 function () {
-                    player.setForwardKeyDown(true);
+                    player.setMoveForwards(true);
                 }
             )
         );
@@ -39,7 +39,7 @@ class ActionManager {
             new BABYLON.ExecuteCodeAction(
                 {
                     trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                    parameter: 'a'
+                    parameter: 's'
                 },
                 function () {
                     player.setMoveBackwards(true);
@@ -51,7 +51,7 @@ class ActionManager {
             new BABYLON.ExecuteCodeAction(
                 {
                     trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                    parameter: 'a'
+                    parameter: 's'
                 },
                 function () {
                     player.setMoveBackwards(false);
@@ -59,6 +59,53 @@ class ActionManager {
             )
         );
 
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
+                    parameter: 'd'
+                },
+                function () {
+                    player.setMoveRight(true);
+                }
+            )
+        );
+
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'd'
+                },
+                function () {
+                    player.setMoveRight(false);
+                }
+            )
+        );
+
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
+                    parameter: 'a'
+                },
+                function () {
+                    player.setMoveLeft(true);
+                }
+            )
+        );
+
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'a'
+                },
+                function () {
+                    player.setMoveLeft(false);
+                }
+            )
+        );
         
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(

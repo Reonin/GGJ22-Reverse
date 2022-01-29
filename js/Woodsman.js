@@ -5,11 +5,12 @@ class Woodsman {
     obstacles = [];
     mesh = null;
 
-    constructor(scene, woodsman_start_x){
+    constructor(scene, woodsman_start_x,woodsman_start_z){
         this.scene = scene;
         const woodsman = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
         woodsman.position.x = woodsman_start_x;
         woodsman.position.y = this.woodsman_START_Y;
+        woodsman.position.z = woodsman_start_z;
         const woodsmanMaterial = new BABYLON.StandardMaterial("material", scene);
         woodsmanMaterial.diffuseColor = BABYLON.Color3.Green();
         woodsman.material = woodsmanMaterial;
@@ -52,7 +53,7 @@ class Woodsman {
             // this._updateCamera();
     
         })
-
+        this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0 }, scene);
         return this;
     
     }
@@ -63,6 +64,7 @@ class Woodsman {
 
     move = () => {
         this.mesh.position.x += .1;
+        this.mesh.rotate(BABYLON.Axis.Z,.07,BABYLON.Space.LOCAL);
         //console.log(this.mesh.position.x)
     }
 

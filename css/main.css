@@ -35,7 +35,11 @@ background: #ffffff;
 }
 
 input {
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    display:inline-block;
+}
+
+#debugdiv{
+   position: absolute;
+   left: 0;
+   bottom: 0;
 }
