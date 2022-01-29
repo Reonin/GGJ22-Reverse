@@ -59,13 +59,13 @@ const createScene = function() {
 
     const wall = new Wall(scene, player);
     const moon = new Moon(scene, player);
-    ActionManager.establishInputs(scene, player, moon);
-    
+   
     
     const ObsFactory = new ObstacleFactory(scene,player, -10, 0, true,);
     const ObsFactory2 = new ObstacleFactory(scene,player, -10, 5, false);
     const ObsFactory3 = new ObstacleFactory(scene,player, -10, -3, false);
     const hud = new HUD(scene);
+    ActionManager.establishInputs(scene, player, moon, hud, engine);
 
     
 
