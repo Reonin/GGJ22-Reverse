@@ -10,50 +10,68 @@ class AudioAssetManager {
     const assetsManager = new BABYLON.AssetsManager(scene);
 
     const binaryTask = assetsManager.addBinaryFileTask(
-      "WWOL task",
-      audioURL.concat("WWOL.mp3")
+      'WWOL task',
+      audioURL.concat('WWOL.mp3')
     );
     binaryTask.onSuccess = function (task) {
-      music1 = new BABYLON.Sound("WWOL", task.data, scene, soundReady, {
+      music1 = new BABYLON.Sound('WWOL', task.data, scene, soundReady, {
         loop: true,
       });
     };
-/**
- * 
- */
+    /**
+     *
+     */
     const binaryTask2 = assetsManager.addBinaryFileTask(
-      "A_Cursed_Life_FULL task",
-      audioURL.concat("A_Cursed_Life_FULL.mp3")
+      'A_Cursed_Life_FULL task',
+      audioURL.concat('A_Cursed_Life_FULL.mp3')
     );
     binaryTask2.onSuccess = function (task) {
-      music2 = new BABYLON.Sound("A_Cursed_Life_FULL", task.data, scene, soundReady, {
-        loop: false,
-      });
+      music2 = new BABYLON.Sound(
+        'A_Cursed_Life_FULL',
+        task.data,
+        scene,
+        soundReady,
+        {
+          loop: false,
+        }
+      );
     };
-/**
- * 
- */
+    /**
+     *
+     */
     const binaryTask3 = assetsManager.addBinaryFileTask(
-      "A_Cursed_Life_INTRO task",
-      audioURL.concat("A_Cursed_Life_INTRO.mp3")
+      'A_Cursed_Life_INTRO task',
+      audioURL.concat('A_Cursed_Life_INTRO.mp3')
     );
     binaryTask3.onSuccess = function (task) {
-      music3 = new BABYLON.Sound("A_Cursed_Life_INTRO", task.data, scene, soundReady, {
-        loop: false,
-      });
+      music3 = new BABYLON.Sound(
+        'A_Cursed_Life_INTRO',
+        task.data,
+        scene,
+        soundReady,
+        {
+          loop: false,
+        }
+      );
     };
 
-/**
- * 
- */
+    /**
+     *
+     */
     const binaryTask4 = assetsManager.addBinaryFileTask(
-      "A_Cursed_Life_Loop task",
-      audioURL.concat("A_Cursed_Life_Loop.mp3")
+      'A_Cursed_Life_Loop task',
+      audioURL.concat('A_Cursed_Life_Loop.mp3')
     );
     binaryTask4.onSuccess = function (task) {
-      music4 = new BABYLON.Sound("A_Cursed_Life_Loop", task.data, scene, soundReady, {
-        loop: true,
-      });
+      music4 = new BABYLON.Sound(
+        'A_Cursed_Life_Loop',
+        task.data,
+        scene,
+        soundReady,
+        {
+          loop: true,
+        }
+      );
     };
 
     let soundsReady = 0;

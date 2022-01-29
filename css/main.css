@@ -27,6 +27,33 @@ canvas{ position: absolute; z-index: 1 }
    -webkit-text-stroke-width: 1px;
    -webkit-text-stroke-color: black;
 }
+
+#HUD {
+   position: absolute;
+   margin: 0 auto;
+   z-index: 2;
+   font-family: DarkHeart;
+   font-size: 60px;
+   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}
+
+#PAUSE {
+   position: absolute;
+   cursor: pointer;
+   right: 5%;
+   margin: 0 auto;
+   z-index: 2;
+   font-family: DarkHeart;
+   font-size: 60px;
+   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}
+
+
+
 .sketchy {
 border: 3px solid #333333;
 border-radius: 5px;
