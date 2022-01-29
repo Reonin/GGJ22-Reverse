@@ -3,7 +3,7 @@ class ActionManager {
     constructor() {
     }
 
-    static establishInputs(scene, player, moon) {
+    static establishInputs(scene, player, moon, hud, engine) {
         //console log out which key is pressed
         // 
 
@@ -140,26 +140,23 @@ class ActionManager {
                 },
                 function () {
                     player.changeForm();
+                    moon.phase(scene);
                     console.log(player.transformationState);
                 }
             )
         );
 
-        
-        scene.onPointerDown = () => {
-            var pickResult = scene.pick(scene.pointerX, scene.pointerY);
-            // We try to pick an object
-            console.log(pickResult.hit);
-
-                player.changeForm();
-                if(player.transformationState === 'wolfTop'){
-                    moon.phaseDark();
-                }
-                else{
-                    moon.phaselight();
-                }
-        };
-    
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+              {
+                trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                parameter: (KeyboardEvent.code = 27),
+              },
+              function () {
+                hud.pause(scene, engine);
+              }
+            )
+          );
         
     }
 }
