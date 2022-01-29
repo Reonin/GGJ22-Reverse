@@ -10,9 +10,9 @@ class Ground{
         //ground.position.x = -20;
         //ground.position.y = 2;
         const groundMaterial = new BABYLON.StandardMaterial("material", this.scene);
-        groundMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
+        // groundMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
 
-
+        groundMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("textures/ground.jpg"), scene);
         ground.material = groundMaterial;
         ground.checkCollisions = true;
         ground.isPickable = false;
