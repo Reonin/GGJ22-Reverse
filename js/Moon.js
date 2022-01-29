@@ -4,11 +4,11 @@
 class Moon {
   constructor(scene, player) {
     const sphere = BABYLON.MeshBuilder.CreateSphere('moon', {
-      diameter: 6,
+      diameter: 4,
     });
-    sphere.position.x = -19;
-    sphere.position.y = 12;
-    sphere.position.z = 15
+    sphere.position.x = -9;
+    sphere.position.y = 8;
+    sphere.position.z = 0
 
     const sphereMaterial = new BABYLON.StandardMaterial('material', scene);
 
