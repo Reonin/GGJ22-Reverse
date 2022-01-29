@@ -1,6 +1,7 @@
 class AudioAssetManager {
   constructor(scene) {
     let music1, music2, music3, music4;
+    let sfx1, sfx2, sfx3;
     let audioURL = '/GGJ22-Reverse/assets/audio/';
     if (location.hostname === '192.168.20.112') {
       audioURL = '/assets/audio/';
@@ -53,14 +54,48 @@ class AudioAssetManager {
     binaryTask4.onSuccess = function (task) {
       music4 = new BABYLON.Sound("A_Cursed_Life_Loop", task.data, scene, soundReady, {
         loop: true,
+        autoplay: true,
       });
     };
 
+/**
+ * Sound FX
+ */
+
+ const binaryTask5 = assetsManager.addBinaryFileTask(
+  "Footsteps task",
+  audioURL.concat("Footsteps.mp3")
+);
+binaryTask5.onSuccess = function (task) {
+  sfx1 = new BABYLON.Sound("Footsteps", task.data, scene, soundReady, {
+    loop: false,
+  });
+};
+
+const binaryTask6 = assetsManager.addBinaryFileTask(
+  "Wolf_Axe_Hits task",
+  audioURL.concat("Wolf_Axe_Hits.mp3")
+);
+binaryTask6.onSuccess = function (task) {
+  sfx2 = new BABYLON.Sound("Wolf_Axe_Hits", task.data, scene, soundReady, {
+    loop: false,
+  });
+};
+
+const binaryTask7 = assetsManager.addBinaryFileTask(
+  "Wolf_Rock_Hits task",
+  audioURL.concat("Wolf_Rock_Hits.mp3")
+);
+binaryTask7.onSuccess = function (task) {
+  sfx3 = new BABYLON.Sound("Wolf_Rock_Hits", task.data, scene, soundReady, {
+    loop: false,
+  });
+};
     let soundsReady = 0;
 
     function soundReady() {
       soundsReady++;
-      if (soundsReady === 4) {
+      if (soundsReady === 7) {
         // music1.play();
         // music2.play();
         // music3.play();
