@@ -87,7 +87,7 @@ class Wall {
             wall3.position.y = 3.5;
             wall3.position.z = -15;
             const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 1.1, 0.1);
+            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
             wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
@@ -170,7 +170,7 @@ class Wall {
             wall3.position.y = 3.5;
             wall3.position.z = -15;
             const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 1.1, 0.1);
+            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
             wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
@@ -258,7 +258,7 @@ class Wall {
             wall3.position.y = 3.5;
             wall3.position.z = -10;
             const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 1.1, 0.1);
+            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
             wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
@@ -343,7 +343,7 @@ class Wall {
             wall3.position.y = 3.5;
             wall3.position.z = -15;
             const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 1.1, 0.1);
+            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
             wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
