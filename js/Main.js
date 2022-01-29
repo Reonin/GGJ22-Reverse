@@ -53,19 +53,19 @@ const createScene = function() {
     
     
     const skybox = new Skybox(scene);
-    const player = new Player(scene);
     
-    const ground = new Ground(scene,player);
     
+    const ground = new Ground(scene);
+    const player = new Player(scene, ground);
     const camera = new Camera(scene, player);
 
     const wall = new Wall(scene, player);
     const moon = new Moon(scene, player);
    
     
-    const ObsFactory = new ObstacleFactory(scene,player, wall, -10, 0, true);
-    const ObsFactory2 = new ObstacleFactory(scene,player, wall, -10, 5, false);
-    const ObsFactory3 = new ObstacleFactory(scene,player, wall, -10, -3, false);
+    const ObsFactory = new ObstacleFactory(scene,player, wall, -150, 0, true);
+    const ObsFactory2 = new ObstacleFactory(scene,player, wall, -150, 5, false);
+    const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
     const hud = new HUD(scene);
     ActionManager.establishInputs(scene, player, moon, hud, engine);
 

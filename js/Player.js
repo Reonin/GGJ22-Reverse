@@ -5,9 +5,9 @@
  */
 class Player {
 
-    
 
-    constructor(scene) {
+
+    constructor(scene, ground) {
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
         box.position.x = 0.5;
@@ -25,7 +25,7 @@ class Player {
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
         box.material = boxMaterial;
-
+        this.transformationState = "humanTop";
 
         this.humanTopMesh = boxMaterial;
 
@@ -51,25 +51,31 @@ class Player {
         this.downwardsRayHelper.show(this.scene, new BABYLON.Color3(1, 0, 0));
 
         this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1 }, scene);
-        
+
         // console.log(`Added to obstacles${obstacles[0].object}`)
         // this.mesh.physicsImpostor.registerOnPhysicsCollide(ground.mesh.physicsImpostor, function(main, collided) {
-            
+
         //     this.onGround = true;
         //     console.log(`On the ground ${this.onGround}`);
         // });
-        
+
         this.mesh.physicsImpostor.executeNativeFunction(function (world, body) {
             body.fixedRotation = true;
             body.updateMassProperties();
 
         });
-        
+
         this.scene.registerBeforeRender(() => {
             //add player to obstacle list so we can track it.
-            if(this.playerAddedToObstacles === false){
+            if (this.playerAddedToObstacles === false) {
                 obstacles.push(this.mesh.physicsImpostor);
                 this.playerAddedToObstacles = true;
+            }
+            // console.log(`mesh is at ${this.mesh.position.y} ground is at ${ground.mesh.position.y}`)
+            if(this.mesh.position.y + 10 < ground.mesh.position.y){
+                
+                this.setAlive(false);
+                this.mesh.dispose();
             }
             // Player move
             this.command.frameTime = Date.now();
@@ -79,7 +85,7 @@ class Player {
         })
 
         // this.mesh.physicsImpostor.onCollideEvent = this.die;
-        
+
         return this;
     }
 
@@ -118,7 +124,7 @@ class Player {
         this.collidedWithGround = collidedWithGround;
     }
 
-    setAlive(alive){
+    setAlive(alive) {
         this.alive = alive;
     }
 
@@ -127,12 +133,23 @@ class Player {
         // this.velocity.y = 0.15;
         //Force Settings
         try {
-            var forceDirection = new BABYLON.Vector3(0, 10, 0);
-            var forceMagnitude = 20;
-            var contactLocalRefPoint = BABYLON.Vector3.Zero();
-            // console.log('Applying force')
-            this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
-            this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
+            if(this.transformationState === "wolfTop"){
+                var forceDirection = new BABYLON.Vector3(0, 10, 0);
+                var forceMagnitude = 20;
+                var contactLocalRefPoint = BABYLON.Vector3.Zero();
+                // console.log('Applying force')
+                this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
+                this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
+            }
+            else if(this.transformationState === "humanTop"){
+                var forceDirection = new BABYLON.Vector3(0, 10, 0);
+                var forceMagnitude = 5;
+                var contactLocalRefPoint = BABYLON.Vector3.Zero();
+                // console.log('Applying force')
+                this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
+                this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
+            }
+            
 
             this.onObject = false;
         }
@@ -153,7 +170,7 @@ class Player {
         // Raycast Method 1
         const pick = this.scene.pickWithRay(this.downwardsRay);
         if (pick) {
-           // console.log(`Type of : ${JSON.stringify(pick)}`);
+            // console.log(`Type of : ${JSON.stringify(pick)}`);
             if (pick.pickedMesh !== null) {
                 // console.log(pick);
                 if (pick.pickedMesh.name === "ground") {
@@ -164,8 +181,8 @@ class Player {
 
 
             }
-        }   
-        
+        }
+
 
         // console.log(`On Ground ${this.onGround}`)
         if (this.jumpKeyDown && this.onObject && this.alive === true) {
@@ -174,39 +191,48 @@ class Player {
         }
         //console.log(`Forward Key down is ${this.forwardKeyDown}`)
 
-            //  console.log('Moving forward')
+        //  console.log('Moving forward')
         this.mesh.position.x -= .06;
 
         if (this.moveBackwards) {
-              
+
             this.mesh.position.x += .06;
         }
 
         if (this.moveLeft) {
-           
-          this.mesh.position.z -= .06;
-      }
+            if (this.transformationState === 'wolfTop') {
+                this.mesh.position.z -= .16;
+            }
+            else {
+                this.mesh.position.z -= .06;
+            }
+        }
 
-      if (this.moveRight) {
-      
-      this.mesh.position.z += .06;
-  }
+        if (this.moveRight) {
 
-        
+            if (this.transformationState === 'wolfTop') {
+                this.mesh.position.z += .16;
+            }
+            else {
+                this.mesh.position.z += .06;
+            }
+        }
+
+
 
         // this.mesh.moveWithCollisions(this.velocity);    
         //console.log(`Y velocity ${this.velocity.y}`)
         // this.prevFrameTime = this.command.frameTime;
     }
 
-    
-    getHumanTop(){
-      
+
+    getHumanTop() {
+
         this.mesh.material = this.humanTopMesh;
     }
 
-    getWolfTop(){
-     
+    getWolfTop() {
+
         this.mesh.material = this.wolfTopMesh;
     }
 
