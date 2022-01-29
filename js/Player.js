@@ -172,10 +172,9 @@ class Player {
 
         }
         //console.log(`Forward Key down is ${this.forwardKeyDown}`)
-        if (this.forwardKeyDown) {
+
             //  console.log('Moving forward')
-            this.mesh.position.x -= .06;
-        }
+        this.mesh.position.x -= .06;
 
         if (this.moveBackwards) {
               
