@@ -7,7 +7,7 @@ class BreakableWall{
         breakableWall.position.y = start_y;
         breakableWall.position.z = start_z;
         const breakableWallMaterial = new BABYLON.StandardMaterial("material", scene);
-        breakableWallMaterial.diffuseColor =new BABYLON.Color3(0.1, 1.1, 1.1);
+        breakableWallMaterial.diffuseColor =BABYLON.Color3.FromHexString("#00FF00");
         breakableWall.material = breakableWallMaterial;
         breakableWall.physicsImpostor = new BABYLON.PhysicsImpostor(breakableWall, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
         breakableWall.checkCollisions = true;

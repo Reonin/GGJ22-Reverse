@@ -52,7 +52,7 @@ class Wall {
             wall1.position.y = 3.5;
             wall1.position.z = 0;
             const wall1Material = new BABYLON.StandardMaterial("material", scene);
-            wall1Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall1Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall1.material = wall1Material;
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = true;
@@ -71,7 +71,7 @@ class Wall {
             wall2.position.y = 3.5;
             wall2.position.z = 15;
             const wall2Material = new BABYLON.StandardMaterial("materd daial", scene);
-            wall2Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall2Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall2.material = wall2Material;
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall2.checkCollisions = true;
@@ -87,7 +87,7 @@ class Wall {
             wall3.position.y = 3.5;
             wall3.position.z = -15;
             const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall3Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
@@ -138,7 +138,7 @@ class Wall {
             wall1.position.y = 3.5;
             wall1.position.z = 0;
             const wall1Material = new BABYLON.StandardMaterial("material", scene);
-            wall1Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall1Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall1.material = wall1Material;
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = true;
@@ -154,7 +154,7 @@ class Wall {
             wall2.position.y = 3.5;
             wall2.position.z = 10;
             const wall2Material = new BABYLON.StandardMaterial("material", scene);
-            wall2Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall2Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall2.material = wall2Material;
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall2.checkCollisions = true;
@@ -170,7 +170,7 @@ class Wall {
             wall3.position.y = 3.5;
             wall3.position.z = -15;
             const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall3Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
@@ -226,7 +226,7 @@ class Wall {
             wall1.position.y = 3.5;
             wall1.position.z = 0;
             const wall1Material = new BABYLON.StandardMaterial("material", scene);
-            wall1Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall1Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall1.material = wall1Material;
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = true;
@@ -242,7 +242,7 @@ class Wall {
             wall2.position.y = 3.5;
             wall2.position.z = 10;
             const wall2Material = new BABYLON.StandardMaterial("material", scene);
-            wall2Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall2Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall2.material = wall2Material;
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall2.checkCollisions = true;
@@ -258,7 +258,7 @@ class Wall {
             wall3.position.y = 3.5;
             wall3.position.z = -10;
             const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall3Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
@@ -310,7 +310,7 @@ class Wall {
             wall1.position.y = 3.5;
             wall1.position.z = 8;
             const wall1Material = new BABYLON.StandardMaterial("material", scene);
-            wall1Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall1Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall1.material = wall1Material;
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = true;
@@ -327,7 +327,7 @@ class Wall {
             wall2.position.y = 3.5;
             wall2.position.z = -5;
             const wall2Material = new BABYLON.StandardMaterial("material", scene);
-            wall2Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall2Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall2.material = wall2Material;
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall2.checkCollisions = true;
@@ -343,7 +343,7 @@ class Wall {
             wall3.position.y = 3.5;
             wall3.position.z = -15;
             const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
+            wall3Material.diffuseColor =BABYLON.Color3.FromHexString("#FF0000");
             wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;

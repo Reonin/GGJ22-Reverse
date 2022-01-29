@@ -7,7 +7,7 @@ class Door{
         door.position.y = start_y;
         door.position.z = start_z;
         const doorMaterial = new BABYLON.StandardMaterial("materd daial", scene);
-        doorMaterial.diffuseColor =new BABYLON.Color3(0.1, 0.1, 1.1);
+        doorMaterial.diffuseColor =BABYLON.Color3.FromHexString("#0000FF");
         door.material = doorMaterial;
         door.physicsImpostor = new BABYLON.PhysicsImpostor(door, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
         door.checkCollisions = true;
