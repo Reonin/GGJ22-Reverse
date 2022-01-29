@@ -4,6 +4,7 @@ const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true, { stencil: true });
 engine.loadingUIBackgroundColor = "red";
 let textureURL = '/GGJ22-Reverse/assets/';
+let obstacles = [];
 if (location.hostname === ""){
     /** to avoid CORs loading erros
      * https://doc.babylonjs.com/toolsAndResources/assetLibraries/availableTextures */
@@ -78,17 +79,16 @@ const createScene = function(scene, importedMesh) {
     const camera = new Camera(scene, player);
 
     const wall = new Wall(scene, player);
+
    
-    ActionManager.establishInputs(scene, player, moon);
+    
+    const ObsFactory = new ObstacleFactory(scene,player, wall, -10, 0, true);
+    const ObsFactory2 = new ObstacleFactory(scene,player, wall, -10, 5, false);
+    const ObsFactory3 = new ObstacleFactory(scene,player, wall, -10, -3, false);
+    const hud = new HUD(scene, player, moon, engine);
+    ActionManager.establishInputs(scene, player, moon, hud, engine);
     
     
-    const ObsFactory = new ObstacleFactory(scene,player, -10, 0, true,);
-    const ObsFactory2 = new ObstacleFactory(scene,player, -10, 5, false);
-    const ObsFactory3 = new ObstacleFactory(scene,player, -10, -3, false);
-    const hud = new HUD(scene);
-
-    
-
     
 
     return scene;
@@ -97,3 +97,7 @@ const createScene = function(scene, importedMesh) {
 
 
 
+
+randomIntFromInterval = (min, max) => { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}

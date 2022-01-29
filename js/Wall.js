@@ -3,17 +3,6 @@
 
 class Wall {
 
-    FACTORY_START_X = 0;
-    FACTORY_START_Y = 0;
-    walls = [];
-    scene = null;
-    mesh = null;
-    // player = null;
-    frameTime = 0;
-    prevFrameTime = 0;
-    // spawnRockTimer = 0;
-    spawnWoodsmanTimer =0;
-    
 
     constructor (scene, player) {
        
@@ -24,6 +13,8 @@ class Wall {
         this.scene = scene;
         this.player = player;
         this.spawnWallTimer = 0;
+        this.walls = [];
+        obstacles = [];
         this.gameStart = true;
         this.start_x = -100;
         this.ray1 = new BABYLON.Ray(new BABYLON.Vector3(0,0,0), new BABYLON.Vector3(-1, 0, 0), 1)
@@ -35,7 +26,7 @@ class Wall {
                 this.gameStart = false;
             }
             else{
-                const getRandSpawnTimer = this.randomIntFromInterval(1600,1900);
+                const getRandSpawnTimer = randomIntFromInterval(1600,1900);
                 if(this.spawnWallTimer > getRandSpawnTimer){
                     this.createWall(scene, player);
                     this.spawnWallTimer = 0;
@@ -52,7 +43,7 @@ class Wall {
     }
 
     createWall(scene,player){
-        const numWall = this.randomIntFromInterval(1,4);
+        const numWall = randomIntFromInterval(1,4);
         //const numWall = 1;
         // console.log(`Num wall : ${numWall}`)
         if(numWall === 1){
@@ -65,12 +56,13 @@ class Wall {
             wall1.material = wall1Material;
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = true;
-
-            this.walls.push(wall1);
             var mesh = this.player.mesh;
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall1.physicsImpostor);
+            this.walls.push(wall1);
+            
 
 
             const wall2 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
@@ -84,8 +76,9 @@ class Wall {
             wall2.checkCollisions = true;
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
+                player.setAlive(false);
             });
-
+            obstacles.push(wall2.physicsImpostor);
             this.walls.push(wall2);
 
             const wall3 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
@@ -100,6 +93,7 @@ class Wall {
             wall3.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall3.physicsImpostor);
             this.walls.push(wall3);
         }
         else if(numWall === 2){
@@ -115,6 +109,7 @@ class Wall {
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall1.physicsImpostor);
             this.walls.push(wall1);
 
             const wall2 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
@@ -129,6 +124,7 @@ class Wall {
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall2.physicsImpostor);
             this.walls.push(wall2);
 
             const wall3 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
@@ -143,12 +139,13 @@ class Wall {
             wall3.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall3.physicsImpostor);
             this.walls.push(wall3);
         }
         else if(numWall === 3){
             const wall1 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
             wall1.position.x = this.start_x;
-           wall1.position.y = 7.5;
+            wall1.position.y = 7.5;
             wall1.position.z = 0;
             const wall1Material = new BABYLON.StandardMaterial("material", scene);
             wall1Material.diffuseColor =new BABYLON.Color3(1.0, 0.1, 0.1);
@@ -158,6 +155,7 @@ class Wall {
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall1.physicsImpostor);
             this.walls.push(wall1);
 
             const wall2 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
@@ -172,6 +170,7 @@ class Wall {
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall2.physicsImpostor);
             this.walls.push(wall2);
 
             const wall3 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
@@ -186,6 +185,7 @@ class Wall {
             wall3.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall3.physicsImpostor);
             this.walls.push(wall3);
         }
 
@@ -202,6 +202,7 @@ class Wall {
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall1.physicsImpostor);
             this.walls.push(wall1);
            
 
@@ -217,6 +218,7 @@ class Wall {
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall2.physicsImpostor);
             this.walls.push(wall2);
 
             const wall3 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 15, depth: 10});
@@ -231,6 +233,7 @@ class Wall {
             wall3.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
                 player.mesh.dispose();
             });
+            obstacles.push(wall3.physicsImpostor);
             this.walls.push(wall3);
         }
     }
@@ -244,19 +247,28 @@ class Wall {
     destroyWall(){
         for(var i = 0; i < this.walls.length; i++){
             // console.log(this.walls.length)
+            
+            
             if(this.walls[i].position.x > this.player.mesh.position.x + 50){
+                var index = obstacles.indexOf(this.walls[i].physicsImpostor);
+                // console.log(index);
+                obstacles.splice(index,1);
                 this.walls[i].dispose();
                 this.walls.splice(i,1);
             }
+            
         }
+
     }
 
-    randomIntFromInterval = (min, max) => { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    }
+    
     
     getWalls(){
         return this.walls;
+    }
+
+    getWallImposters(){
+        return obstacles;
     }
 
     updateStartX(){
