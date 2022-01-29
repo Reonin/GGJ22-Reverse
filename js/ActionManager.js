@@ -139,7 +139,7 @@ class ActionManager {
                     parameter: 'z'
                 },
                 function () {
-                    player.changeForm();
+                    player.changeForm(scene);
                     console.log(player.transformationState);
                 }
             )
