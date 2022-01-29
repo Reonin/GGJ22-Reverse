@@ -21,7 +21,7 @@ class Rock {
         const forceDirection = new BABYLON.Vector3(10, 0, 0);
         const forceMagnitude = 700;
         const contactLocalRefPoint = BABYLON.Vector3.Zero();
-        
+        rock.isPickable = false;
         rock.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), rock.getAbsolutePosition().add(contactLocalRefPoint));
         rock.getAbsolutePosition().add(contactLocalRefPoint);
         this.mesh = rock;

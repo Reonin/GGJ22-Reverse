@@ -29,7 +29,7 @@ class Camera{
         cameraTargetMesh.visibility = 0;
         cameraTargetMesh.setParent(player.mesh);
         cameraTargetMesh.position = new BABYLON.Vector3(0, 0, 1);
-
+        cameraTargetMesh.isPickable = false;
         const alpha =  0;
         const beta = Math.PI/2.2;
         const radius = 8;

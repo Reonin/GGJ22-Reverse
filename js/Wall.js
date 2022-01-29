@@ -45,7 +45,6 @@ class Wall {
             this.moveWall();
             this.destroyWall();
             this.updateStartX();
-            this.checkCollisions(scene);
             this.spawnWallTimer++;
         });
         
@@ -265,15 +264,6 @@ class Wall {
         // console.log(`start x : ${this.start_x}`);
     }
 
-    checkCollisions(scene){
-        for(var i = 0; i < this.walls.length; i++){
-            
-            
-            const pick = scene.pickWithRay(this.ray1);
-            if (pick) {
-                console.log(`Collided with ${pick.pickedMesh}`)
-            }
-        }
-    }
+    
 
 }
