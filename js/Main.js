@@ -52,7 +52,7 @@ const createScene = function() {
    
     BABYLON.SceneLoader.Append("/GGJ22-Reverse/assets/models/", "wereman.glb", scene, function (newMeshes) {
 
-
+    console.log('loaded in');
     
     });
     
