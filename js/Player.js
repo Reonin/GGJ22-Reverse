@@ -101,6 +101,14 @@ class Player {
 
         })
 
+        const particleEffectTransform = new BABYLON.ParticleSystem("particles", 50); //scene
+        particleEffectTransform.particleTexture = new BABYLON.Texture(textureURL.concat("textures/sparkle2.jpg"));
+
+        particleEffectTransform.emitter = this.mesh;
+        
+        this.particleSystem = particleEffectTransform;
+
+        
         // this.mesh.physicsImpostor.onCollideEvent = this.die;
         
         return this;
@@ -110,6 +118,7 @@ class Player {
     transformationState = 'wolfTop';
     humanTopMesh = null;
     wolfTopMesh = null;
+    particleSystem = null;
     setJumpKeyDown(jumpKeyDown) {
         //console.log(jumpKeyDown)
         this.jumpKeyDown = jumpKeyDown;
@@ -225,13 +234,23 @@ class Player {
 
     
     getHumanTop(){
+        this.particleSystem.start();
         this.humanTopMesh.setEnabled(true);
         this.wolfTopMesh.setEnabled(false);
+
+        setTimeout(()=> {
+            this.particleSystem.stop();
+        }, 2000);
+       
     }
 
     getWolfTop(){
+        this.particleSystem.start();
         this.humanTopMesh.setEnabled(false);
         this.wolfTopMesh.setEnabled(true);
+        setTimeout(()=> {
+            this.particleSystem.stop();
+        }, 2000);
     }
 
     changeForm = (scene) => {
