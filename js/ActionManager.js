@@ -77,7 +77,6 @@ class ActionManager {
                     parameter: 'd'
                 },
                 function () {
-                    console.log("moving right")
                     player.setMoveRight(false);
                 }
             )
@@ -142,6 +141,19 @@ class ActionManager {
               }
             )
           );
+        /** Press Z to transform between states */
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'y'
+                },
+                function () {
+                    console.log('good luck')
+                    hud.start(scene, engine)
+                }
+                )
+            );
     
 
         /** Press Z to transform between states */
@@ -162,6 +174,10 @@ class ActionManager {
     }
 
     static pauseActions = (scene) => {
+        scene.actionManager.actions.splice(11, 1)
+    }
+
+    static disbaleStartButton = (scene) => {
         scene.actionManager.actions.splice(11, 1)
     }
 
