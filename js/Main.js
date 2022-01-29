@@ -49,13 +49,16 @@ const createScene = function() {
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
     
     const audioMan = new AudioAssetManager(scene);
-   
-    BABYLON.SceneLoader.Append("/GGJ22-Reverse/assets/models/", "wereman.glb", scene, function (newMeshes) {
-
-    console.log('loaded in');
-    
+    let importedMesh = null;
+    let moon = null;
+    BABYLON.SceneLoader.ImportMesh(null, "https://raw.githubusercontent.com/BabylonJS/Assets/master/meshes/", "alien.glb", scene, function (meshes, particleSystems, skeletons) {
+       
+        console.log('loaded in');
+        importedMesh = meshes[0];
+        importedMesh.scaling = new BABYLON.Vector3(30, 30, 30);
+        moon = new Moon(scene, player, importedMesh);
+  
     });
-    
     
     const skybox = new Skybox(scene);
     const player = new Player(scene);
@@ -64,7 +67,7 @@ const createScene = function() {
     const camera = new Camera(scene, player);
 
     const wall = new Wall(scene, player);
-    const moon = new Moon(scene, player);
+   
     ActionManager.establishInputs(scene, player, moon);
     
     
@@ -78,6 +81,7 @@ const createScene = function() {
     
 
     return scene;
+  
 };
 
 
