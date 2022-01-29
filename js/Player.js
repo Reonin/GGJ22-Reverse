@@ -38,6 +38,8 @@ class Player {
     onObject = false;
     direction = new BABYLON.Vector3();
     transformationState = 'wolfTop';
+    humanTopMesh = null;
+    wolfTopMesh = null;
 
     constructor(scene) {
         this.scene = scene;
@@ -55,6 +57,15 @@ class Player {
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
         box.material = boxMaterial;
+
+
+        this.humanTopMesh = boxMaterial;
+
+
+        const wolfMaterial = new BABYLON.StandardMaterial("material", scene);
+        wolfMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/leopard_fur.jpg"), scene);
+        this.wolfTopMesh = wolfMaterial;
+
         // box.checkCollisions = true;
         this.speed = -.01;
         // Player movement
@@ -197,12 +208,25 @@ class Player {
         // this.prevFrameTime = this.command.frameTime;
     }
 
-    changeForm = () => {
+    
+    getHumanTop(){
+      
+        this.mesh.material = this.humanTopMesh;
+    }
+
+    getWolfTop(){
+     
+        this.mesh.material = this.wolfTopMesh;
+    }
+
+    changeForm = (scene) => {
         if (this.transformationState === 'wolfTop') {
             this.transformationState = 'humanTop';
+            this.getHumanTop();
         }
         else if (this.transformationState === 'humanTop') {
             this.transformationState = 'wolfTop';
+            this.getWolfTop();
         }
     }
 
