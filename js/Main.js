@@ -50,7 +50,7 @@ const createScene = function() {
     
     const camera = new Camera(scene, player);
     const moon = new Moon(scene);
-    const wall = new Wall(scene);
+    const wall = new Wall(scene, player);
     const audioMan = new AudioAssetManager(scene);
    
     ActionManager.establishInputs(scene, player, moon);

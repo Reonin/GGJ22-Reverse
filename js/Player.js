@@ -87,6 +87,8 @@ class Player {
 
         })
 
+        // this.mesh.physicsImpostor.onCollideEvent = this.die;
+
         return this;
     }
 
@@ -206,5 +208,8 @@ class Player {
         }
     }
 
+    die() {
+        this.mesh.dispose();
+    }
 
 }
