@@ -18,35 +18,53 @@ class AudioAssetManager {
         loop: true,
       });
     };
+/**
+ * 
+ */
+    const binaryTask2 = assetsManager.addBinaryFileTask(
+      "A_Cursed_Life_FULL task",
+      audioURL.concat("A_Cursed_Life_FULL.mp3")
+    );
+    binaryTask2.onSuccess = function (task) {
+      music2 = new BABYLON.Sound("A_Cursed_Life_FULL", task.data, scene, soundReady, {
+        loop: false,
+      });
+    };
+/**
+ * 
+ */
+    const binaryTask3 = assetsManager.addBinaryFileTask(
+      "A_Cursed_Life_INTRO task",
+      audioURL.concat("A_Cursed_Life_INTRO.mp3")
+    );
+    binaryTask3.onSuccess = function (task) {
+      music3 = new BABYLON.Sound("A_Cursed_Life_INTRO", task.data, scene, soundReady, {
+        loop: false,
+      });
+    };
 
-    // const binaryTask2 = assetsManager.addBinaryFileTask(
-    //   "Violons11 task",
-    //   "sounds/violons11.wav"
-    // );
-    // binaryTask2.onSuccess = function (task) {
-    //   music2 = new BABYLON.Sound("Violons11", task.data, scene, soundReady, {
-    //     loop: true,
-    //   });
-    // };
-
-    // const binaryTask3 = assetsManager.addBinaryFileTask(
-    //   "Cello task",
-    //   "sounds/cellolong.wav"
-    // );
-    // binaryTask3.onSuccess = function (task) {
-    //   music3 = new BABYLON.Sound("Cello", task.data, scene, soundReady, {
-    //     loop: true,
-    //   });
-    // };
+/**
+ * 
+ */
+    const binaryTask4 = assetsManager.addBinaryFileTask(
+      "A_Cursed_Life_Loop task",
+      audioURL.concat("A_Cursed_Life_Loop.mp3")
+    );
+    binaryTask4.onSuccess = function (task) {
+      music4 = new BABYLON.Sound("A_Cursed_Life_Loop", task.data, scene, soundReady, {
+        loop: true,
+      });
+    };
 
     let soundsReady = 0;
 
     function soundReady() {
       soundsReady++;
-      if (soundsReady === 1) {
-        music1.play();
+      if (soundsReady === 4) {
+        // music1.play();
         // music2.play();
         // music3.play();
+        music4.play();
       }
     }
 
