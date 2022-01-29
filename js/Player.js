@@ -50,6 +50,7 @@ class Player {
         this.moveLeft = false;
         this.moveRight = false;
         this.collidedWithGround = false;
+        this.alive = true;
         
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
