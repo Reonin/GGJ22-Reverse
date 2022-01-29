@@ -6,13 +6,21 @@
 class Player {
 
     
-
-    constructor(scene) {
+    constructor(scene, importedMesh) {
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
+        box.visibility = 0.2;
         box.position.x = 0.5;
         box.position.y = 3;
         box.position.z = -2;
+        // importedMesh.position = box.position;
+        importedMesh.position.y = box.position.y;
+        importedMesh.position.x = box.position.x;
+        importedMesh.position.z = box.position.z;
+        importedMesh.position.y += -1;
+        box.showBoundingBox = true;
+        scene.getBoundingBoxRenderer().frontColor.set(1, 0, 0);
+        scene.getBoundingBoxRenderer().backColor.set(0, 1, 0);
         this.forwardKeyDown = false;
         this.moveBackwards = false;
         this.moveLeft = false;
@@ -24,7 +32,7 @@ class Player {
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
-        box.material = boxMaterial;
+        // box.material = boxMaterial;
 
 
         this.humanTopMesh = boxMaterial;
@@ -43,6 +51,7 @@ class Player {
         }
         this.mesh = box;
         this.mesh.isPickable = false;
+        importedMesh.setParent(this.mesh);
         // console.log(`Mesh position ${this.mesh.position}`)
 
         this.downwardsRay = new BABYLON.Ray(this.mesh.position, new BABYLON.Vector3(0, -1, 0), 1)
