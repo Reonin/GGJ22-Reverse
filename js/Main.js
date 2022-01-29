@@ -3,6 +3,7 @@
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true, { stencil: true });
 let textureURL = '/GGJ22-Reverse/assets/';
+let obstacles = [];
 if (location.hostname === ""){
     /** to avoid CORs loading erros
      * https://doc.babylonjs.com/toolsAndResources/assetLibraries/availableTextures */
@@ -53,6 +54,7 @@ const createScene = function() {
     
     const skybox = new Skybox(scene);
     const player = new Player(scene);
+    
     const ground = new Ground(scene,player);
     
     const camera = new Camera(scene, player);
@@ -62,13 +64,17 @@ const createScene = function() {
     ActionManager.establishInputs(scene, player, moon);
     
     
-    const ObsFactory = new ObstacleFactory(scene,player, -10, 0, true,);
-    const ObsFactory2 = new ObstacleFactory(scene,player, -10, 5, false);
-    const ObsFactory3 = new ObstacleFactory(scene,player, -10, -3, false);
+    const ObsFactory = new ObstacleFactory(scene,player, wall, -10, 0, true);
+    const ObsFactory2 = new ObstacleFactory(scene,player, wall, -10, 5, false);
+    const ObsFactory3 = new ObstacleFactory(scene,player, wall, -10, -3, false);
     const hud = new HUD(scene);
-
     
-
+    
+    // scene.onBeforeRenderObservable.add(() => {
+    //     // for(var i = 0; i < obstacles.length; i++){
+    //     //     // console.log(`${obstacles[i].object}`)
+    //     // }
+    // });
      //set physics models to objects made
    
     
@@ -91,3 +97,7 @@ engine.runRenderLoop(function(){
     sceneToRender.render();
     
 });
+
+randomIntFromInterval = (min, max) => { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}

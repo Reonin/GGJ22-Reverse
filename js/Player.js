@@ -5,40 +5,7 @@
  */
 class Player {
 
-    scene = null;
-    jumpForceDirection = new BABYLON.Vector3();
-    moveForceDirection = new BABYLON.Vector3();
-    _moveDirection = new BABYLON.Vector3();
-    _input = null;
-    _inputAmt = 0;
-    box = null;
-    jumpCount = 0;
-    jumpKeyDown = false;
-    forwardKeyDown = false;
-    collidedWithGround = false;
-    moveBackwards = false;
-    jumpForceMagnitude = 50;
-    moveForceMagnitude = 0;
-    moveRight = false;
-    velocity = new BABYLON.Vector3();
-    speed = 0;
-    GRAVITY = -2.8;
-    _deltaTime = 0;
-    JUMP_FORCE = 0.80;
-    //gravity, ground detection, jumping
-    _gravity = new BABYLON.Vector3();
-    _grounded = true;
-    _lastGroundPos = BABYLON.Vector3.Zero(); // keep track of the last grounded position
-    command = {};
-    prevFrameTime = 0;
-    downwardsRay = new BABYLON.Ray();
-    forwardsRay = new BABYLON.Ray();
-    forwardsRayHelper = null;
-    downwardsRayHelper = null;
-    onObject = false;
-    direction = new BABYLON.Vector3();
-    transformationState = 'wolfTop';dddd
-    onGround = true;
+    
 
     constructor(scene) {
         this.scene = scene;
@@ -53,6 +20,7 @@ class Player {
         this.collidedWithGround = false;
         this.alive = true;
         this.onGround = true;
+        this.playerAddedToObstacles = false;
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
@@ -74,6 +42,8 @@ class Player {
         this.downwardsRayHelper.show(this.scene, new BABYLON.Color3(1, 0, 0));
 
         this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1 }, scene);
+        
+        // console.log(`Added to obstacles${obstacles[0].object}`)
         // this.mesh.physicsImpostor.registerOnPhysicsCollide(ground.mesh.physicsImpostor, function(main, collided) {
             
         //     this.onGround = true;
@@ -87,6 +57,11 @@ class Player {
         });
         
         this.scene.registerBeforeRender(() => {
+            //add player to obstacle list so we can track it.
+            if(this.playerAddedToObstacles === false){
+                obstacles.push(this.mesh.physicsImpostor);
+                this.playerAddedToObstacles = true;
+            }
             // Player move
             this.command.frameTime = Date.now();
             this.move();
@@ -95,7 +70,7 @@ class Player {
         })
 
         // this.mesh.physicsImpostor.onCollideEvent = this.die;
-
+        
         return this;
     }
 
@@ -132,6 +107,10 @@ class Player {
     setCollidedWithGround(collidedWithGround) {
         // console.log(`forwardKeyDown set to ${forwardKeyDown}`);
         this.collidedWithGround = collidedWithGround;
+    }
+
+    setAlive(alive){
+        this.alive = alive;
     }
 
     jump = () => {
@@ -180,7 +159,7 @@ class Player {
         
 
         // console.log(`On Ground ${this.onGround}`)
-        if (this.jumpKeyDown && this.onObject) {
+        if (this.jumpKeyDown && this.onObject && this.alive === true) {
             this.jump();
 
         }
