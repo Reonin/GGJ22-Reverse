@@ -7,6 +7,7 @@
     const sphere = BABYLON.MeshBuilder.CreateSphere('moon', {
       diameter: 4,
     });
+  
     sphere.position.x = -9;
     sphere.position.y = 8;
     sphere.position.z = 0;

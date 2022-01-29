@@ -2,6 +2,7 @@
 
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true, { stencil: true });
+engine.loadingUIBackgroundColor = "red";
 let textureURL = '/GGJ22-Reverse/assets/';
 let obstacles = [];
 if (location.hostname === ""){
@@ -34,70 +35,75 @@ function windowWidth() {
         body = window.document.body;
     return window.document.compatMode === "CSS1Compat" && docElemProp || body && body.clientWidth || docElemProp;
 }
+const scene = new BABYLON.Scene(engine);
+// let importedMesh = null;
+// let player = null;
+// let moon = null;
+
+/**
+ * Weremodel1
+ */
+const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman.glb", scene);
+const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);
+const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "retro_grunge_skateboard.glb", scene);
+
+Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
+
+  console.log('loaded in');
+    
+  let importedMeshes = result;
+
+  const sceneToRender = createScene(scene, importedMeshes);
+  engine.runRenderLoop(function(){
+   sceneToRender.render();
+  
+  });
+
+});
 
 
 
-const createScene = function() {
-    const scene = new BABYLON.Scene(engine);
+
+const createScene = function(scene, importedMesh) {
+    
     scene.clearColor = new BABYLON.Color3.Black;
 
     window.onresize = scaletosmallest(ratio);
     //Init physics engine
     const gravityVector = new BABYLON.Vector3(0,-9.81, 0);
     const physicsPlugin = new BABYLON.CannonJSPlugin();
-    scene.enablePhysics(gravityVector,physicsPlugin);
+    scene.enablePhysics(gravityVector, physicsPlugin);
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
     
     const audioMan = new AudioAssetManager(scene);
-   
+ 
+
     
-    
-    const skybox = new Skybox(scene);
-    
-    
+    const skybox = new Skybox(scene); 
     const ground = new Ground(scene);
-    const player = new Player(scene, ground);
+    const player = new Player(scene,ground,importedMesh);
+    
+    const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
     const wall = new Wall(scene, player);
-    const moon = new Moon(scene, player);
+
    
     
     const ObsFactory = new ObstacleFactory(scene,player, wall, -150, 0, true);
     const ObsFactory2 = new ObstacleFactory(scene,player, wall, -150, 5, false);
     const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
-    const hud = new HUD(scene);
+    const hud = new HUD(scene, engine);
     ActionManager.establishInputs(scene, player, moon, hud, engine);
-
     
     
-    // scene.onBeforeRenderObservable.add(() => {
-    //     // for(var i = 0; i < obstacles.length; i++){
-    //     //     // console.log(`${obstacles[i].object}`)
-    //     // }
-    // });
-     //set physics models to objects made
-   
     
-
-    // ground.mesh.physicsImpostor.onCollideEvent = function(collisionObject) {
-    //     console.log(`Collided with ${collisionObject.object}`)
-    // }
-  
-    //player.mesh.setParent(ground.mesh)
-    //ObsFactory.mesh.setParent(ground.mesh)
-    //moon.mesh.setParent(ground.mesh)
 
     return scene;
+  
 };
 
 
-
-const sceneToRender = createScene();
-engine.runRenderLoop(function(){
-    sceneToRender.render();
-    
-});
 
 randomIntFromInterval = (min, max) => { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
