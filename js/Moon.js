@@ -9,12 +9,9 @@ class Moon {
     sphere.position.x = -19;
     sphere.position.y = 12;
     sphere.position.z = 15
-    // sphere.rotation.x  = Math.PI;
+
     const sphereMaterial = new BABYLON.StandardMaterial('material', scene);
-    // sphereMaterial.diffuseTexture = new BABYLON.Texture(
-    //   textureURL.concat('textures/sphereMap.png'),
-    //   scene
-    // );
+
     sphere.isPickable = true;
    
 
@@ -22,9 +19,11 @@ class Moon {
     sphere.material = sphereMaterial;
     sphere.setParent(player.mesh);
 
-    var hl = new BABYLON.HighlightLayer("hl1", scene);
-    hl.addMesh(sphere, BABYLON.Color3.White());
-
+    // var hl = new BABYLON.HighlightLayer("hl1", scene);
+    // hl.addMesh(sphere, BABYLON.Color3.White());
+    var gl = new BABYLON.GlowLayer("glow", scene);
+    gl.intensity = 0.45;
+    
     sphere.physicsImposter = new BABYLON.PhysicsImpostor(sphere, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0 }, scene);
 
     this.mesh = sphere;
