@@ -36,6 +36,7 @@ class ObstacleFactory {
         this.player = player;
         box.material = boxMaterial;
         // box.checkCollisions = true;
+        box.isPickable = false;
         this.mesh = box;
        
         this.spawnRockTimer = 0;

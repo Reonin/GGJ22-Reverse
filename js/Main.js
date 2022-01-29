@@ -1,7 +1,7 @@
 
 
 const canvas = document.getElementById("renderCanvas");
-const engine = new BABYLON.Engine(canvas, true);
+const engine = new BABYLON.Engine(canvas, true, { stencil: true });
 let textureURL = '/GGJ22-Reverse/assets/';
 if (location.hostname === ""){
     /** to avoid CORs loading erros
@@ -49,7 +49,7 @@ const createScene = function() {
     const player = new Player(scene);
     
     const camera = new Camera(scene, player);
-    const moon = new Moon(scene);
+    const moon = new Moon(scene, player);
     
     const audioMan = new AudioAssetManager(scene);
    
@@ -63,8 +63,7 @@ const createScene = function() {
     const hud = new HUD();
 
     
-    
-    
+
      //set physics models to objects made
    
     ground.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(ground.mesh, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
@@ -73,10 +72,10 @@ const createScene = function() {
     // ground.mesh.physicsImpostor.onCollideEvent = function(collisionObject) {
     //     console.log(`Collided with ${collisionObject.object}`)
     // }
-
+  
     //player.mesh.setParent(ground.mesh)
     //ObsFactory.mesh.setParent(ground.mesh)
-    moon.mesh.setParent(ground.mesh)
+    //moon.mesh.setParent(ground.mesh)
 
     return scene;
 };

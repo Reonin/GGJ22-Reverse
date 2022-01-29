@@ -144,26 +144,23 @@ class ActionManager {
                 }
             )
         );
-        /**
-         * Handles the moon shifting in and out of forms.  Clicking the Moon will give you the state change as well
-         */
-        moon.mesh.actionManager = new BABYLON.ActionManager(scene);
-        const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
 
-        moon.mesh.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
-                    player.changeForm();
-                    alert(player.transformationState)
+        
+        scene.onPointerDown = () => {
+            var pickResult = scene.pick(scene.pointerX, scene.pointerY);
+            // We try to pick an object
+            console.log(pickResult.hit);
+
+                player.changeForm();
+                if(player.transformationState === 'wolfTop'){
                     moon.phaseDark();
-            }))
-            .then(            
-                new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
-                    player.changeForm();
-                    alert(player.transformationState)
+                }
+                else{
                     moon.phaselight();
-        })
-            )
-
+                }
+        };
+    
+        
     }
 }
 
