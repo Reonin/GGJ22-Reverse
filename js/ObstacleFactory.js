@@ -55,7 +55,7 @@ class ObstacleFactory {
             if(this.spawnRockTimer > 400){
                 //generate rocks and reset timer
                 
-                this.spawnRocks(this.mesh.position.x, this.mesh.position.z);
+                this.spawnRocks(player,this.mesh.position.x, this.mesh.position.z);
                 this.spawnRockTimer = 0;
             }
             this.spawnRockTimer++;
@@ -63,7 +63,7 @@ class ObstacleFactory {
             this.moveObstacleFactoryOnZAxis();
             if(this.spawnWoodsmanTimer > 400){
                 //generate woodsmans and reset timer
-                this.spawnWoodsmans(this.mesh.position.x, this.mesh.position.z)
+                this.spawnWoodsmans(player, this.mesh.position.x, this.mesh.position.z)
                 this.spawnWoodsmanTimer = 0;
             }
             this.spawnWoodsmanTimer++;
@@ -76,7 +76,7 @@ class ObstacleFactory {
     }
     
     moveFactoryGenerationX = () => {
-        this.mesh.position.x -= .065;
+        this.mesh.position.x = this.player.mesh.position.x - 40;
         //console.log(`Obs Factory x : ${this.mesh.position.x}`)
     }
 
@@ -84,7 +84,7 @@ class ObstacleFactory {
         return this.mesh.position.x;
     }
 
-    spawnRocks = (rock_start_x, rock_start_z) => {
+    spawnRocks = (player, rock_start_x, rock_start_z) => {
         if (this.prevFrameTime === undefined) {
             this.prevFrameTime = this.frameTime;
             return;
@@ -95,7 +95,7 @@ class ObstacleFactory {
         //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
 
         
-        var rock = new Rock(this.scene,rock_start_x, 2, rock_start_z);
+        var rock = new Rock(this.scene,player,rock_start_x, 2, rock_start_z);
         setTimeout(function(){
             rock.mesh.dispose()
         },10000);
@@ -130,7 +130,7 @@ class ObstacleFactory {
 
     }
 
-    spawnWoodsmans = (woodsman_start_x, woodsman_start_z) => {
+    spawnWoodsmans = (player, woodsman_start_x, woodsman_start_z) => {
         if (this.prevFrameTime === undefined) {
             this.prevFrameTime = this.frameTime;
             return;
@@ -141,7 +141,7 @@ class ObstacleFactory {
         //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
 
 
-        var woodsman = new Woodsman(this.scene,woodsman_start_x, woodsman_start_z);
+        var woodsman = new Woodsman(this.scene, player, woodsman_start_x, woodsman_start_z);
         this.prevFrameTime = this.frameTime;
     }
     

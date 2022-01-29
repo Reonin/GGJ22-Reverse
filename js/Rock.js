@@ -5,7 +5,7 @@ class Rock {
     obstacles = [];
     mesh = null;
 
-    constructor(scene, rock_start_x, rock_start_y, rock_start_z){
+    constructor(scene, player, rock_start_x, rock_start_y, rock_start_z){
         this.scene = scene;
         const rock = BABYLON.MeshBuilder.CreateSphere("rock", {}, scene);
         rock.position.x = rock_start_x;
@@ -17,6 +17,10 @@ class Rock {
         rock.material = rockMaterial;
         rock.physicsImpostor = new BABYLON.PhysicsImpostor(rock, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0.9 }, scene);
         rock.checkCollisions = true;
+
+        rock.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
+            player.mesh.dispose();
+        });
         //Force Settings
         const forceDirection = new BABYLON.Vector3(10, 0, 0);
         const forceMagnitude = 700;

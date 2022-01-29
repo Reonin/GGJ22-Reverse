@@ -4,7 +4,7 @@ class Ground{
     width = 0;
     height = 0;
 
-    constructor(scene) {
+    constructor(scene,player) {
         this.scene = scene;
         const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50000, height:40} , this.scene); 
         //ground.position.x = -20;
@@ -14,9 +14,11 @@ class Ground{
 
         groundMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("textures/ground.jpg"), scene);
         ground.material = groundMaterial;
+        ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
         ground.checkCollisions = true;
-        ground.isPickable = false;
+        ground.isPickable = true;
         this.mesh = ground;
+        
         this.scene.registerBeforeRender(() => {
             
             this.move();
