@@ -5,11 +5,10 @@ class ActionManager {
 
     static establishInputs(scene, player, moon, hud, engine) {
         //console log out which key is pressed
-        // 
+    
 
         // sets inputs for player on the scene
         scene.actionManager = new BABYLON.ActionManager(scene);
-
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
                 {
@@ -78,6 +77,7 @@ class ActionManager {
                     parameter: 'd'
                 },
                 function () {
+                    console.log("moving right")
                     player.setMoveRight(false);
                 }
             )
@@ -131,6 +131,41 @@ class ActionManager {
             )
 
         );
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+              {
+                trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                parameter: (KeyboardEvent.code = 27),
+              },
+              function () {
+                hud.pause(scene, engine, player, moon);
+              }
+            )
+          );
+    
+
+        /** Press Z to transform between states */
+        scene.actionManager.registerAction(
+        new BABYLON.ExecuteCodeAction(
+            {
+                trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                parameter: 'z'
+            },
+            function () {
+                console.log("testsees")
+                player.changeForm();
+                moon.phase(scene);
+                console.log(player.transformationState);
+            }
+            )
+        );
+    }
+
+    static pauseActions = (scene) => {
+        scene.actionManager.actions.splice(11, 1)
+    }
+
+    static addPhaseBack = (scene, player, moon) => {
         /** Press Z to transform between states */
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
@@ -145,20 +180,8 @@ class ActionManager {
                 }
             )
         );
-
-        scene.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(
-              {
-                trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                parameter: (KeyboardEvent.code = 27),
-              },
-              function () {
-                hud.pause(scene, engine);
-              }
-            )
-          );
-        
     }
+    
 }
 
 
