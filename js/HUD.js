@@ -17,15 +17,17 @@ class HUD {
     });
   }
 
-  pause = (scene, engine) => {
+   pause = (scene, engine, player, moon) => {
     if (!this.isGamePaused) {
+      ActionManager.pauseActions(scene);
       engine.stopRenderLoop();
       this.isGamePaused = true;
       // pause button
       const HUDElementPause = document.getElementById('PAUSE');
       HUDElementPause.textContent = 'Resume';
     } else {
-      engine.runRenderLoop(function () {
+        ActionManager.addPhaseBack(scene, player, moon)
+        engine.runRenderLoop(function () {
         scene.render();
       });
       this.isGamePaused = false;
@@ -34,4 +36,25 @@ class HUD {
       HUDElementPause.textContent = 'Pause';
     }
   };
+
+  static pauseButton = (scene, engine, player, moon) => {
+    if (!this.isGamePaused) {
+      ActionManager.pauseActions(scene);
+      engine.stopRenderLoop();
+      this.isGamePaused = true;
+      // pause button
+      const HUDElementPause = document.getElementById('PAUSE');
+      HUDElementPause.textContent = 'Resume';
+    } else {
+        ActionManager.addPhaseBack(scene, player, moon)
+        engine.runRenderLoop(function () {
+        scene.render();
+      });
+      this.isGamePaused = false;
+      // pause button
+      const HUDElementPause = document.getElementById('PAUSE');
+      HUDElementPause.textContent = 'Pause';
+    }
+  };
+
 }

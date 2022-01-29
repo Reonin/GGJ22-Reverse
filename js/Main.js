@@ -64,9 +64,8 @@ const createScene = function() {
     const ObsFactory = new ObstacleFactory(scene,player, -10, 0, true,);
     const ObsFactory2 = new ObstacleFactory(scene,player, -10, 5, false);
     const ObsFactory3 = new ObstacleFactory(scene,player, -10, -3, false);
-    const hud = new HUD(scene);
+    const hud = new HUD(scene, player, moon, engine);
     ActionManager.establishInputs(scene, player, moon, hud, engine);
-
     
 
      //set physics models to objects made
