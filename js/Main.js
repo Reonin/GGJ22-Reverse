@@ -9,7 +9,7 @@ if (location.hostname === ""){
     textureURL = 'https://www.babylonjs-playground.com/';
 }
 else if(location.hostname === '192.168.20.112') {
-    textureURL = '/GGJ22-Reverse/assets/';
+    textureURL = '/assets/';
 }
 // Generate the Canvas
 const CANVAS_WIDTH = 1920;
@@ -46,17 +46,22 @@ const createScene = function() {
     const physicsPlugin = new BABYLON.CannonJSPlugin();
     scene.enablePhysics(gravityVector,physicsPlugin);
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
-    const player = new Player(scene);
-    
-    const camera = new Camera(scene, player);
-    const moon = new Moon(scene, player);
     
     const audioMan = new AudioAssetManager(scene);
    
-    ActionManager.establishInputs(scene, player, moon);
+    
     
     const skybox = new Skybox(scene);
-    const ground = new Ground(scene);
+    const player = new Player(scene);
+    const ground = new Ground(scene,player);
+    
+    const camera = new Camera(scene, player);
+
+    const wall = new Wall(scene, player);
+    const moon = new Moon(scene, player);
+    ActionManager.establishInputs(scene, player, moon);
+    
+    
     const ObsFactory = new ObstacleFactory(scene,player, -10, 0, true,);
     const ObsFactory2 = new ObstacleFactory(scene,player, -10, 5, false);
     const ObsFactory3 = new ObstacleFactory(scene,player, -10, -3, false);
@@ -66,8 +71,7 @@ const createScene = function() {
 
      //set physics models to objects made
    
-    ground.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(ground.mesh, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
-    ground.checkCollisions = true;
+    
 
     // ground.mesh.physicsImpostor.onCollideEvent = function(collisionObject) {
     //     console.log(`Collided with ${collisionObject.object}`)

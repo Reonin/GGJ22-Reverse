@@ -37,7 +37,8 @@ class Player {
     downwardsRayHelper = null;
     onObject = false;
     direction = new BABYLON.Vector3();
-    transformationState = 'wolfTop';
+    transformationState = 'wolfTop';dddd
+    onGround = true;
 
     constructor(scene) {
         this.scene = scene;
@@ -50,7 +51,8 @@ class Player {
         this.moveLeft = false;
         this.moveRight = false;
         this.collidedWithGround = false;
-        
+        this.alive = true;
+        this.onGround = true;
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
         boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
@@ -72,12 +74,17 @@ class Player {
         this.downwardsRayHelper.show(this.scene, new BABYLON.Color3(1, 0, 0));
 
         this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1 }, scene);
+        // this.mesh.physicsImpostor.registerOnPhysicsCollide(ground.mesh.physicsImpostor, function(main, collided) {
+            
+        //     this.onGround = true;
+        //     console.log(`On the ground ${this.onGround}`);
+        // });
+        
         this.mesh.physicsImpostor.executeNativeFunction(function (world, body) {
             body.fixedRotation = true;
             body.updateMassProperties();
 
         });
-
         
         this.scene.registerBeforeRender(() => {
             // Player move
@@ -87,6 +94,8 @@ class Player {
 
         })
 
+        // this.mesh.physicsImpostor.onCollideEvent = this.die;
+
         return this;
     }
 
@@ -94,6 +103,11 @@ class Player {
     setJumpKeyDown(jumpKeyDown) {
         //console.log(jumpKeyDown)
         this.jumpKeyDown = jumpKeyDown;
+    }
+
+    setOnGround(onGround) {
+        //console.log(jumpKeyDown)
+        this.onGround = onGround;
     }
 
     setMoveForwards(forwardKeyDown) {
@@ -126,7 +140,7 @@ class Player {
         //Force Settings
         try {
             var forceDirection = new BABYLON.Vector3(0, 10, 0);
-            var forceMagnitude = 150;
+            var forceMagnitude = 20;
             var contactLocalRefPoint = BABYLON.Vector3.Zero();
             console.log('Applying force')
             this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
@@ -151,10 +165,11 @@ class Player {
         // Raycast Method 1
         const pick = this.scene.pickWithRay(this.downwardsRay);
         if (pick) {
-            //console.log(`Type of : ${pick.pickedMesh}`);
+           // console.log(`Type of : ${JSON.stringify(pick)}`);
             if (pick.pickedMesh !== null) {
+                console.log(pick);
                 if (pick.pickedMesh.name === "ground") {
-                    // console.log(pick);
+                    // 
                     this.onObject = pick.hit;
                 }
 
@@ -164,16 +179,15 @@ class Player {
         }   
         
 
-
+        // console.log(`On Ground ${this.onGround}`)
         if (this.jumpKeyDown && this.onObject) {
             this.jump();
 
         }
         //console.log(`Forward Key down is ${this.forwardKeyDown}`)
-        if (this.forwardKeyDown) {
+
             //  console.log('Moving forward')
-            this.mesh.position.x -= .06;
-        }
+        this.mesh.position.x -= .06;
 
         if (this.moveBackwards) {
               
@@ -206,5 +220,8 @@ class Player {
         }
     }
 
+    die() {
+        this.mesh.dispose();
+    }
 
 }
