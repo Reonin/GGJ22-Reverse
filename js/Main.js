@@ -36,26 +36,33 @@ function windowWidth() {
     return window.document.compatMode === "CSS1Compat" && docElemProp || body && body.clientWidth || docElemProp;
 }
 const scene = new BABYLON.Scene(engine);
-let importedMesh = null;
+// let importedMesh = null;
 // let player = null;
 // let moon = null;
 
+/**
+ * Weremodel1
+ */
+const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, "/GGJ22-Reverse/assets/models/", "wereman.glb", scene);
+const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, "/GGJ22-Reverse/assets/models/", "wereman_human_skin_mom_tattoo.glb", scene);
+const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, "/GGJ22-Reverse/assets/models/", "retro_grunge_skateboard.glb", scene);
 
-// BABYLON.SceneLoader.ImportMesh(null, "https://raw.githubusercontent.com/BabylonJS/Assets/master/meshes/", "alien.glb", scene, function (meshes, particleSystems, skeletons) {
-BABYLON.SceneLoader.ImportMesh(null, "/GGJ22-Reverse/assets/models/", "wereman.glb", scene, function (meshes, particleSystems, skeletons) {
-    
-    console.log('loaded in');
-    importedMesh = meshes[0];
-    importedMesh.scaling = new BABYLON.Vector3(30, 30, 30);
-    importedMesh.isPickable = false;
+Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
 
-    const sceneToRender = createScene(scene, importedMesh);
-    engine.runRenderLoop(function(){
-     sceneToRender.render();
+  console.log('loaded in');
     
-    });
+  let importedMeshes = result;
+
+  const sceneToRender = createScene(scene, importedMeshes);
+  engine.runRenderLoop(function(){
+   sceneToRender.render();
+  
+  });
 
 });
+
+
+
 
 const createScene = function(scene, importedMesh) {
     

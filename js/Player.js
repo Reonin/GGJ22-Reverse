@@ -6,18 +6,31 @@
 class Player {
 
     
-    constructor(scene, importedMesh) {
+    constructor(scene, importedMeshes) {
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
         box.visibility = 0.2;
         box.position.x = 0.5;
         box.position.y = 3;
         box.position.z = -2;
-        // importedMesh.position = box.position;
-        importedMesh.position.y = box.position.y;
-        importedMesh.position.x = box.position.x;
-        importedMesh.position.z = box.position.z;
-        importedMesh.position.y += -1;
+
+
+
+     const importedMeshWolf = importedMeshes[0].meshes[0];
+        importedMeshWolf.scaling = new BABYLON.Vector3(30, 30, 30);
+
+        importedMeshWolf.position = new BABYLON.Vector3(box.position.x, (box.position.y -1), box.position.z);
+
+
+    const importedMeshMan = importedMeshes[1].meshes[0];
+        importedMeshMan.scaling = new BABYLON.Vector3(15, 15, 15);
+
+        importedMeshMan.position = new BABYLON.Vector3(box.position.x, (box.position.y -1), box.position.z);
+        importedMeshMan.setEnabled(false);
+
+        importedMeshWolf.setParent(box);
+        importedMeshMan.setParent(box);
+
         box.showBoundingBox = true;
         scene.getBoundingBoxRenderer().frontColor.set(1, 0, 0);
         scene.getBoundingBoxRenderer().backColor.set(0, 1, 0);
@@ -35,12 +48,12 @@ class Player {
         // box.material = boxMaterial;
 
 
-        this.humanTopMesh = boxMaterial;
+        this.humanTopMesh = importedMeshMan;
 
 
-        const wolfMaterial = new BABYLON.StandardMaterial("material", scene);
-        wolfMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/leopard_fur.jpg"), scene);
-        this.wolfTopMesh = wolfMaterial;
+        // const wolfMaterial = new BABYLON.StandardMaterial("material", scene);
+        // wolfMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/leopard_fur.jpg"), scene);
+        this.wolfTopMesh = importedMeshWolf;
 
         // box.checkCollisions = true;
         this.speed = -.01;
@@ -49,9 +62,10 @@ class Player {
             frameTime: 0,
             jumpKeyDown: false
         }
+     
         this.mesh = box;
         this.mesh.isPickable = false;
-        importedMesh.setParent(this.mesh);
+   
         // console.log(`Mesh position ${this.mesh.position}`)
 
         this.downwardsRay = new BABYLON.Ray(this.mesh.position, new BABYLON.Vector3(0, -1, 0), 1)
@@ -93,6 +107,9 @@ class Player {
     }
 
     mesh = {};
+    transformationState = 'wolfTop';
+    humanTopMesh = null;
+    wolfTopMesh = null;
     setJumpKeyDown(jumpKeyDown) {
         //console.log(jumpKeyDown)
         this.jumpKeyDown = jumpKeyDown;
@@ -170,8 +187,6 @@ class Player {
                     this.onObject = pick.hit;
                 }
 
-
-
             }
         }   
         
@@ -210,16 +225,17 @@ class Player {
 
     
     getHumanTop(){
-      
-        this.mesh.material = this.humanTopMesh;
+        this.humanTopMesh.setEnabled(true);
+        this.wolfTopMesh.setEnabled(false);
     }
 
     getWolfTop(){
-     
-        this.mesh.material = this.wolfTopMesh;
+        this.humanTopMesh.setEnabled(false);
+        this.wolfTopMesh.setEnabled(true);
     }
 
     changeForm = (scene) => {
+        debugger;
         if (this.transformationState === 'wolfTop') {
             this.transformationState = 'humanTop';
             this.getHumanTop();
