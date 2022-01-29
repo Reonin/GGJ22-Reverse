@@ -44,8 +44,8 @@ BABYLON.SceneLoader.ImportMesh(null, "https://raw.githubusercontent.com/BabylonJ
        
     console.log('loaded in');
     importedMesh = meshes[0];
-    // importedMesh.scaling = new BABYLON.Vector3(1, 1, 1);
-
+    importedMesh.scaling = new BABYLON.Vector3(1, 1, 1);
+    importedMesh.isPickable = false;
 
     const sceneToRender = createScene(scene, importedMesh);
     engine.runRenderLoop(function(){
