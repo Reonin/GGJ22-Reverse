@@ -5,7 +5,7 @@ class Woodsman {
     obstacles = [];
     mesh = null;
 
-    constructor(scene, player, woodsman_start_x,woodsman_start_z){
+    constructor(scene, player, wall, woodsman_start_x,woodsman_start_z){
         this.scene = scene;
         const woodsman = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
         woodsman.position.x = woodsman_start_x;
@@ -53,9 +53,32 @@ class Woodsman {
             // this._updateCamera();
     
         })
+        this.destructiveMeshes = [player.mesh.physicsImpostor];
         this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0 }, scene);
-        this.mesh.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(main, collided) {
-            player.mesh.dispose();
+        this.mesh.wall = wall;
+        var destructiveMeshes = obstacles;
+        this.mesh.physicsImpostor.registerOnPhysicsCollide(destructiveMeshes, function(woodsman, collided) {
+            destructiveMeshes = obstacles;
+            // destructiveMeshes.push.apply(destructiveMeshes, rock.object.wall.getWallImposters());
+            console.log(`Update Meshes length ${destructiveMeshes.length}`)
+            for(var i = 0; i < destructiveMeshes.length; i++){
+                console.log(`Collided with ${collided.object.name}`)
+                if(collided.object.name === "player"){
+                    // console.log(`${destructiveMeshes[i].object.name}`)
+                    player.mesh.dispose();
+                    player.setAlive(false);
+                    woodsman.object.dispose();
+                    obstacles.splice(i,1);
+                }
+                else if(collided.object.name === "wall piece"){
+                    // console.log(`IN else if ${destructiveMeshes[i].object.name}`)
+                    woodsman.object.dispose();
+                }
+            }
+            // console.log(`Meshes length ${destructiveMeshes.length}`)
+            // for(var i = 0; i < this.destructiveMeshes.length; i++){
+            //     console.log(this.destructiveMeshes[i]);
+            // }
         });
         return this;
     

@@ -15,7 +15,7 @@ class ObstacleFactory {
     spawnWoodsmanTimer =0;
     
 
-    constructor (scene, player, start_x, start_z, moveRight) {
+    constructor (scene, player, wall, start_x, start_z, moveRight) {
        
         // if (ObstacleFactory._instance) {
         //     return ObstacleFactory._instance
@@ -46,24 +46,25 @@ class ObstacleFactory {
 
         scene.onBeforeRenderObservable.add(() => {
             this.frameTime = Date.now();
-            
+            var randRock = randomIntFromInterval(400, 700);
+            var randWoodsman = randomIntFromInterval(200, 400);
             //this.mesh.position = direction;
             // this.mesh.lookAt(player.mesh.position);
             var length = 100;
             // ground move
             this.moveFactoryGenerationX();
-            if(this.spawnRockTimer > 400){
+            if(this.spawnRockTimer > randRock){
                 //generate rocks and reset timer
                 
-                this.spawnRocks(player,this.mesh.position.x, this.mesh.position.z);
+                this.spawnRocks(player, wall, this.mesh.position.x, this.mesh.position.z);
                 this.spawnRockTimer = 0;
             }
             this.spawnRockTimer++;
             //this.moveWoodsmanGenerationX();
             this.moveObstacleFactoryOnZAxis();
-            if(this.spawnWoodsmanTimer > 400){
+            if(this.spawnWoodsmanTimer > randWoodsman){
                 //generate woodsmans and reset timer
-                this.spawnWoodsmans(player, this.mesh.position.x, this.mesh.position.z)
+                this.spawnWoodsmans(player, wall, this.mesh.position.x, this.mesh.position.z)
                 this.spawnWoodsmanTimer = 0;
             }
             this.spawnWoodsmanTimer++;
@@ -84,7 +85,7 @@ class ObstacleFactory {
         return this.mesh.position.x;
     }
 
-    spawnRocks = (player, rock_start_x, rock_start_z) => {
+    spawnRocks = (player, wall, rock_start_x, rock_start_z) => {
         if (this.prevFrameTime === undefined) {
             this.prevFrameTime = this.frameTime;
             return;
@@ -95,7 +96,7 @@ class ObstacleFactory {
         //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
 
         
-        var rock = new Rock(this.scene,player,rock_start_x, 2, rock_start_z);
+        var rock = new Rock(this.scene, player, wall, rock_start_x, 2, rock_start_z);
         setTimeout(function(){
             rock.mesh.dispose()
         },10000);
@@ -130,7 +131,7 @@ class ObstacleFactory {
 
     }
 
-    spawnWoodsmans = (player, woodsman_start_x, woodsman_start_z) => {
+    spawnWoodsmans = (player, wall, woodsman_start_x, woodsman_start_z) => {
         if (this.prevFrameTime === undefined) {
             this.prevFrameTime = this.frameTime;
             return;
@@ -141,7 +142,7 @@ class ObstacleFactory {
         //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
 
 
-        var woodsman = new Woodsman(this.scene, player, woodsman_start_x, woodsman_start_z);
+        var woodsman = new Woodsman(this.scene, player, wall, woodsman_start_x, woodsman_start_z);
         this.prevFrameTime = this.frameTime;
     }
     
