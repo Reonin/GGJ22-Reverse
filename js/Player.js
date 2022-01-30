@@ -180,6 +180,9 @@ class Player {
             case 'rock':
                 audioMan.rockhitsfxArr[Math.floor(Math.random() * audioMan.rockhitsfxArr.length)].play();
               break;
+            case 'door' :
+                audioMan.dooropensfxArr[Math.floor(Math.random() * audioMan.dooropensfxArr.length)].play();
+             break
             default:
               console.log('Sorry, we are out of death sounds');
           }

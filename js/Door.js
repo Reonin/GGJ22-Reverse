@@ -23,12 +23,12 @@ class Door {
         door.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (door, collided) {
             if (player.transformationState === "humanTop" && collided.object.name === "player") {
                 console.log(`Door collided with ${collided.object} whose state is ${player.transformationState} which is a ${door.object}`)
-
+                player.setAlive(true, door.object.name);
                 door.object.dispose();
             }
             else if (player.transformationState === "wolfTop" && collided.object.name === "player") {
                 player.mesh.dispose();
-                player.setAlive(false);
+                player.setAlive(false, 'rock');
             }
         });
 

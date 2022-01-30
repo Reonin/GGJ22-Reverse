@@ -4,10 +4,11 @@ class AudioAssetManager {
   skateboardRoll = null;
   axehitsfxArr = [];
   rockhitsfxArr = [];
+  dooropensfxArr = [];
   soundsReady = 0;
   constructor(scene) {
     let music1, music2, music3, music4, music5, music6;
-    let sfx1, sfx2, sfx3, sfx4, sfx5, sfx6, sfx7, sfx8, sfx9, sfx10;
+    let sfx1, sfx2, sfx3, sfx4, sfx5, sfx6, sfx7, sfx8, sfx9, sfx10, sfx11, sfx12, sfx13;
     let audioURL = '/GGJ22-Reverse/assets/audio/';
     if (location.hostname === '192.168.20.112') {
       audioURL = '/assets/audio/';
@@ -219,13 +220,51 @@ class AudioAssetManager {
       that.rockhitsfxArr.push(sfx10) ;
     };
 
+     /**door open sfx */
+
+     const binaryTask17 = assetsManager.addBinaryFileTask(
+      "Door_Open_01 task",
+      audioURL.concat("Door_Open_01.ogg")
+    );
+    binaryTask17.onSuccess = function (task) {
+      sfx11 = new BABYLON.Sound("Door_Open_01", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.dooropensfxArr.push(sfx11) ;
+    };
+
+    const binaryTask18 = assetsManager.addBinaryFileTask(
+      "Door_Open_02 task",
+      audioURL.concat("Door_Open_02.ogg")
+    );
+    binaryTask18.onSuccess = function (task) {
+      sfx12 = new BABYLON.Sound("Door_Open_02", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.dooropensfxArr.push(sfx12) ;
+    };
+
+    const binaryTask19 = assetsManager.addBinaryFileTask(
+      "Door_Open_03 task",
+      audioURL.concat("Door_Open_03.ogg")
+    );
+    binaryTask19.onSuccess = function (task) {
+      sfx13 = new BABYLON.Sound("Door_Open_03", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.dooropensfxArr.push(sfx13) ;
+    };
+
 
     assetsManager.load();
   }
 
   soundReady = () => {
     this.soundsReady++;
-    if (this.soundsReady === 16) {
+    if (this.soundsReady === 19) {
       this.wolfTrack.play();
       this.humanTrack.play();
       this.skateboardRoll.play();
