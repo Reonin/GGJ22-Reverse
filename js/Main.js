@@ -4,6 +4,7 @@ const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true, { stencil: true });
 engine.loadingUIBackgroundColor = "red";
 let textureURL = '/GGJ22-Reverse/assets/';
+let importedMeshes = null;
 let obstacles = [];
 if (location.hostname === ""){
     /** to avoid CORs loading erros
@@ -51,7 +52,7 @@ Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
 
   console.log('loaded in');
     
-  let importedMeshes = result;
+  importedMeshes = result;
 
   const sceneToRender = createScene(scene, importedMeshes);
   engine.runRenderLoop(function(){
@@ -76,29 +77,26 @@ const createScene = function(scene, importedMesh) {
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
     
     const audioMan = new AudioAssetManager(scene);
- 
-
-    
     const skybox = new Skybox(scene); 
     const ground = new Ground(scene);
-    const player = new Player(scene,ground,importedMesh);
+    const hud = new HUD(scene, engine);
+    const player = new Player(scene,ground, hud,importedMesh);
     
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
     const wall = new Wall(scene, player);
-
-   
     
     const ObsFactory = new ObstacleFactory(scene,player, wall, -150, 0, true);
     const ObsFactory2 = new ObstacleFactory(scene,player, wall, -150, 5, false);
-    const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
-    const hud = new HUD(scene, engine);
+    // const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
+    
     ActionManager.establishInputs(scene, player, moon, hud, engine);
+    var count = 0;  
+    setInterval(function(){
+        const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
+    }, 60000);
     
-    
-    
-
     return scene;
   
 };

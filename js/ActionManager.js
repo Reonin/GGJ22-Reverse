@@ -149,8 +149,8 @@ class ActionManager {
                     parameter: 'y'
                 },
                 function () {
-                    console.log('good luck')
-                    hud.start(scene, engine)
+                    console.log('good luck');
+                    hud.start(scene, engine);
                 }
                 )
             );
@@ -164,13 +164,25 @@ class ActionManager {
                 parameter: 'z'
             },
             function () {
-                console.log("testsees")
+                // console.log("testsees")
                 player.changeForm();
                 moon.phase(scene);
                 console.log(player.transformationState);
             }
             )
         );
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'r'
+                },
+                function () {
+                    // console.log("testsees")
+                   location.reload();
+                }
+                )
+            );
     }
 
     static pauseActions = (scene) => {

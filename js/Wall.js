@@ -43,9 +43,9 @@ class Wall {
     }
 
     createWall(scene,player){
-        //const numWall = randomIntFromInterval(1,4);
-        const numWall = 4;
-        console.log(`Num wall : ${numWall}`)
+        const numWall = randomIntFromInterval(1,4);
+        // const numWall = 4;
+        // console.log(`Num wall : ${numWall}`)
         if(numWall === 1){
             const wall1 = BABYLON.MeshBuilder.CreateBox("wall piece", {width: 5, height: 7, depth: 10});
             wall1.position.x = this.start_x;

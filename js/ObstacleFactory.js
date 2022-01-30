@@ -3,16 +3,6 @@
 
 class ObstacleFactory {
 
-    FACTORY_START_X = 0;
-    FACTORY_START_Y = 0;
-    obstacles = [];
-    scene = null;
-    mesh = null;
-    player = null;
-    frameTime = 0;
-    prevFrameTime = 0;
-    spawnRockTimer = 0;
-    spawnWoodsmanTimer =0;
     
 
     constructor (scene, player, wall, start_x, start_z, moveRight) {
@@ -143,6 +133,9 @@ class ObstacleFactory {
 
 
         var woodsman = new Woodsman(this.scene, player, wall, woodsman_start_x, woodsman_start_z);
+        setTimeout(function(){
+            woodsman.mesh.dispose()
+        },30000);
         this.prevFrameTime = this.frameTime;
     }
     
