@@ -135,7 +135,7 @@ const binaryTask10 = assetsManager.addBinaryFileTask(
 binaryTask10.onSuccess = function (task) {
   sfx4 = new BABYLON.Sound("Skateboard_Roll", task.data, scene, that.soundReady, {
     loop: true,
-    volume: 2,
+    volume: 1,
   });
   that.skateboardRoll = sfx4;
 };
