@@ -6,25 +6,40 @@ class HUD {
   HUDElementMenu = ''
   constructor(scene, engine) {
     this.isGamePaused = false;
-    
+    this.gameOver = false;
+    this.scene = scene;
     // points indicator
     const HUDElement = document.getElementById('HUD');
     HUDElement.textContent += 'Points:';
     // points counter
-    let count = 0;
+    this.count = 0;
+    this.score = 0;
+    
+
     scene.onBeforeRenderObservable.add((thisScene, state) => {
         if(this.gameInit){
             engine.stopRenderLoop();
         }
       if (!thisScene.deltaTime) return;
-      count += thisScene.deltaTime / 1000;
-      HUDElement.textContent = 'Points:'.concat(String(Math.round(count)));
+      
+      if(this.count % 100 === 0 && this.isGamePaused === false && this.gameOver === false){
+        this.score += 1;
+      }
+      // console.log(`Game over: ${scene}`);
+      // if(this.gameOver === true){
+        
+      // }
+      this.count += 1;
+      HUDElement.textContent = 'Points:'.concat(String(Math.round(this.score)));
     });
   }
 
   start = (scene, engine) => {
     ActionManager.disbaleStartButton(scene);
     this.gameInit = false; 
+    // var element = document.getElementById("PAUSE");
+    // console.log(`Element ${element.innerHTML}`)
+    // element.innerHTML = "";
     engine.runRenderLoop(function () {
         scene.render();
       });
@@ -72,4 +87,8 @@ class HUD {
       this.isGamePaused = false;
     }
   };
+
+  setGameOver(gameOver){
+    this.gameOver = gameOver;
+  }
 }

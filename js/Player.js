@@ -6,7 +6,7 @@
 class Player {
 
     
-    constructor(scene, ground, importedMeshes, audioMan) {
+    constructor(scene, ground, hud, importedMeshes, audioMan) {
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
         box.visibility = 0.2;
@@ -16,7 +16,7 @@ class Player {
 
 
 
-     const importedMeshWolf = importedMeshes[0].meshes[0];
+        const importedMeshWolf = importedMeshes[0].meshes[0];
         importedMeshWolf.scaling = new BABYLON.Vector3(30, 30, 30);
 
         importedMeshWolf.position = new BABYLON.Vector3(box.position.x, (box.position.y -.85), box.position.z);
@@ -103,6 +103,11 @@ class Player {
                 
                 this.setAlive(false);
                 this.mesh.dispose();
+            }
+            if(this.alive === false){
+                hud.gameOver = true;
+                var element = document.getElementById("PAUSE");
+                element.innerHTML = "Press R to restart";
             }
             // Player move
             this.command.frameTime = Date.now();
