@@ -4,7 +4,7 @@ class Ground{
     width = 0;
     height = 0;
 
-    constructor(scene,player) {
+    constructor(scene) {
         this.scene = scene;
         const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50000, height:40} , this.scene); 
         //ground.position.x = -20;
@@ -21,7 +21,7 @@ class Ground{
         
         this.scene.registerBeforeRender(() => {
             
-            this.move();
+            // this.move();
             // this._updateCamera();
     
         })
