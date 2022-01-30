@@ -17,6 +17,7 @@ class HUD {
     
 
     scene.onBeforeRenderObservable.add((thisScene, state) => {
+      document.getElementById('renderCanvas').focus();
         if(this.gameInit){
             engine.stopRenderLoop();
         }
