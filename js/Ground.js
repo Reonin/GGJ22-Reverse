@@ -19,6 +19,22 @@ class Ground {
         ground.isPickable = true;
         this.mesh = ground;
 
+        const mat = new BABYLON.StandardMaterial("");
+        mat.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/grass.jpg"));
+        mat.visibility = 0.1;
+        const pat = BABYLON.Mesh.NO_FLIP;
+        const options = {
+            sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+            pattern: pat,
+            width: 1000,
+            height: 9,
+            tileSize: 1,
+            tileWidth:1
+        }
+        const rightPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", options, scene);
+        rightPlane.material = mat;
+        rightPlane.position.z = 20;
+
         this.scene.registerBeforeRender(() => {
 
             // this.move();

@@ -9,7 +9,7 @@ class Player {
     constructor(scene, ground, hud, importedMeshes, audioMan) {
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
-        box.visibility = 0.2;
+        box.visibility = 0.0;
         box.position.x = 0.5;
         box.position.y = 3;
         box.position.z = -2;
@@ -47,9 +47,9 @@ class Player {
         this.onGround = true;
         this.playerAddedToObstacles = false;
         const boxMaterial = new BABYLON.StandardMaterial("material", scene);
-        boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
+        // boxMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/fur.jpg"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
-        box.material = boxMaterial;
+        // box.material = boxMaterial;
         this.transformationState = "humanTop";
 
         this.humanTopMesh = importedMeshMan;
