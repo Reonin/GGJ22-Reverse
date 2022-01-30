@@ -50,7 +50,7 @@ class HUD {
       // pause button
       this.HUDElementMenu = document.getElementById('PAUSE');
       const PauseMenuHtml = `<ul>
-      <li>Resume: esc </li>
+      <li>Resume: ESC </li>
       <li>Left/Right: A/D </li>
       <li>Up/Down: W/S </li>
       <li>Jump: Space </li>
