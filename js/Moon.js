@@ -16,7 +16,7 @@ class Moon {
 
     sphere.isPickable = true;
 
-    sphereMaterial.emissiveColor = BABYLON.Color3.Yellow();
+    sphereMaterial.emissiveColor = BABYLON.Color3.White();
     sphere.material = sphereMaterial;
     sphere.setParent(player.mesh);
 
@@ -47,7 +47,7 @@ class Moon {
     } else {
       console.log('phase was ', this.isPhaseDark, 'now its dark')
       const lightMoonMat = new BABYLON.StandardMaterial('material', scene);
-      lightMoonMat.emissiveColor = BABYLON.Color3.Yellow();
+      lightMoonMat.emissiveColor = BABYLON.Color3.White();
       this.mesh.material = lightMoonMat;
       this.isPhaseDark = false;
     }
