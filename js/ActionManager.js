@@ -155,6 +155,19 @@ class ActionManager {
                 }
                 )
             );
+
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'r'
+                },
+                function () {
+                    console.log("RESTARTING")
+                    hud.restart(scene, engine)
+                }
+                )
+            );
     
 
         /** Press Z to transform between states */
@@ -173,14 +186,16 @@ class ActionManager {
             }
             )
         );
+
+
     }
 
     static pauseActions = (scene) => {
-        scene.actionManager.actions.splice(11, 1)
+        scene.actionManager.actions.splice(13, 1)
     }
 
     static disbaleStartButton = (scene) => {
-        scene.actionManager.actions.splice(11, 1)
+        scene.actionManager.actions.splice(13, 1)
     }
 
     static addPhaseBack = (scene, player, moon) => {
@@ -201,6 +216,7 @@ class ActionManager {
     }
     
 }
+
 
 
 

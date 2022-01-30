@@ -43,9 +43,11 @@ const scene = new BABYLON.Scene(engine);
 /**
  * Weremodel1
  */
+
 const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman.glb", scene);
 const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);
 const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "retro_grunge_skateboard.glb", scene);
+
 
 Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
 

@@ -3,9 +3,10 @@
  */
 class HUD {
   gameInit = true;
+  HUDElementMenu = ''
   constructor(scene, engine) {
     this.isGamePaused = false;
-
+    
     // points indicator
     const HUDElement = document.getElementById('HUD');
     HUDElement.textContent += 'Points:';
@@ -27,7 +28,18 @@ class HUD {
     engine.runRenderLoop(function () {
         scene.render();
       });
-    
+      this.HUDElementMenu = document.getElementById('START');
+      this.HUDElementMenu.innerHTML = 'PAUSE: esc'
+      this.HUDElementMenu.id = 'PAUSE'
+
+  }
+
+  restart = (scene, engine) => {
+    const newScene = scene;
+    scene.dispose()
+    engine.runRenderLoop(function () {
+      newScene.render();
+    });
   }
 
   pause = (scene, engine, player, moon) => {
@@ -36,20 +48,23 @@ class HUD {
       engine.stopRenderLoop();
       this.isGamePaused = true;
       // pause button
-      const HUDElementPause = document.getElementById('PAUSE');
+      this.HUDElementMenu = document.getElementById('PAUSE');
       const PauseMenuHtml = `<ul>
       <li>Resume: esc </li>
-      <li>Restart: R </li>
-      <li>Scores: p </li>
-      <li>Controls: C </li>
+      <li>Left/Right: A/D </li>
+      <li>Up/Down: W/S </li>
+      <li>Jump: Space </li>
+      <li>Transform: Z </li>
         </ul> `;
-      HUDElementPause.innerHTML = PauseMenuHtml;
+      this.HUDElementMenu.innerHTML = PauseMenuHtml;
+      this.HUDElementMenu.id = 'MENU'
     } else {
-      const HUDElementPause = document.getElementById('PAUSE');
+      this.HUDElementMenu = document.getElementById('MENU');
+      this.HUDElementMenu.id = 'PAUSE'
       const gameHTML = `<ul>
       <li>Pause: esc </li>
       </ul> `;
-      HUDElementPause.innerHTML = gameHTML;
+      this.HUDElementMenu.innerHTML = gameHTML;
       ActionManager.addPhaseBack(scene, player, moon);
       engine.runRenderLoop(function () {
         scene.render();
