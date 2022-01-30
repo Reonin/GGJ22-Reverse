@@ -5,7 +5,7 @@ class ObstacleFactory {
 
 
 
-    constructor(scene, player, wall, start_x, start_z, moveRight) {
+    constructor(scene, player, wall, start_x, start_z, moveRight, importedMeshes) {
 
         // if (ObstacleFactory._instance) {
         //     return ObstacleFactory._instance
@@ -132,7 +132,7 @@ class ObstacleFactory {
         //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
 
 
-        var woodsman = new Woodsman(this.scene, player, wall, woodsman_start_x, woodsman_start_z);
+        var woodsman = new Woodsman(this.scene, player, wall, woodsman_start_x, woodsman_start_z, importedMeshes[3]);
         setTimeout(function () {
             woodsman.mesh.dispose()
         }, 30000);

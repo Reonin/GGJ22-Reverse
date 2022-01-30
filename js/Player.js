@@ -171,7 +171,6 @@ class Player {
     }
 
     setAlive(alive, whoHitMe) {
-        debugger;
 
         switch (whoHitMe) {
             case 'axe':

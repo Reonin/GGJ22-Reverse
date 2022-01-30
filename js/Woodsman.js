@@ -4,50 +4,61 @@ class Woodsman {
     scene = null;
     obstacles = [];
     mesh = null;
+    axeMesh = null;
 
-    constructor(scene, player, wall, woodsman_start_x, woodsman_start_z) {
+    constructor(scene, player, wall, woodsman_start_x, woodsman_start_z, axeModel) {
         this.scene = scene;
         const woodsman = BABYLON.MeshBuilder.CreateBox("axe", {}, scene);
         woodsman.position.x = woodsman_start_x;
         woodsman.position.y = this.woodsman_START_Y;
         woodsman.position.z = woodsman_start_z;
-        const woodsmanMaterial = new BABYLON.StandardMaterial("material", scene);
-        woodsmanMaterial.diffuseColor = BABYLON.Color3.Green();
-        woodsman.material = woodsmanMaterial;
+        woodsman.visibility = 0.5;
+        // const woodsmanMaterial = new BABYLON.StandardMaterial("material", scene);
+        // woodsmanMaterial.diffuseColor = BABYLON.Color3.Green();
+        // woodsman.material = woodsmanMaterial;
         woodsman.checkCollisions = true;
 
+        const importedAxeModel = axeModel.meshes[0];
+        importedAxeModel.scaling = new BABYLON.Vector3(10, 10, 10);
+
+        importedAxeModel.position = new BABYLON.Vector3(woodsman.position.x, (woodsman.position.y), woodsman.position.z);
+        importedAxeModel.isPickable = false;
+        importedAxeModel.setParent(woodsman);
+        woodsman.showBoundingBox = true;
+        importedAxeModel.showBoundingBox = true;
         //axeSpin face UVs
-        const axeSpinUV = [];
-        axeSpinUV[0] = new BABYLON.Vector4(0, 0, 1, 1);
-        axeSpinUV[1] = new BABYLON.Vector4(0, 0.5, 0, 0.5);
-        axeSpinUV[2] = new BABYLON.Vector4(0, 0, 1, 1);
+        // const axeSpinUV = [];
+        // axeSpinUV[0] = new BABYLON.Vector4(0, 0, 1, 1);
+        // axeSpinUV[1] = new BABYLON.Vector4(0, 0.5, 0, 0.5);
+        // axeSpinUV[2] = new BABYLON.Vector4(0, 0, 1, 1);
 
         //Animate the axeSpins
-        const animaxeSpin = new BABYLON.Animation("axeSpinAnimation", "rotation.z", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE, scene);
-        const axeSpinKeys = [];
+        // const animaxeSpin = new BABYLON.Animation("axeSpinAnimation", "rotation.z", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE, scene);
+        // const axeSpinKeys = [];
 
-        //At the animation key 0, the value of rotation.y is 0
-        axeSpinKeys.push({
-            frame: 0,
-            value: 0
-        });
+        // //At the animation key 0, the value of rotation.y is 0
+        // axeSpinKeys.push({
+        //     frame: 0,
+        //     value: 0
+        // });
 
-        //At the animation key 30, (after 1 sec since animation fps = 30) the value of rotation.y is 2PI for a complete rotation
-        axeSpinKeys.push({
-            frame: 30,
-            value: 2 * Math.PI
-        });
+        // //At the animation key 30, (after 1 sec since animation fps = 30) the value of rotation.y is 2PI for a complete rotation
+        // axeSpinKeys.push({
+        //     frame: 30,
+        //     value: 2 * Math.PI
+        // });
 
-        //set the keys
-        animaxeSpin.setKeys(axeSpinKeys);
+        // //set the keys
+        // animaxeSpin.setKeys(axeSpinKeys);
 
-        //Link this animation to a axeSpin
-        woodsman.animations = [];
-        woodsman.animations.push(animaxeSpin);
-        scene.beginAnimation(woodsman, 0, 30, true);
+        // //Link this animation to a axeSpin
+        // woodsman.animations = [];
+        // woodsman.animations.push(animaxeSpin);
+        // scene.beginAnimation(woodsman, 0, 30, true);
 
         woodsman.isPickable = false;
         this.mesh = woodsman;
+        this.axeMesh = importedAxeModel;
         this.scene.registerBeforeRender(() => {
             this.move();
             // this._updateCamera();
@@ -91,7 +102,11 @@ class Woodsman {
 
     move = () => {
         this.mesh.position.x += .1;
+        // this.axeMesh.position.x += .1;
+        // this.axeMesh.position = this.mesh.position;
         this.mesh.rotate(BABYLON.Axis.Z, .07, BABYLON.Space.LOCAL);
+        // this.axeMesh.rotate(BABYLON.Axis.Z, .07, BABYLON.Space.LOCAL);
+    
         //console.log(this.mesh.position.x)
     }
 
