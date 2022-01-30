@@ -26,8 +26,8 @@ class Woodsman {
         this.axeMesh.position = new BABYLON.Vector3(woodsman.position.x, (woodsman.position.y- 0.5), woodsman.position.z);
         this.axeMesh.isPickable = false;
         //importedAxeModel.setParent(woodsman);
-        woodsman.showBoundingBox = true;
-        this.axeMesh.showBoundingBox = true;
+        // woodsman.showBoundingBox = true;
+        // this.axeMesh.showBoundingBox = true;
         this.axeMesh.setParent(woodsman);
  
       

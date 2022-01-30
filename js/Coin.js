@@ -24,7 +24,7 @@ class Coin {
             // console.log(`Update Meshes length ${destructiveMeshes.length}`)
             for (var i = 0; i < destructiveMeshes.length; i++) {
                 
-                if (collided.object.name === "player") {
+                if (collided.object.name === "player" && player.transformationState === "humanTop") {
                     // console.log(`Before ${hud.score}`)
                     hud.score += 10;
                     // console.log(`After ${hud.score}`)

@@ -11,7 +11,7 @@ class Ground {
         //ground.position.y = 2;
         const groundMaterial = new BABYLON.StandardMaterial("material", this.scene);
         // groundMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
-        groundMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("textures/ground.jpg"), scene);
+        groundMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("/textures/ground.jpg"), scene);
         ground.material = groundMaterial;
         ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
         ground.checkCollisions = true;
@@ -19,7 +19,7 @@ class Ground {
         this.mesh = ground;
 
         const mat = new BABYLON.StandardMaterial("");
-        mat.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/grass.jpg"));
+        //mat.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/forest.jpg"));
         mat.visibility = 0.1;
         const pat = BABYLON.Mesh.NO_FLIP;
         const options = {
@@ -37,19 +37,21 @@ class Ground {
             width: 1000,
             height: 18,
             tileSize: 1,
-            tileWidth:1
+            tileWidth:1,   
         }
         const rightPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", wallOptions, scene);
         rightPlane.material = mat;
-        rightPlane.position.z = 20;
+        rightPlane.position.z = 22;
+        rightPlane.visibility = 0;
 
         const leftPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", wallOptions, scene);
         leftPlane.material = mat;
-        leftPlane.position.z = -20;
+        leftPlane.position.z = -22;
+        leftPlane.visibility = 0;
 
         const forestMaterial = new BABYLON.StandardMaterial("material", this.scene);
         // forestMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
-        forestMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("/assets/textures/fur.jpg"), scene);
+        forestMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("textures/trees.png"), scene);
         rightPlane.material = forestMaterial;
         rightPlane.physicsImpostor = new BABYLON.PhysicsImpostor(rightPlane, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0}, scene);
         rightPlane.checkCollisions = true;

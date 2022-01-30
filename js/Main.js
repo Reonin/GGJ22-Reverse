@@ -64,9 +64,11 @@ const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/m
 const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);
 const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "retro_grunge_skateboard.glb", scene);
 const promiseModel4 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "axe.glb", scene);
-const promiseModel5 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "tree.glb", scene);
+const promiseModel5 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "rock.glb", scene);
+const promiseModel6 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "forest_house.glb", scene);
+const promiseModel7 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "tree.glb", scene);
 
-Promise.all([promiseModel1, promiseModel2, promiseModel3, promiseModel4, promiseModel5]).then((result) => {
+Promise.all([promiseModel1, promiseModel2, promiseModel3, promiseModel4, promiseModel5, promiseModel6, promiseModel7]).then((result) => {
 
     console.log('loaded in');
 
@@ -102,7 +104,7 @@ const createScene = function (scene, importedMesh) {
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
-   const wall = new Wall(scene, player);
+   const wall = new Wall(scene, player, importedMesh);
 
     const ObsFactory = new ObstacleFactory(scene, player, wall, hud, -150, 0, true, importedMesh);
     const ObsFactory2 = new ObstacleFactory(scene, player, wall, hud, -150, 5, false, importedMesh);
