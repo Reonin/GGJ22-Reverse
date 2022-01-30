@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Reverse the curse</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <script src="js/lib/babylon.max.js"></script>
-    <script src="js/lib/cannon.js"></script>
-    <script src="js/lib/babylon.gui.js"></script>
-    <script src="js/lib/babylon.loader.js"></script>
 
-  </head>
+<head>
+  <title>Reverse the curse</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <script src="js/lib/babylon.max.js"></script>
+  <script src="js/lib/cannon.js"></script>
+  <script src="js/lib/babylon.gui.js"></script>
+  <script src="js/lib/babylon.loader.js"></script>
 
-  <body>
-    <div id="gamecontainer" class="sketchy">
-      <canvas tabindex="0" id="renderCanvas" ></canvas>
-        <div id="HUD" style="position: absolute" ></div>
-        <div id="START" >REVERSE THE CURSE
-          <ul>
-            <li>Ride to no end to get to the cure!</li>
-            <li></li>
-            <li>Press 'y' to start</li>
-          </ul>
-        </div>
+</head>
+
+<body>
+  <div id="gamecontainer" class="sketchy">
+    <canvas tabindex="0" id="renderCanvas"></canvas>
+    <div id="HUD" style="position: absolute"></div>
+    <div id="START">REVERSE THE CURSE
+      <ul>
+        <li>Ride to no end to get to the cure!</li>
+        <li></li>
+        <li>Press 'y' to start</li>
+      </ul>
     </div>
- <div id="debugdiv">
-  <input type="button" value="Cam Back View" position= absolute onclick="Camera.setCamAnterior(sceneToRender);">
-  <input type="button" value="Cam Side View" position= absolute onclick="Camera.setCamLateralLeft(sceneToRender);">
- </div>
-     
-    
-  </body>
-  <script src="js/ActionManager.js"></script>
-  <script src="js/BreakableWall.js"></script>
-  <script src="js/Camera.js"></script>
-  <script src="js/Door.js"></script>
-  <script src="js/Ground.js"></script>
-  <script src="js/Player.js"></script>
-  <script src="js/Rock.js"></script>
-  <script src="js/Skybox.js"></script>
-  <script src="js/ObstacleFactory.js"></script>
-  <script src="js/Moon.js"></script>
-  <script src="js/HUD.js"></script>
-  <script src="js/AudioAssetManager.js"></script>
-  <script src="js/Wall.js"></script>
-  <script src="js/Woodsman.js"></script>
-  <script src="js/Main.js"></script>
+  </div>
+  <div id="debugdiv">
+    <input type="button" value="Cam Back View" position=absolute onclick="Camera.setCamAnterior(sceneToRender);">
+    <input type="button" value="Cam Side View" position=absolute onclick="Camera.setCamLateralLeft(sceneToRender);">
+  </div>
+
+
+</body>
+<script src="js/ActionManager.js"></script>
+<script src="js/BreakableWall.js"></script>
+<script src="js/Camera.js"></script>
+<script src="js/Door.js"></script>
+<script src="js/Ground.js"></script>
+<script src="js/Player.js"></script>
+<script src="js/Rock.js"></script>
+<script src="js/Skybox.js"></script>
+<script src="js/ObstacleFactory.js"></script>
+<script src="js/Moon.js"></script>
+<script src="js/HUD.js"></script>
+<script src="js/AudioAssetManager.js"></script>
+<script src="js/Wall.js"></script>
+<script src="js/Woodsman.js"></script>
+<script src="js/Main.js"></script>
+
 </html>

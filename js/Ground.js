@@ -1,4 +1,4 @@
-class Ground{
+class Ground {
 
     scene = null;
     width = 0;
@@ -6,7 +6,7 @@ class Ground{
 
     constructor(scene) {
         this.scene = scene;
-        const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:50000, height:40} , this.scene); 
+        const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 50000, height: 40 }, this.scene);
         //ground.position.x = -20;
         //ground.position.y = 2;
         const groundMaterial = new BABYLON.StandardMaterial("material", this.scene);
@@ -18,17 +18,17 @@ class Ground{
         ground.checkCollisions = true;
         ground.isPickable = true;
         this.mesh = ground;
-        
+
         this.scene.registerBeforeRender(() => {
-            
+
             // this.move();
             // this._updateCamera();
-    
+
         })
-        
+
         return this;
     }
-    
+
     move = () => {
         this.mesh.position.x += -.05;
         //console.log(this.mesh.position.x)

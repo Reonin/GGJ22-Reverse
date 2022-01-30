@@ -5,7 +5,7 @@
  */
 class Player {
 
-    
+
     constructor(scene, ground, hud, importedMeshes, audioMan) {
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
@@ -13,24 +13,24 @@ class Player {
         box.position.x = 0.5;
         box.position.y = 3;
         box.position.z = -2;
-        
+
 
 
         const importedMeshWolf = importedMeshes[0].meshes[0];
         importedMeshWolf.scaling = new BABYLON.Vector3(30, 30, 30);
 
-        importedMeshWolf.position = new BABYLON.Vector3(box.position.x, (box.position.y -.85), box.position.z);
+        importedMeshWolf.position = new BABYLON.Vector3(box.position.x, (box.position.y - .85), box.position.z);
 
 
-    const importedMeshMan = importedMeshes[1].meshes[0];
+        const importedMeshMan = importedMeshes[1].meshes[0];
         importedMeshMan.scaling = new BABYLON.Vector3(12, 12, 12);
 
-        importedMeshMan.position = new BABYLON.Vector3(box.position.x, (box.position.y -.9), box.position.z);
+        importedMeshMan.position = new BABYLON.Vector3(box.position.x, (box.position.y - .9), box.position.z);
         importedMeshMan.setEnabled(false);
 
-    const importedMeshSkateboard = importedMeshes[2].meshes[0];
-        importedMeshSkateboard.scaling = new BABYLON.Vector3(15,15,15);
-        importedMeshSkateboard.position = new BABYLON.Vector3(box.position.x, (box.position.y -1), box.position.z);
+        const importedMeshSkateboard = importedMeshes[2].meshes[0];
+        importedMeshSkateboard.scaling = new BABYLON.Vector3(15, 15, 15);
+        importedMeshSkateboard.position = new BABYLON.Vector3(box.position.x, (box.position.y - 1), box.position.z);
 
         importedMeshWolf.setParent(box);
         importedMeshMan.setParent(box);
@@ -53,7 +53,7 @@ class Player {
         this.transformationState = "humanTop";
 
         this.humanTopMesh = importedMeshMan;
-        
+
 
         // const wolfMaterial = new BABYLON.StandardMaterial("material", scene);
         // wolfMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/leopard_fur.jpg"), scene);
@@ -68,10 +68,10 @@ class Player {
             frameTime: 0,
             jumpKeyDown: false
         }
-     
+
         this.mesh = box;
         this.mesh.isPickable = false;
-   
+
         // console.log(`Mesh position ${this.mesh.position}`)
 
         this.downwardsRay = new BABYLON.Ray(this.mesh.position, new BABYLON.Vector3(0, -1, 0), 1)
@@ -101,12 +101,12 @@ class Player {
                 this.playerAddedToObstacles = true;
             }
             // console.log(`mesh is at ${this.mesh.position.y} ground is at ${ground.mesh.position.y}`)
-            if(this.mesh.position.y + 10 < ground.mesh.position.y){
-                
+            if (this.mesh.position.y + 10 < ground.mesh.position.y) {
+
                 this.setAlive(false);
                 this.mesh.dispose();
             }
-            if(this.alive === false){
+            if (this.alive === false) {
                 hud.gameOver = true;
                 var element = document.getElementById("PAUSE");
                 element.innerHTML = "Press R to restart";
@@ -122,10 +122,10 @@ class Player {
         particleEffectTransform.particleTexture = new BABYLON.Texture(textureURL.concat("textures/sparkle2.jpg"));
 
         particleEffectTransform.emitter = this.mesh;
-        
+
         this.particleSystem = particleEffectTransform;
 
-        
+
         // this.mesh.physicsImpostor.onCollideEvent = this.die;
 
         return this;
@@ -179,7 +179,7 @@ class Player {
         // this.velocity.y = 0.15;
         //Force Settings
         try {
-            if(this.transformationState === "humanTop"){
+            if (this.transformationState === "humanTop") {
                 var forceDirection = new BABYLON.Vector3(0, 10, 0);
                 var forceMagnitude = 20;
                 var contactLocalRefPoint = BABYLON.Vector3.Zero();
@@ -187,7 +187,7 @@ class Player {
                 this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
                 this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
             }
-            else if(this.transformationState === "wolfTop"){
+            else if (this.transformationState === "wolfTop") {
                 var forceDirection = new BABYLON.Vector3(0, 10, 0);
                 var forceMagnitude = 5;
                 var contactLocalRefPoint = BABYLON.Vector3.Zero();
@@ -195,7 +195,7 @@ class Player {
                 this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
                 this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
             }
-            
+
 
             this.onObject = false;
         }
@@ -227,9 +227,9 @@ class Player {
             }
         }
 
-        if(this.onObject && audioMan.skateboardRoll.isPlaying === false ){
+        if (this.onObject && audioMan.skateboardRoll.isPlaying === false) {
             audioMan.skateboardRoll.play();
-        }else if(this.onObject === false && audioMan.skateboardRoll.isPlaying){
+        } else if (this.onObject === false && audioMan.skateboardRoll.isPlaying) {
             audioMan.skateboardRoll.stop();
         }
         // console.log(`On Ground ${this.onGround}`)
@@ -273,23 +273,23 @@ class Player {
         // this.prevFrameTime = this.command.frameTime;
     }
 
-    
-    getHumanTop(){
+
+    getHumanTop() {
         this.particleSystem.start();
         this.humanTopMesh.setEnabled(true);
         this.wolfTopMesh.setEnabled(false);
 
-        setTimeout(()=> {
+        setTimeout(() => {
             this.particleSystem.stop();
         }, 2000);
-       
+
     }
 
-    getWolfTop(){
+    getWolfTop() {
         this.particleSystem.start();
         this.humanTopMesh.setEnabled(false);
         this.wolfTopMesh.setEnabled(true);
-        setTimeout(()=> {
+        setTimeout(() => {
             this.particleSystem.stop();
         }, 2000);
     }

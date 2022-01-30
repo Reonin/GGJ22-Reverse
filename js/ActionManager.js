@@ -5,7 +5,7 @@ class ActionManager {
 
     static establishInputs(scene, player, moon, hud, engine, audioMan) {
         //console log out which key is pressed
-    
+
 
         // sets inputs for player on the scene
         scene.actionManager = new BABYLON.ActionManager(scene);
@@ -105,7 +105,7 @@ class ActionManager {
                 }
             )
         );
-        
+
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
                 {
@@ -132,15 +132,15 @@ class ActionManager {
         );
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
-              {
-                trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                parameter: (KeyboardEvent.code = 27),
-              },
-              function () {
-                hud.pause(scene, engine, player, moon);
-              }
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: (KeyboardEvent.code = 27),
+                },
+                function () {
+                    hud.pause(scene, engine, player, moon);
+                }
             )
-          );
+        );
         /** Press Z to transform between states */
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
@@ -153,40 +153,40 @@ class ActionManager {
                     hud.start(scene, engine)
 
                 }
-                )
-            );
+            )
+        );
 
-            scene.actionManager.registerAction(
-                new BABYLON.ExecuteCodeAction(
-                    {
-                        trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                        parameter: 'r'
-                    },
-                    function () {
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'r'
+                },
+                function () {
 
-                       location.reload();
-                    }
-                    )
-                );
-    
+                    location.reload();
+                }
+            )
+        );
+
 
         /** Press Z to transform between states */
         scene.actionManager.registerAction(
-        new BABYLON.ExecuteCodeAction(
-            {
-                trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                parameter: 'z'
-            },
-            function () {
-                // console.log("testsees")
-                player.changeForm();
-                moon.phase(scene);
-                audioMan.transformTrack(player.transformationState);
-                console.log(player.transformationState);
-            }
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'z'
+                },
+                function () {
+                    // console.log("testsees")
+                    player.changeForm();
+                    moon.phase(scene);
+                    audioMan.transformTrack(player.transformationState);
+                    console.log(player.transformationState);
+                }
             )
         );
-        
+
     }
 
     static pauseActions = (scene) => {
@@ -213,7 +213,7 @@ class ActionManager {
             )
         );
     }
-    
+
 }
 
 

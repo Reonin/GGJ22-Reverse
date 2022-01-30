@@ -1,7 +1,7 @@
-class Camera{
+class Camera {
 
     constructor(scene, player) {
-        
+
         // // const camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);
         // const camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 10, -5), scene);
         // camera.attachControl(canvas, true);
@@ -25,16 +25,16 @@ class Camera{
 
         // camera.lockedTarget = player.mesh;
         // Camera target mesh (invisible) for third-person camera
-        const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 2 }, scene);        
+        const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 2 }, scene);
         cameraTargetMesh.visibility = 0;
         cameraTargetMesh.setParent(player.mesh);
         cameraTargetMesh.position = new BABYLON.Vector3(0, 0, 1);
         cameraTargetMesh.isPickable = false;
-        const alpha =  0;
-        const beta = Math.PI/2.2;
+        const alpha = 0;
+        const beta = Math.PI / 2.2;
         const radius = 8;
         const target = new BABYLON.Vector3(0, 0, 0);
-    
+
         const camera = new BABYLON.ArcRotateCamera("Camera", alpha, beta, radius, target, scene);
         camera.attachControl(canvas, true);
         // remove by instance
@@ -51,20 +51,20 @@ class Camera{
     }
 
 
-   static setCamAnterior = function(scene) {
+    static setCamAnterior = function (scene) {
         var cam = scene.activeCamera;
         cam.alpha = 0;
-        cam.beta = Math.PI/2; // 1.57
+        cam.beta = Math.PI / 2; // 1.57
         cam.radius = 8;
-       
+
     };
 
-    static setCamLateralLeft = function(scene) {
+    static setCamLateralLeft = function (scene) {
         var cam = scene.activeCamera;
-        cam.alpha =  Math.PI/.6;
-        cam.beta = Math.PI/2.2;
+        cam.alpha = Math.PI / .6;
+        cam.beta = Math.PI / 2.2;
         cam.radius = 7.7;
-      
+
     };
 
 }

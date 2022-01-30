@@ -1,13 +1,13 @@
 /**
  * Creates Moon Object that will be clickable to change the player object
  */
- class Moon {
+class Moon {
   constructor(scene, player) {
     this.isPhaseDark = false;
     const sphere = BABYLON.MeshBuilder.CreateSphere('moon', {
       diameter: 4,
     });
-  
+
     sphere.position.x = -9;
     sphere.position.y = 8;
     sphere.position.z = 0;
@@ -28,7 +28,7 @@
     sphere.physicsImposter = new BABYLON.PhysicsImpostor(
       sphere,
       BABYLON.PhysicsImpostor.SphereImpostor,
-      {mass: 0},
+      { mass: 0 },
       scene
     );
 

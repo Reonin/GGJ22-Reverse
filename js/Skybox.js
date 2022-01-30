@@ -1,5 +1,5 @@
 class Skybox {
-    constructor (scene){
+    constructor(scene) {
         const skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 200.0 }, scene);
         const skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
         skyboxMaterial.backFaceCulling = false;

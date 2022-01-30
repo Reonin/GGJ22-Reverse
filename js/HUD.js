@@ -14,21 +14,21 @@ class HUD {
     // points counter
     this.count = 0;
     this.score = 0;
-    
+
 
     scene.onBeforeRenderObservable.add((thisScene, state) => {
       document.getElementById('renderCanvas').focus();
-        if(this.gameInit){
-            engine.stopRenderLoop();
-        }
+      if (this.gameInit) {
+        engine.stopRenderLoop();
+      }
       if (!thisScene.deltaTime) return;
-      
-      if(this.count % 100 === 0 && this.isGamePaused === false && this.gameOver === false){
+
+      if (this.count % 100 === 0 && this.isGamePaused === false && this.gameOver === false) {
         this.score += 1;
       }
       // console.log(`Game over: ${scene}`);
       // if(this.gameOver === true){
-        
+
       // }
       this.count += 1;
       HUDElement.textContent = 'Points:'.concat(String(Math.round(this.score)));
@@ -37,16 +37,16 @@ class HUD {
 
   start = (scene, engine) => {
     ActionManager.disbaleStartButton(scene);
-    this.gameInit = false; 
+    this.gameInit = false;
     // var element = document.getElementById("PAUSE");
     // console.log(`Element ${element.innerHTML}`)
     // element.innerHTML = "";
     engine.runRenderLoop(function () {
-        scene.render();
-      });
-      this.HUDElementMenu = document.getElementById('START');
-      this.HUDElementMenu.innerHTML = 'PAUSE: ESC'
-      this.HUDElementMenu.id = 'PAUSE'
+      scene.render();
+    });
+    this.HUDElementMenu = document.getElementById('START');
+    this.HUDElementMenu.innerHTML = 'PAUSE: ESC'
+    this.HUDElementMenu.id = 'PAUSE'
 
   }
 
@@ -89,7 +89,7 @@ class HUD {
     }
   };
 
-  setGameOver(gameOver){
+  setGameOver(gameOver) {
     this.gameOver = gameOver;
   }
 }
