@@ -178,7 +178,6 @@ class ActionManager {
                 parameter: 'z'
             },
             function () {
-                console.log("testsees")
                 player.changeForm();
                 moon.phase(scene);
                 audioMan.transformTrack(player.transformationState);
@@ -191,11 +190,11 @@ class ActionManager {
     }
 
     static pauseActions = (scene) => {
-        scene.actionManager.actions.splice(13, 1)
+        scene.actionManager.actions.splice(12, 1)
     }
 
     static disbaleStartButton = (scene) => {
-        scene.actionManager.actions.splice(13, 1)
+        scene.actionManager.actions.splice(12, 1)
     }
 
     static addPhaseBack = (scene, player, moon) => {
