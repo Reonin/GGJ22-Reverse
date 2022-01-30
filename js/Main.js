@@ -110,7 +110,7 @@ const createScene = function (scene, importedMesh) {
     var count = 0;
     setInterval(function () {
         const ObsFactory3 = new ObstacleFactory(scene, player, wall, hud, -150, -3, false);
-    }, 10000);
+    }, 30000);
 
     return scene;
 
