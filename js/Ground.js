@@ -19,7 +19,7 @@ class Ground {
         this.mesh = ground;
 
         const mat = new BABYLON.StandardMaterial("");
-        mat.diffuseTexture = new BABYLON.Texture(textureURL.concat("/assets/textures/forest.jpg"));
+        mat.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/forest.jpg"));
         mat.visibility = 0.1;
         const pat = BABYLON.Mesh.NO_FLIP;
         const options = {
@@ -49,7 +49,7 @@ class Ground {
 
         const forestMaterial = new BABYLON.StandardMaterial("material", this.scene);
         // forestMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
-        forestMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("textures/trees.jpg"), scene);
+        forestMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("textures/trees.png"), scene);
         rightPlane.material = forestMaterial;
         rightPlane.physicsImpostor = new BABYLON.PhysicsImpostor(rightPlane, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0}, scene);
         rightPlane.checkCollisions = true;

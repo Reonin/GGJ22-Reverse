@@ -23,7 +23,7 @@ class Door {
         this.doorMesh.position = new BABYLON.Vector3(door.position.x, (door.position.y- 3.5), door.position.z);
         this.doorMesh.isPickable = false;
         this.doorMesh.setParent(door);
-        door.showBoundingBox = true;
+        // door.showBoundingBox = true;
         // door.material.diffuseTexture.isCube(false);
         door.physicsImpostor = new BABYLON.PhysicsImpostor(door, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
         door.checkCollisions = true;
