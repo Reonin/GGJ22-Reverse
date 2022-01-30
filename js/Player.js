@@ -6,7 +6,7 @@
 class Player {
 
     
-    constructor(scene, ground, importedMeshes) {
+    constructor(scene, ground, importedMeshes, audioMan) {
         this.scene = scene;
         const box = BABYLON.MeshBuilder.CreateBox("player", { height: 2.5, width: 1 });
         box.visibility = 0.2;
@@ -106,7 +106,7 @@ class Player {
             }
             // Player move
             this.command.frameTime = Date.now();
-            this.move();
+            this.move(audioMan);
             // this._updateCamera();
 
         })
@@ -199,7 +199,7 @@ class Player {
     }
 
 
-    move = () => {
+    move = (audioMan) => {
         // if (this.prevFrameTime === undefined) {
         //     this.prevFrameTime = this.command.frameTime;
         //     return;
@@ -220,7 +220,11 @@ class Player {
             }
         }
 
-
+        if(this.onObject && audioMan.skateboardRoll.isPlaying === false ){
+            audioMan.skateboardRoll.play();
+        }else if(this.onObject === false && audioMan.skateboardRoll.isPlaying){
+            audioMan.skateboardRoll.stop();
+        }
         // console.log(`On Ground ${this.onGround}`)
         if (this.jumpKeyDown && this.onObject && this.alive === true) {
             this.jump();

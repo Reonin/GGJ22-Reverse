@@ -83,7 +83,7 @@ const createScene = function(scene, importedMesh) {
     
     const skybox = new Skybox(scene); 
     const ground = new Ground(scene);
-    const player = new Player(scene,ground,importedMesh);
+    const player = new Player(scene,ground,importedMesh, audioMan);
     
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
