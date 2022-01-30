@@ -86,7 +86,7 @@ class ObstacleFactory {
         //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
 
 
-        var rock = new Rock(this.scene, player, wall, rock_start_x, 2, rock_start_z);
+        var rock = new Rock(this.scene, player, wall, rock_start_x, 2, rock_start_z, importedMeshes[4]);
         setTimeout(function () {
             rock.mesh.dispose()
         }, 10000);

@@ -1,8 +1,8 @@
 class Rock {
 
 
-
-    constructor(scene, player, wall, rock_start_x, rock_start_y, rock_start_z) {
+    rockMesh = null;
+    constructor(scene, player, wall, rock_start_x, rock_start_y, rock_start_z, rockModel) {
         this.scene = scene;
         this.destructiveMeshes = [player.mesh.physicsImpostor];
 
@@ -11,10 +11,19 @@ class Rock {
         rock.position.x = rock_start_x;
         rock.position.y = rock_start_y;
         rock.position.z = rock_start_z
-        const rockMaterial = new BABYLON.StandardMaterial("material", scene);
-        rockMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat('/textures/rock.png'));
+        // const rockMaterial = new BABYLON.StandardMaterial("material", scene);
+        // rockMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat('/textures/rock.png'));
 
-        rock.material = rockMaterial;
+        // rock.material = rockMaterial;
+        rock.visibility = 0.0;
+        // rock.showBoundingBox = true;
+
+        this.rockMesh = rockModel.meshes[0].clone('clonedRock');
+        this.rockMesh.scaling = new BABYLON.Vector3(7,7,7);
+        this.rockMesh.position = new BABYLON.Vector3(rock.position.x, (rock.position.y- 0.5), rock.position.z);
+        this.rockMesh.isPickable = false;
+        this.rockMesh.setParent(rock);
+
         rock.physicsImpostor = new BABYLON.PhysicsImpostor(rock, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 1, restitution: 0.9 }, scene);
         rock.checkCollisions = true;
         rock.wall = wall;
