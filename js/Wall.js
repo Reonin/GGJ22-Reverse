@@ -51,9 +51,22 @@ class Wall {
             wall1.position.x = this.start_x;
             wall1.position.y = 3.5;
             wall1.position.z = 0;
-            const wall1Material = new BABYLON.StandardMaterial("material", scene);
-            wall1Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall1.material = wall1Material;
+            
+            wall1.visibility = 0.0;
+
+            const wallMesh = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
+            wallMesh.isPickable = false;
+            wallMesh.setParent(wall1);
+
+            // wall1.showBoundingBox = true;
+            
+            // const wall1Material = new BABYLON.StandardMaterial("material", scene);
+            // wall1Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
+            // wall1.material = wall1Material;
+
+
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = true;
             var mesh = this.player.mesh;
@@ -70,9 +83,18 @@ class Wall {
             wall2.position.x = this.start_x;
             wall2.position.y = 3.5;
             wall2.position.z = 15;
-            const wall2Material = new BABYLON.StandardMaterial("material", scene);
-            wall2Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall2.material = wall2Material;
+            wall2.visibility = 0.0;
+            // const wall2Material = new BABYLON.StandardMaterial("material", scene);
+            // wall2Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
+            // wall2.material = wall2Material;
+            wall2.visibility = 0.0;
+
+            const wallMesh2 = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
+            wallMesh2.isPickable = false;
+            wallMesh2.setParent(wall2);
+            
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall2.checkCollisions = true;
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -86,9 +108,18 @@ class Wall {
             wall3.position.x = this.start_x;
             wall3.position.y = 3.5;
             wall3.position.z = -15;
-            const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall3.material = wall3Material;
+            // const wall3Material = new BABYLON.StandardMaterial("material", scene);
+            // wall3Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
+
+            wall3.visibility = 0.0;
+
+            const wallMesh3 = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
+            wallMesh3.isPickable = false;
+            wallMesh3.setParent(wall3);
+
+            // wall3.material = wall3Material;
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
             wall3.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -137,9 +168,13 @@ class Wall {
             wall1.position.x = this.start_x;
             wall1.position.y = 3.5;
             wall1.position.z = 0;
-            const wall1Material = new BABYLON.StandardMaterial("material", scene);
-            wall1Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall1.material = wall1Material;
+            wall1.visibility = 0.0;
+
+            const wallMesh = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
+            wallMesh.isPickable = false;
+            wallMesh.setParent(wall1);
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = false;
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -153,9 +188,13 @@ class Wall {
             wall2.position.x = this.start_x;
             wall2.position.y = 3.5;
             wall2.position.z = 10;
-            const wall2Material = new BABYLON.StandardMaterial("material", scene);
-            wall2Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall2.material = wall2Material;
+            wall2.visibility = 0.0;
+
+            const wallMesh2 = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
+            wallMesh2.isPickable = false;
+            wallMesh2.setParent(wall2);
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall2.checkCollisions = true;
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -169,9 +208,13 @@ class Wall {
             wall3.position.x = this.start_x;
             wall3.position.y = 3.5;
             wall3.position.z = -15;
-            const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall3.material = wall3Material;
+            wall3.visibility = 0.0;
+
+            const wallMesh3 = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
+            wallMesh3.isPickable = false;
+            wallMesh3.setParent(wall3);
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
             wall3.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -225,9 +268,13 @@ class Wall {
             wall1.position.x = this.start_x;
             wall1.position.y = 3.5;
             wall1.position.z = 0;
-            const wall1Material = new BABYLON.StandardMaterial("material", scene);
-            wall1Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall1.material = wall1Material;
+            wall1.visibility = 0.0;
+
+            const wallMesh = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
+            wallMesh.isPickable = false;
+            wallMesh.setParent(wall1);
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = false;
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -241,9 +288,13 @@ class Wall {
             wall2.position.x = this.start_x;
             wall2.position.y = 3.5;
             wall2.position.z = 10;
-            const wall2Material = new BABYLON.StandardMaterial("material", scene);
-            wall2Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall2.material = wall2Material;
+            wall2.visibility = 0.0;
+
+            const wallMesh2 = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
+            wallMesh2.isPickable = false;
+            wallMesh2.setParent(wall2);
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall2.checkCollisions = true;
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -257,9 +308,13 @@ class Wall {
             wall3.position.x = this.start_x;
             wall3.position.y = 3.5;
             wall3.position.z = -10;
-            const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall3.material = wall3Material;
+            wall3.visibility = 0.0;
+
+            const wallMesh3 = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
+            wallMesh3.isPickable = false;
+            wallMesh3.setParent(wall3);
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
             wall3.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -309,9 +364,13 @@ class Wall {
             wall1.position.x = this.start_x;
             wall1.position.y = 3.5;
             wall1.position.z = 8;
-            const wall1Material = new BABYLON.StandardMaterial("material", scene);
-            wall1Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall1.material = wall1Material;
+            wall1.visibility = 0.0;
+
+            const wallMesh = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
+            wallMesh.isPickable = false;
+            wallMesh.setParent(wall1);
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall1.checkCollisions = false;
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -326,9 +385,13 @@ class Wall {
             wall2.position.x = this.start_x;
             wall2.position.y = 3.5;
             wall2.position.z = -5;
-            const wall2Material = new BABYLON.StandardMaterial("material", scene);
-            wall2Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall2.material = wall2Material;
+            wall2.visibility = 0.0;
+
+            const wallMesh2 = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
+            wallMesh2.isPickable = false;
+            wallMesh2.setParent(wall2);
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall2.checkCollisions = false;
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
@@ -342,9 +405,13 @@ class Wall {
             wall3.position.x = this.start_x;
             wall3.position.y = 3.5;
             wall3.position.z = -15;
-            const wall3Material = new BABYLON.StandardMaterial("material", scene);
-            wall3Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
-            wall3.material = wall3Material;
+            wall3.visibility = 0.0;
+
+            const wallMesh3 = importedMesh[6].meshes[0].clone('clonedDoor');
+            wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
+            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
+            wallMesh3.isPickable = false;
+            wallMesh3.setParent(wall3);
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
             wall3.checkCollisions = true;
             wall3.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
