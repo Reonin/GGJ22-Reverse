@@ -13,7 +13,7 @@ class Player {
         box.position.x = 0.5;
         box.position.y = 3;
         box.position.z = -2;
-
+        
 
 
         const importedMeshWolf = importedMeshes[0].meshes[0];
@@ -53,11 +53,13 @@ class Player {
         this.transformationState = "humanTop";
 
         this.humanTopMesh = importedMeshMan;
-
+        
 
         // const wolfMaterial = new BABYLON.StandardMaterial("material", scene);
         // wolfMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/leopard_fur.jpg"), scene);
         this.wolfTopMesh = importedMeshWolf;
+        this.humanTopMesh.setEnabled(true);
+        this.wolfTopMesh.setEnabled(false);
 
         // box.checkCollisions = true;
         this.speed = -.01;

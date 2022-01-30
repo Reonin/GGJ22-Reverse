@@ -156,18 +156,18 @@ class ActionManager {
                 )
             );
 
-        scene.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                    parameter: 'r'
-                },
-                function () {
-                    console.log("RESTARTING")
-                    hud.restart(scene, engine)
-                }
-                )
-            );
+            scene.actionManager.registerAction(
+                new BABYLON.ExecuteCodeAction(
+                    {
+                        trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                        parameter: 'r'
+                    },
+                    function () {
+
+                       location.reload();
+                    }
+                    )
+                );
     
 
         /** Press Z to transform between states */
@@ -186,18 +186,7 @@ class ActionManager {
             }
             )
         );
-        scene.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                    parameter: 'r'
-                },
-                function () {
-                    // console.log("testsees")
-                   location.reload();
-                }
-                )
-            );
+        
     }
 
     static pauseActions = (scene) => {
