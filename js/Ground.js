@@ -6,7 +6,7 @@ class Ground {
 
     constructor(scene) {
         this.scene = scene;
-        const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 50000, height: 40 }, this.scene);
+        const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 50000, height: 60 }, this.scene);
         //ground.position.x = -20;
         //ground.position.y = 2;
         const groundMaterial = new BABYLON.StandardMaterial("material", this.scene);
@@ -63,10 +63,10 @@ class Ground {
         this.meshleftPlane = leftPlane;
 
 
-
+        
 
         this.scene.registerBeforeRender(() => {
-
+            
             // this.move();
             // this._updateCamera();
 
@@ -79,4 +79,5 @@ class Ground {
         this.mesh.position.x += -.05;
         //console.log(this.mesh.position.x)
     }
+    
 }

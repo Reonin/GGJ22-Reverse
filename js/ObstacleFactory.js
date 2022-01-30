@@ -5,13 +5,14 @@ class ObstacleFactory {
 
 
 
-    constructor(scene, player, wall, hud, start_x, start_z, moveRight) {
+    constructor(scene, player, wall, hud, start_x, start_z, moveRight, importedMesh) {
 
         // if (ObstacleFactory._instance) {
         //     return ObstacleFactory._instance
         // }
         // ObstacleFactory._instance = this;
         this.scene = scene;
+        this.trees = [];
         const box = BABYLON.MeshBuilder.CreateBox("obstacle_factory", { height: 5 });
         this.FACTORY_START_X = start_x;
         this.FACTORY_START_Y = 2;
@@ -32,7 +33,8 @@ class ObstacleFactory {
         this.spawnRockTimer = 0;
         this.spawnWoodsmanTimer = 0;
         this.spawnCoinTimer = 0;
-
+        this.spawnTreeTime = 0;
+        this.spawnedTrees = false;
 
         scene.onBeforeRenderObservable.add(() => {
             this.frameTime = Date.now();
@@ -68,6 +70,11 @@ class ObstacleFactory {
                     this.spawnCoinTimer = 0;
                 }
                 this.spawnCoinTimer++;
+                if(this.spawnedTrees === false){
+                    this.spawnTrees(importedMesh, player);
+                    this.spawnedTrees = true;
+                }
+                this.killTrees(importedMesh,player);
             }
 
 
@@ -165,6 +172,44 @@ class ObstacleFactory {
             coin.mesh.dispose()
         }, 30000);
         this.prevFrameTime = this.frameTime;
+    }
+
+    spawnTrees(importedMesh, player) {
+        var numTrees = 25;
+        for (var i = 0; i < numTrees; i++) {
+            var treeMesh = importedMesh[4].meshes[0].clone('tree');
+            treeMesh.position = new BABYLON.Vector3(player.mesh.position.x + (i * -4), 0, -22);
+            treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+            treeMesh.isPickable = false;
+            this.trees.push(treeMesh);
+            var treeMesh = importedMesh[4].meshes[0].clone('tree');
+            treeMesh.position = new BABYLON.Vector3(player.mesh.position.x + (i * -4), 0, 22);
+            treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+            treeMesh.isPickable = false;
+            this.trees.push(treeMesh);
+            // console.log(`Tree spawned at ${treeMesh.position}`)
+        }
+
+        
+    }
+
+    killTrees(importedMesh, player){
+        for(var i = 0; i < this.trees.length; i++){
+            if(this.trees[i].position.x > player.mesh.position.x + 38){
+                this.trees[i].dispose()
+                this.trees.splice(i,1);
+                var treeMesh = importedMesh[4].meshes[0].clone('tree');
+                treeMesh.position = new BABYLON.Vector3(this.trees[this.trees.length - 1].position.x - 4, 0, -22);
+                treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+                treeMesh.isPickable = false;
+                this.trees.push(treeMesh);
+                var treeMesh = importedMesh[4].meshes[0].clone('tree');
+                treeMesh.position = new BABYLON.Vector3(this.trees[this.trees.length - 1].position.x - 4, 0, 22);
+                treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+                treeMesh.isPickable = false;
+                this.trees.push(treeMesh);
+            }
+        }
     }
 
 }

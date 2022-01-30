@@ -13,7 +13,7 @@ class Coin {
         coin.position.z = coin_start_z;
         const coinMaterial = new BABYLON.StandardMaterial("material", scene);
         coin.material = coinMaterial;
-        console.log(`Coin spawned ${coin.position}`)
+        // console.log(`Coin spawned ${coin.position}`)
         coinMaterial.diffuseColor = BABYLON.Color3.FromHexString("#FFD700");;
         coin.physicsImpostor = new BABYLON.PhysicsImpostor(coin, BABYLON.PhysicsImpostor.BoxImpostor, { mass: .7, restitution: 0.5 }, scene);
         coin.checkCollisions = true;
@@ -25,9 +25,9 @@ class Coin {
             for (var i = 0; i < destructiveMeshes.length; i++) {
                 
                 if (collided.object.name === "player") {
-                    console.log(`Before ${hud.score}`)
+                    // console.log(`Before ${hud.score}`)
                     hud.score += 10;
-                    console.log(`After ${hud.score}`)
+                    // console.log(`After ${hud.score}`)
                     // player.setAlive(false, coin.object.name);
                     coin.object.dispose();
                 }

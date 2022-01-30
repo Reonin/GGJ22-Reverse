@@ -23,6 +23,7 @@ engine.displayLoadingUI();
 let textureURL = '/GGJ22-Reverse/assets/';
 let importedMeshes = null;
 let obstacles = [];
+// let player = null;
 if (location.hostname === "") {
     /** to avoid CORs loading erros
      * https://doc.babylonjs.com/toolsAndResources/assetLibraries/availableTextures */
@@ -63,8 +64,9 @@ const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/m
 const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);
 const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "retro_grunge_skateboard.glb", scene);
 const promiseModel4 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "axe.glb", scene);
+const promiseModel5 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "tree.glb", scene);
 
-Promise.all([promiseModel1, promiseModel2, promiseModel3, promiseModel4]).then((result) => {
+Promise.all([promiseModel1, promiseModel2, promiseModel3, promiseModel4, promiseModel5]).then((result) => {
 
     console.log('loaded in');
 
@@ -91,25 +93,25 @@ const createScene = function (scene, importedMesh) {
     scene.enablePhysics(gravityVector, physicsPlugin);
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
 
-
+    var player = null;
     const skybox = new Skybox(scene);
     const ground = new Ground(scene);
     const hud = new HUD(scene, engine);
-    const player = new Player(scene, ground, hud, importedMesh, audioMan);
+    player = new Player(scene, ground, hud, importedMesh, audioMan);
 
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
    const wall = new Wall(scene, player);
 
-    const ObsFactory = new ObstacleFactory(scene, player, wall, hud, -150, 0, true);
-    const ObsFactory2 = new ObstacleFactory(scene, player, wall, hud, -150, 5, false);
+    const ObsFactory = new ObstacleFactory(scene, player, wall, hud, -150, 0, true, importedMesh);
+    const ObsFactory2 = new ObstacleFactory(scene, player, wall, hud, -150, 5, false, importedMesh);
     // const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
 
     ActionManager.establishInputs(scene, player, moon, hud, engine, audioMan);
     var count = 0;
     setInterval(function () {
-        const ObsFactory3 = new ObstacleFactory(scene, player, wall, hud, -150, -3, false);
+        const ObsFactory3 = new ObstacleFactory(scene, player, wall, hud, -150, -3, false, importedMesh);
     }, 30000);
 
     return scene;
