@@ -6,12 +6,17 @@ class Door{
         door.position.x = start_x;
         door.position.y = start_y;
         door.position.z = start_z;
-        const doorMaterial = new BABYLON.StandardMaterial("materd daial", scene);
-        doorMaterial.diffuseColor =BABYLON.Color3.FromHexString("#0000FF");
+        const doorMaterial = new BABYLON.StandardMaterial("material", scene);
+        doorMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/house"), scene);
+        // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
+        // doorMaterial.diffuseTexture.vAngle = 180;
         door.material = doorMaterial;
+        
+        // door.material.diffuseTexture.isCube(false);
         door.physicsImpostor = new BABYLON.PhysicsImpostor(door, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
         door.checkCollisions = true;
         this.mesh = door;
+        // this.mesh.rotate(BABYLON.Axis.x,180,BABYLON.Space.LOCAL);
         door.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function(door, collided) {
              if(player.transformationState === "humanTop" && collided.object.name === "player"){
                 console.log(`Door collided with ${collided.object} whose state is ${player.transformationState} which is a ${door.object}`)

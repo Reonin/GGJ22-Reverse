@@ -54,7 +54,7 @@ class Woodsman {
     
         })
         this.destructiveMeshes = [player.mesh.physicsImpostor];
-        this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0 }, scene);
+        this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: .05 }, scene);
         this.mesh.wall = wall;
         var destructiveMeshes = obstacles;
         this.mesh.physicsImpostor.registerOnPhysicsCollide(destructiveMeshes, function(woodsman, collided) {
