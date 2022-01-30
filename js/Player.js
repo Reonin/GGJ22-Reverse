@@ -254,7 +254,6 @@ class Player {
     }
 
     changeForm = (scene) => {
-        debugger;
         if (this.transformationState === 'wolfTop') {
             this.transformationState = 'humanTop';
             this.getHumanTop();

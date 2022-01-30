@@ -1,6 +1,6 @@
 class AudioAssetManager {
   constructor(scene) {
-    let music1, music2, music3, music4;
+    let music1, music2, music3, music4, music5, music6;
     let sfx1, sfx2, sfx3;
     let audioURL = '/GGJ22-Reverse/assets/audio/';
     if (location.hostname === '192.168.20.112') {
@@ -54,7 +54,35 @@ class AudioAssetManager {
     binaryTask4.onSuccess = function (task) {
       music4 = new BABYLON.Sound("A_Cursed_Life_Loop", task.data, scene, soundReady, {
         loop: true,
-        autoplay: true,
+        autoplay: false,
+      });
+    };
+
+    /**
+ * 
+ */
+     const binaryTask8 = assetsManager.addBinaryFileTask(
+      "A_Cursed_Life_Human_Full task",
+      audioURL.concat("A_Cursed_Life_Human_Full.mp3")
+    );
+    binaryTask8.onSuccess = function (task) {
+      music5= new BABYLON.Sound("A_Cursed_Life_Human_Full", task.data, scene, soundReady, {
+        loop: true,
+        autoplay: false,
+      });
+    };
+
+    /**
+ * 
+ */
+     const binaryTask9 = assetsManager.addBinaryFileTask(
+      "A_Cursed_Life_Wolf_Full task",
+      audioURL.concat("A_Cursed_Life_Wolf_Full.mp3")
+    );
+    binaryTask9.onSuccess = function (task) {
+      music6 = new BABYLON.Sound("A_Cursed_Life_Wolf_Full", task.data, scene, soundReady, {
+        loop: true,
+        autoplay: false,
       });
     };
 
@@ -95,11 +123,13 @@ binaryTask7.onSuccess = function (task) {
 
     function soundReady() {
       soundsReady++;
-      if (soundsReady === 7) {
+      if (soundsReady === 9) {
         // music1.play();
         // music2.play();
         // music3.play();
-        music4.play();
+        // music4.play();
+        music5.play();
+        music6.play();
       }
     }
 
