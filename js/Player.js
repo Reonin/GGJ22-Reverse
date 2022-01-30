@@ -19,18 +19,22 @@ class Player {
      const importedMeshWolf = importedMeshes[0].meshes[0];
         importedMeshWolf.scaling = new BABYLON.Vector3(30, 30, 30);
 
-        importedMeshWolf.position = new BABYLON.Vector3(box.position.x, (box.position.y -1), box.position.z);
+        importedMeshWolf.position = new BABYLON.Vector3(box.position.x, (box.position.y -.85), box.position.z);
 
 
     const importedMeshMan = importedMeshes[1].meshes[0];
-        importedMeshMan.scaling = new BABYLON.Vector3(15, 15, 15);
+        importedMeshMan.scaling = new BABYLON.Vector3(12, 12, 12);
 
-        importedMeshMan.position = new BABYLON.Vector3(box.position.x, (box.position.y -1), box.position.z);
+        importedMeshMan.position = new BABYLON.Vector3(box.position.x, (box.position.y -.9), box.position.z);
         importedMeshMan.setEnabled(false);
+
+    const importedMeshSkateboard = importedMeshes[2].meshes[0];
+        importedMeshSkateboard.scaling = new BABYLON.Vector3(15,15,15);
+        importedMeshSkateboard.position = new BABYLON.Vector3(box.position.x, (box.position.y -1), box.position.z);
 
         importedMeshWolf.setParent(box);
         importedMeshMan.setParent(box);
-
+        importedMeshSkateboard.setParent(box);
         box.showBoundingBox = true;
         scene.getBoundingBoxRenderer().frontColor.set(1, 0, 0);
         scene.getBoundingBoxRenderer().backColor.set(0, 1, 0);
