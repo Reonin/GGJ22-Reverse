@@ -119,11 +119,13 @@ class ObstacleFactory {
                     this.spawnCoinTimer = 0;
                 }
                 this.spawnCoinTimer++;
-                if(this.spawnedTrees === false){
+                if(this.spawnedTrees === false && this.player.alive === true){
                     this.spawnTrees(importedMesh, player);
                     this.spawnedTrees = true;
                 }
-                this.killTrees(importedMesh,player);
+                if(this.player.alive === true){
+                    this.killTrees(importedMesh,player);
+                }
             }
 
 
@@ -253,20 +255,26 @@ class ObstacleFactory {
                 if(this.trees[i].leftSide === true){
                     this.trees[i].dispose()
                     this.trees.splice(i,1);
-                    var treeMesh = importedMesh[6].meshes[0].clone('tree');
-                    treeMesh.position = new BABYLON.Vector3(this.trees[this.trees.length - 1].position.x - 4, 0, -22);
-                    treeMesh.scaling = new BABYLON.Vector3(10,10,10);
-                    treeMesh.isPickable = false;
-                    this.trees.push(treeMesh);
+                    if(this.trees.length <= 40){
+                        var treeMesh = importedMesh[6].meshes[0].clone('tree');
+                        treeMesh.position = new BABYLON.Vector3(this.trees[this.trees.length - 1].position.x - 4, 0, -22);
+                        treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+                        treeMesh.isPickable = false;
+                        treeMesh.leftSide = true;
+                        this.trees.push(treeMesh);
+                }
                 }
                 else if(this.trees[i].leftSide === false){
                     this.trees[i].dispose()
                     this.trees.splice(i,1);
-                    var treeMesh = importedMesh[6].meshes[0].clone('tree');
-                    treeMesh.position = new BABYLON.Vector3(this.trees[this.trees.length - 1].position.x - 4, 0, 22);
-                    treeMesh.scaling = new BABYLON.Vector3(10,10,10);
-                    treeMesh.isPickable = false;
-                    this.trees.push(treeMesh);
+                    if(this.trees.length <= 40){
+                        var treeMesh = importedMesh[6].meshes[0].clone('tree');
+                        treeMesh.position = new BABYLON.Vector3(this.trees[this.trees.length - 1].position.x - 4, 0, 22);
+                        treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+                        treeMesh.isPickable = false;
+                        treeMesh.leftSide = false;
+                        this.trees.push(treeMesh);
+                    }
                 }
                 
             }

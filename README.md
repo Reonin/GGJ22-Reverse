@@ -27,3 +27,11 @@ Be careful though, you cant open doors to houses with those wereclaws of yours! 
 When your bottom half is wolf you can jump higher and move left and right faster. You also gain 10 points from coins! Be care though, you can be killed by flying rocks and you cannot go through breakable walls. Your opposable thumbs can open those pesky cabin doors though!
 
 You need to break the curse, run to the end! 
+
+### Controls
+
+Space to jump
+A - move left
+D - move right
+S - move back
+Z - transform
