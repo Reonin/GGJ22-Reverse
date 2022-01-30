@@ -34,7 +34,7 @@ class Rock {
             // console.log(`Update Meshes length ${destructiveMeshes.length}`)
             for (var i = 0; i < destructiveMeshes.length; i++) {
                 // console.log(`Collided with ${destructiveMeshes[i].object.name}`)
-                if (collided.object.name === "player") {
+                if (collided.object.name === "player" && player.transformationState === "humanTop") {
                     // console.log(`${destructiveMeshes[i].object.name}`)
                     player.mesh.dispose();
                     player.setAlive(false, rock.object.name);

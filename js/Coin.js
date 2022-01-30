@@ -14,7 +14,7 @@ class Coin {
         const coinMaterial = new BABYLON.StandardMaterial("material", scene);
         coin.material = coinMaterial;
         // console.log(`Coin spawned ${coin.position}`)
-        coinMaterial.diffuseColor = BABYLON.Color3.FromHexString("#FFD700");;
+        coinMaterial.diffuseColor = BABYLON.Color3.FromHexString("#C0C0C0");;
         coin.physicsImpostor = new BABYLON.PhysicsImpostor(coin, BABYLON.PhysicsImpostor.BoxImpostor, { mass: .7, restitution: 0.5 }, scene);
         coin.checkCollisions = true;
         var destructiveMeshes = obstacles;
@@ -30,7 +30,14 @@ class Coin {
                     // console.log(`After ${hud.score}`)
                     // player.setAlive(false, coin.object.name);
                     coin.object.dispose();
+                }else if (collided.object.name === "player" && player.transformationState === "wolfTop") {
+                    // console.log(`Before ${hud.score}`)
+                    hud.score -= 10;
+                    // console.log(`After ${hud.score}`)
+                    // player.setAlive(false, coin.object.name);
+                    coin.object.dispose();
                 }
+                
                 else if (collided.object.name === "wall piece") {
                     // console.log(`IN else if ${destructiveMeshes[i].object.name}`)
                     coin.object.dispose();
