@@ -1,10 +1,11 @@
 class AudioAssetManager {
   wolfTrack = null;
   humanTrack = null;
+  skateboardRoll = null;
   soundsReady = 0;
   constructor(scene) {
     let music1, music2, music3, music4, music5, music6;
-    let sfx1, sfx2, sfx3;
+    let sfx1, sfx2, sfx3, sfx4;
     let audioURL = '/GGJ22-Reverse/assets/audio/';
     if (location.hostname === '192.168.20.112') {
       audioURL = '/assets/audio/';
@@ -72,6 +73,7 @@ class AudioAssetManager {
       music5= new BABYLON.Sound("A_Cursed_Life_Human_Full", task.data, scene, that.soundReady, {
         loop: true,
         autoplay: false,
+        volume : 0.05,
       });
       that.humanTrack = music5;
     };
@@ -87,6 +89,7 @@ class AudioAssetManager {
       music6 = new BABYLON.Sound("A_Cursed_Life_Wolf_Full", task.data, scene, that.soundReady, {
         loop: true,
         autoplay: false,
+        volume : 0.05, 
       });
       that.wolfTrack = music6;
     };
@@ -124,6 +127,18 @@ binaryTask7.onSuccess = function (task) {
     loop: false,
   });
 };
+
+const binaryTask10 = assetsManager.addBinaryFileTask(
+  "Skateboard_Roll task",
+  audioURL.concat("Skateboard_Roll.ogg")
+);
+binaryTask10.onSuccess = function (task) {
+  sfx4 = new BABYLON.Sound("Skateboard_Roll", task.data, scene, that.soundReady, {
+    loop: true,
+    volume: 1,
+  });
+  that.skateboardRoll = sfx4;
+};
      
 
     
@@ -132,10 +147,10 @@ binaryTask7.onSuccess = function (task) {
 
   soundReady = () => {
     this.soundsReady++;
-    if (this.soundsReady === 9) {
+    if (this.soundsReady === 10) {
       this.wolfTrack.play();
       this.humanTrack.play();
-
+      this.skateboardRoll.play();
      
      
     }
@@ -143,12 +158,12 @@ binaryTask7.onSuccess = function (task) {
 
   transformTrack = (state) => {
     if(state === 'wolfTop'){
-      this.wolfTrack.setVolume(0);
-      this.humanTrack.setVolume(1);
+      this.wolfTrack.setVolume(0, 0.3);
+      this.humanTrack.setVolume(0.05, 0.3);
     }
     else{
-      this.humanTrack.setVolume(0);
-      this.wolfTrack.setVolume(1);
+      this.humanTrack.setVolume(0, 0.3);
+      this.wolfTrack.setVolume(0.05, 0.3);
     }
   }
 

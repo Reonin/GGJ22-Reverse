@@ -16,9 +16,9 @@
 
   <body>
     <div id="gamecontainer" class="sketchy">
-        <canvas id="renderCanvas" ></canvas>
+      <canvas tabindex="0" id="renderCanvas" ></canvas>
         <div id="HUD" style="position: absolute" ></div>
-        <div id="START">REVERSE THE CURSE
+        <div id="START" >REVERSE THE CURSE
           <ul>
             <li>Ride to no end to get to the cure!</li>
             <li></li>
@@ -27,8 +27,8 @@
         </div>
     </div>
  <div id="debugdiv">
-  <input type="button" value="Cam Back View" onclick="Camera.setCamAnterior(sceneToRender);">
-  <input type="button" value="Cam Side View" onclick="Camera.setCamLateralLeft(sceneToRender);">
+  <input type="button" value="Cam Back View" position= absolute onclick="Camera.setCamAnterior(sceneToRender);">
+  <input type="button" value="Cam Side View" position= absolute onclick="Camera.setCamLateralLeft(sceneToRender);">
  </div>
      
     
