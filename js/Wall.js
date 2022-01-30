@@ -70,7 +70,7 @@ class Wall {
             wall2.position.x = this.start_x;
             wall2.position.y = 3.5;
             wall2.position.z = 15;
-            const wall2Material = new BABYLON.StandardMaterial("materd daial", scene);
+            const wall2Material = new BABYLON.StandardMaterial("material", scene);
             wall2Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
             wall2.material = wall2Material;
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -141,7 +141,7 @@ class Wall {
             wall1Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
             wall1.material = wall1Material;
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
-            wall1.checkCollisions = true;
+            wall1.checkCollisions = false;
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
                 player.mesh.dispose();
                 player.setAlive(false);
@@ -229,7 +229,7 @@ class Wall {
             wall1Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
             wall1.material = wall1Material;
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
-            wall1.checkCollisions = true;
+            wall1.checkCollisions = false;
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
                 player.mesh.dispose();
                 player.setAlive(false);
@@ -313,7 +313,7 @@ class Wall {
             wall1Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
             wall1.material = wall1Material;
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
-            wall1.checkCollisions = true;
+            wall1.checkCollisions = false;
             wall1.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
                 player.mesh.dispose();
                 player.setAlive(false);
@@ -330,7 +330,7 @@ class Wall {
             wall2Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
             wall2.material = wall2Material;
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
-            wall2.checkCollisions = true;
+            wall2.checkCollisions = false;
             wall2.physicsImpostor.registerOnPhysicsCollide(player.mesh.physicsImpostor, function (main, collided) {
                 player.mesh.dispose();
                 player.setAlive(false);

@@ -62,9 +62,9 @@ const audioMan = new AudioAssetManager(scene);
 const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman.glb", scene);
 const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);
 const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "retro_grunge_skateboard.glb", scene);
+const promiseModel4 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "axe.glb", scene);
 
-
-Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
+Promise.all([promiseModel1, promiseModel2, promiseModel3, promiseModel4]).then((result) => {
 
     console.log('loaded in');
 
@@ -100,16 +100,16 @@ const createScene = function (scene, importedMesh) {
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
-    const wall = new Wall(scene, player);
+   const wall = new Wall(scene, player);
 
-    const ObsFactory = new ObstacleFactory(scene, player, wall, -150, 0, true);
-    const ObsFactory2 = new ObstacleFactory(scene, player, wall, -150, 5, false);
+    const ObsFactory = new ObstacleFactory(scene, player, wall, -150, 0, true, importedMeshes);
+    const ObsFactory2 = new ObstacleFactory(scene, player, wall, -150, 5, false, importedMeshes);
     // const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
 
     ActionManager.establishInputs(scene, player, moon, hud, engine, audioMan);
     var count = 0;
     setInterval(function () {
-        const ObsFactory3 = new ObstacleFactory(scene, player, wall, -150, -3, false);
+        const ObsFactory3 = new ObstacleFactory(scene, player, wall, -150, -3, false, importedMeshes);
     }, 10000);
 
     return scene;
