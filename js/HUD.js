@@ -29,7 +29,7 @@ class HUD {
         scene.render();
       });
       this.HUDElementMenu = document.getElementById('START');
-      this.HUDElementMenu.innerHTML = 'PAUSE: esc'
+      this.HUDElementMenu.innerHTML = 'PAUSE: ESC'
       this.HUDElementMenu.id = 'PAUSE'
 
   }

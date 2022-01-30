@@ -4,8 +4,8 @@ body, #renderCanvas {
      background-color: black;
     }
 @font-face {
-   font-family: DarkHeart;
-   src: url('../assets/fonts/DarkHeart-Script.otf');
+   font-family: Creepster;
+   src: url('../assets/fonts/Creepster-Script.otf');
 }
 #gamecontainer {
    width: 1200px;
@@ -21,7 +21,7 @@ canvas{ position: absolute; z-index: 1 }
    position: absolute;
    margin: 0 auto;
    z-index: 2;
-   font-family: DarkHeart;
+   font-family: Creepster;
    font-size: 60px;
    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
    -webkit-text-stroke-width: 1px;
@@ -37,7 +37,7 @@ canvas{ position: absolute; z-index: 1 }
    cursor: pointer;
    background: rgb(143, 150, 150);
    z-index: 2;
-   font-family: DarkHeart;
+   font-family: Creepster;
    font-size: 50px;
    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
    -webkit-text-stroke-width: 1px;
@@ -47,10 +47,10 @@ canvas{ position: absolute; z-index: 1 }
 #PAUSE {
    position: relative;
    cursor: pointer;
-   right: -85%;
+   right: -70%;
    margin: 0 auto;
    z-index: 2;
-   font-family: DarkHeart;
+   font-family: Creepster;
    font-size: 60px;
    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
    -webkit-text-stroke-width: 1px;
@@ -65,7 +65,7 @@ canvas{ position: absolute; z-index: 1 }
    margin: 0 auto;
    margin-top: 5%;
    z-index: 2;
-   font-family: DarkHeart;
+   font-family: Creepster;
    font-size: 60px;
    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
    -webkit-text-stroke-width: 1px;
