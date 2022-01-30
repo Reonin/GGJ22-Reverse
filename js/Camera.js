@@ -61,9 +61,9 @@ class Camera{
 
     static setCamLateralLeft = function(scene) {
         var cam = scene.activeCamera;
-        cam.alpha =  Math.PI/2;
+        cam.alpha =  Math.PI/.6;
         cam.beta = Math.PI/2.2;
-        cam.radius = 18;
+        cam.radius = 7.7;
       
     };
 
