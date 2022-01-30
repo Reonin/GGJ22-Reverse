@@ -19,6 +19,7 @@ class Door {
 
         
         this.doorMesh = doorModel.meshes[0].clone('clonedDoor');
+        // this.doorMesh.rotate.x = Math.PI/2;
         this.doorMesh.scaling = new BABYLON.Vector3(10,15,10);
         this.doorMesh.position = new BABYLON.Vector3(door.position.x, (door.position.y- 3.5), door.position.z);
         this.doorMesh.isPickable = false;
