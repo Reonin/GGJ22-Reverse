@@ -141,7 +141,21 @@ class ActionManager {
                 }
             )
         );
-        /** Press Z to transform between states */
+
+
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'r'
+                },
+                function () {
+                    location.reload();
+                }
+            )
+        );
+
+    
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
                 {
@@ -155,20 +169,6 @@ class ActionManager {
                 }
             )
         );
-
-        scene.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                    parameter: 'r'
-                },
-                function () {
-
-                    location.reload();
-                }
-            )
-        );
-
 
         /** Press Z to transform between states */
         scene.actionManager.registerAction(
@@ -193,15 +193,25 @@ class ActionManager {
     }
 
     static pauseActions = (scene) => {
-        scene.actionManager.actions.splice(11, 1)
-    }
-
-    static disbaleStartButton = (scene) => {
-        scene.actionManager.actions.splice(11, 1)
+        console.log(scene.actionManager.actions)
+        scene.actionManager.actions.splice(-1)
     }
 
     static addPhaseBack = (scene, player, moon) => {
-        /** Press Z to transform between states */
+        scene.actionManager.registerAction(
+            new BABYLON.ExecuteCodeAction(
+                {
+                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+                    parameter: 'y'
+                },
+                function () {
+                    console.log('good luck')
+                    hud.start(scene, engine)
+
+                }
+            )
+        );
+
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
                 {
