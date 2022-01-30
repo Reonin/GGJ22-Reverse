@@ -49,7 +49,7 @@ class Ground {
 
         const forestMaterial = new BABYLON.StandardMaterial("material", this.scene);
         // forestMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
-        forestMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("/textures/fur.jpg"), scene);
+        forestMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("/textures/trees.jpg"), scene);
         rightPlane.material = forestMaterial;
         rightPlane.physicsImpostor = new BABYLON.PhysicsImpostor(rightPlane, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0}, scene);
         rightPlane.checkCollisions = true;
