@@ -43,9 +43,9 @@ const scene = new BABYLON.Scene(engine);
 /**
  * Weremodel1
  */
-const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, "/GGJ22-Reverse/assets/models/", "wereman.glb", scene);
-const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, "/GGJ22-Reverse/assets/models/", "wereman_human_skin_mom_tattoo.glb", scene);
-const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, "/GGJ22-Reverse/assets/models/", "retro_grunge_skateboard.glb", scene);
+const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, "/assets/models/", "wereman.glb", scene);
+const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, "/assets/models/", "wereman_human_skin_mom_tattoo.glb", scene);
+const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, "/assets/models/", "retro_grunge_skateboard.glb", scene);
 
 Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
 
