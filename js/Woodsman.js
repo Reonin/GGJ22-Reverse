@@ -60,9 +60,9 @@ class Woodsman {
         this.mesh.physicsImpostor.registerOnPhysicsCollide(destructiveMeshes, function(woodsman, collided) {
             destructiveMeshes = obstacles;
             // destructiveMeshes.push.apply(destructiveMeshes, rock.object.wall.getWallImposters());
-            console.log(`Update Meshes length ${destructiveMeshes.length}`)
+            // console.log(`Update Meshes length ${destructiveMeshes.length}`)
             for(var i = 0; i < destructiveMeshes.length; i++){
-                console.log(`Collided with ${collided.object.name}`)
+                // console.log(`Collided with ${collided.object.name}`)
                 if(collided.object.name === "player"){
                     // console.log(`${destructiveMeshes[i].object.name}`)
                     player.mesh.dispose();

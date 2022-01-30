@@ -43,9 +43,11 @@ const scene = new BABYLON.Scene(engine);
 /**
  * Weremodel1
  */
-const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, "/assets/models/", "wereman.glb", scene);
-const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, "/assets/models/", "wereman_human_skin_mom_tattoo.glb", scene);
-const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, "/assets/models/", "retro_grunge_skateboard.glb", scene);
+
+const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman.glb", scene);
+const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);
+const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "retro_grunge_skateboard.glb", scene);
+
 
 Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
 
@@ -80,8 +82,9 @@ const createScene = function(scene, importedMesh) {
 
     
     const skybox = new Skybox(scene); 
-    const player = new Player(scene, importedMesh);
-    const ground = new Ground(scene, player);
+    const ground = new Ground(scene);
+    const player = new Player(scene,ground,importedMesh);
+    
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
@@ -89,11 +92,11 @@ const createScene = function(scene, importedMesh) {
 
    
     
-    const ObsFactory = new ObstacleFactory(scene,player, wall, -10, 0, true);
-    const ObsFactory2 = new ObstacleFactory(scene,player, wall, -10, 5, false);
-    const ObsFactory3 = new ObstacleFactory(scene,player, wall, -10, -3, false);
+    const ObsFactory = new ObstacleFactory(scene,player, wall, -150, 0, true);
+    const ObsFactory2 = new ObstacleFactory(scene,player, wall, -150, 5, false);
+    const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
     const hud = new HUD(scene, engine);
-    ActionManager.establishInputs(scene, player, moon, hud, engine);
+    ActionManager.establishInputs(scene, player, moon, hud, engine, audioMan);
     
     
     
