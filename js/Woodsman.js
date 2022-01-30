@@ -19,8 +19,7 @@ class Woodsman {
         woodsman.checkCollisions = false;
         // debugger;
         // this.importedAxeModel = axeModel.meshes[0];
-        debugger;
-        
+      
         this.axeMesh =  axeModel.meshes[0].clone('cloneAxe');
         this.axeMesh.scaling = new BABYLON.Vector3(5, 5, 5);
 
@@ -42,7 +41,7 @@ class Woodsman {
 
         })
         this.destructiveMeshes = [player.mesh.physicsImpostor];
-        this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0 }, scene);
+        this.mesh.physicsImpostor = new BABYLON.PhysicsImpostor(this.mesh, BABYLON.PhysicsImpostor.SphereImpostor, { mass: .05 }, scene);
         this.mesh.wall = wall;
         var destructiveMeshes = obstacles;
         this.mesh.physicsImpostor.registerOnPhysicsCollide(destructiveMeshes, function (woodsman, collided) {
