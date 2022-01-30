@@ -7,7 +7,10 @@ class Door{
         door.position.y = start_y;
         door.position.z = start_z;
         const doorMaterial = new BABYLON.StandardMaterial("material", scene);
-        doorMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/house"), scene);
+        var options = {
+            faceUV: new BABYLON.Vector4()
+        }
+        doorMaterial.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/house1.gif"), scene);
         // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
         // doorMaterial.diffuseTexture.vAngle = 180;
         door.material = doorMaterial;

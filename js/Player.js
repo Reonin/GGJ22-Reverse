@@ -177,7 +177,7 @@ class Player {
         // this.velocity.y = 0.15;
         //Force Settings
         try {
-            if(this.transformationState === "wolfTop"){
+            if(this.transformationState === "humanTop"){
                 var forceDirection = new BABYLON.Vector3(0, 10, 0);
                 var forceMagnitude = 20;
                 var contactLocalRefPoint = BABYLON.Vector3.Zero();
@@ -185,7 +185,7 @@ class Player {
                 this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));
                 this.mesh.getAbsolutePosition().add(contactLocalRefPoint);
             }
-            else if(this.transformationState === "humanTop"){
+            else if(this.transformationState === "wolfTop"){
                 var forceDirection = new BABYLON.Vector3(0, 10, 0);
                 var forceMagnitude = 5;
                 var contactLocalRefPoint = BABYLON.Vector3.Zero();
@@ -242,7 +242,7 @@ class Player {
         }
 
         if (this.moveLeft) {
-            if (this.transformationState === 'wolfTop') {
+            if (this.transformationState === 'humanTop') {
                 this.mesh.position.z -= .16;
             }
             else {
@@ -252,7 +252,7 @@ class Player {
 
         if (this.moveRight) {
 
-            if (this.transformationState === 'wolfTop') {
+            if (this.transformationState === 'humanTop') {
                 this.mesh.position.z += .16;
             }
             else {
