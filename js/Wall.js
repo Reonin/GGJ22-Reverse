@@ -379,7 +379,7 @@ class Wall {
 
     moveWall() {
         for (var i = 0; i < this.walls.length; i++) {
-            this.walls[i].position.x += .1;
+            this.walls[i].position.x += .05;
         }
     }
 

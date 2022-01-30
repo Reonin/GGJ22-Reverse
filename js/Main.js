@@ -103,15 +103,15 @@ const createScene = function (scene, importedMesh) {
 
    const wall = new Wall(scene, player);
 
-    const ObsFactory = new ObstacleFactory(scene, player, wall, -150, 0, true, importedMeshes);
-    const ObsFactory2 = new ObstacleFactory(scene, player, wall, -150, 5, false, importedMeshes);
+    const ObsFactory = new ObstacleFactory(scene, player, wall, hud, -150, 0, true);
+    const ObsFactory2 = new ObstacleFactory(scene, player, wall, hud, -150, 5, false);
     // const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
 
     ActionManager.establishInputs(scene, player, moon, hud, engine, audioMan);
     var count = 0;
     setInterval(function () {
-        const ObsFactory3 = new ObstacleFactory(scene, player, wall, -150, -3, false, importedMeshes);
-    }, 10000);
+        const ObsFactory3 = new ObstacleFactory(scene, player, wall, hud, -150, -3, false);
+    }, 30000);
 
     return scene;
 

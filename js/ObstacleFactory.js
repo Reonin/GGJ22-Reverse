@@ -5,7 +5,7 @@ class ObstacleFactory {
 
 
 
-    constructor(scene, player, wall, start_x, start_z, moveRight, importedMeshes) {
+    constructor(scene, player, wall, hud, start_x, start_z, moveRight) {
 
         // if (ObstacleFactory._instance) {
         //     return ObstacleFactory._instance
@@ -31,34 +31,44 @@ class ObstacleFactory {
 
         this.spawnRockTimer = 0;
         this.spawnWoodsmanTimer = 0;
-
+        this.spawnCoinTimer = 0;
 
 
         scene.onBeforeRenderObservable.add(() => {
             this.frameTime = Date.now();
             var randRock = randomIntFromInterval(400, 700);
             var randWoodsman = randomIntFromInterval(200, 400);
+            var randCoin = randomIntFromInterval(200, 300);
             //this.mesh.position = direction;
             // this.mesh.lookAt(player.mesh.position);
             var length = 100;
             // ground move
             this.moveFactoryGenerationX();
-            if (this.spawnRockTimer > randRock) {
-                //generate rocks and reset timer
+            if (player.alive === true) {
+                if (this.spawnRockTimer > randRock) {
+                    //generate rocks and reset timer
 
-                this.spawnRocks(player, wall, this.mesh.position.x, this.mesh.position.z);
-                this.spawnRockTimer = 0;
+                    this.spawnRocks(player, wall, this.mesh.position.x, this.mesh.position.z);
+                    this.spawnRockTimer = 0;
+                }
+                this.spawnRockTimer++;
+                //this.moveWoodsmanGenerationX();
+                this.moveObstacleFactoryOnZAxis();
+                if (this.spawnWoodsmanTimer > randWoodsman) {
+                    //generate woodsmans and reset timer
+                    this.spawnWoodsmans(player, wall, this.mesh.position.x, this.mesh.position.z)
+                    this.spawnWoodsmanTimer = 0;
+                }
+                this.spawnWoodsmanTimer++;
+                if (this.spawnCoinTimer > randCoin) {
+                    //generate woodsmans and reset timer
+                    var randX = randomIntFromInterval(30, 60);
+                    var randZ = randomIntFromInterval(-20, 20);
+                    this.spawnCoin(player, hud, player.mesh.position.x - randX, randZ)
+                    this.spawnCoinTimer = 0;
+                }
+                this.spawnCoinTimer++;
             }
-            this.spawnRockTimer++;
-            //this.moveWoodsmanGenerationX();
-            this.moveObstacleFactoryOnZAxis();
-            if (this.spawnWoodsmanTimer > randWoodsman) {
-                //generate woodsmans and reset timer
-                this.spawnWoodsmans(player, wall, this.mesh.position.x, this.mesh.position.z)
-                this.spawnWoodsmanTimer = 0;
-            }
-            this.spawnWoodsmanTimer++;
-
 
 
         })
@@ -135,6 +145,24 @@ class ObstacleFactory {
         var woodsman = new Woodsman(this.scene, player, wall, woodsman_start_x, woodsman_start_z, importedMeshes[3]);
         setTimeout(function () {
             woodsman.mesh.dispose()
+        }, 30000);
+        this.prevFrameTime = this.frameTime;
+    }
+
+    spawnCoin = (player, hud, coin_start_x, coin_start_z) => {
+        if (this.prevFrameTime === undefined) {
+            this.prevFrameTime = this.frameTime;
+            return;
+        }
+
+        const delta = this.frameTime - this.prevFrameTime;
+        // ObsFactory.moveRockGenerationX();
+        //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
+
+
+        var coin = new Coin(this.scene, player, hud, coin_start_x, coin_start_z);
+        setTimeout(function () {
+            coin.mesh.dispose()
         }, 30000);
         this.prevFrameTime = this.frameTime;
     }

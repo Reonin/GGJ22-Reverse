@@ -56,7 +56,7 @@ class Woodsman {
                     player.mesh.dispose();
                     player.setAlive(false, woodsman.object.name);
                     woodsman.object.dispose();
-                    obstacles.splice(i, 1);
+                    //obstacles.splice(i, 1);
                 }
                 else if (collided.object.name === "wall piece") {
                     // console.log(`IN else if ${destructiveMeshes[i].object.name}`)
