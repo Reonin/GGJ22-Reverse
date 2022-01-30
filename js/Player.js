@@ -183,7 +183,6 @@ class Player {
                 audioMan.dooropensfxArr[Math.floor(Math.random() * audioMan.dooropensfxArr.length)].play();
              break
             default:
-              console.log('Sorry, we are out of death sounds');
           }
      
 

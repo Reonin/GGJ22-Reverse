@@ -74,6 +74,16 @@ class HUD {
       <li>Up/Down: W/S </li>
       <li>Jump: Space </li>
       <li>Transform: Z </li>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <li>Wolf-top: Breaks walls</li>
+      <li>hates silver coins and rocks don't hurt</li>
+      <br/>
+      <br/>
+      <li>Wolf-bottom: Opens doors
+      <li>collects coins and more mobile</li> 
         </ul> `;
       this.HUDElementMenu.innerHTML = PauseMenuHtml;
       this.HUDElementMenu.id = 'MENU'
@@ -81,7 +91,7 @@ class HUD {
       this.HUDElementMenu = document.getElementById('MENU');
       this.HUDElementMenu.id = 'PAUSE'
       const gameHTML = `<ul>
-      <li>Pause: esc </li>
+      <li>Menu: esc </li>
       </ul> `;
       this.HUDElementMenu.innerHTML = gameHTML;
       ActionManager.addPhaseBack(scene, player, moon);
