@@ -94,7 +94,7 @@ const createScene = function(scene, importedMesh) {
     const ObsFactory2 = new ObstacleFactory(scene,player, wall, -150, 5, false);
     const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
     const hud = new HUD(scene, engine);
-    ActionManager.establishInputs(scene, player, moon, hud, engine);
+    ActionManager.establishInputs(scene, player, moon, hud, engine, audioMan);
     
     
     

@@ -3,7 +3,7 @@ class ActionManager {
     constructor() {
     }
 
-    static establishInputs(scene, player, moon, hud, engine) {
+    static establishInputs(scene, player, moon, hud, engine, audioMan) {
         //console log out which key is pressed
     
 
@@ -151,6 +151,7 @@ class ActionManager {
                 function () {
                     console.log('good luck')
                     hud.start(scene, engine)
+
                 }
                 )
             );
@@ -167,6 +168,7 @@ class ActionManager {
                 console.log("testsees")
                 player.changeForm();
                 moon.phase(scene);
+                audioMan.transformTrack(player.transformationState);
                 console.log(player.transformationState);
             }
             )
