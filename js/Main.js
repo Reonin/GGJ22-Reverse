@@ -100,7 +100,7 @@ const createScene = function (scene, importedMesh) {
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
-    const wall = new Wall(scene, player);
+   const wall = new Wall(scene, player);
 
     const ObsFactory = new ObstacleFactory(scene, player, wall, -150, 0, true, importedMeshes);
     const ObsFactory2 = new ObstacleFactory(scene, player, wall, -150, 5, false, importedMeshes);

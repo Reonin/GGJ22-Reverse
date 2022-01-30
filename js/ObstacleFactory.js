@@ -67,7 +67,7 @@ class ObstacleFactory {
     }
 
     moveFactoryGenerationX = () => {
-        this.mesh.position.x = this.player.mesh.position.x - 140;
+        this.mesh.position.x = this.player.mesh.position.x - 20;
         //console.log(`Obs Factory x : ${this.mesh.position.x}`)
     }
 

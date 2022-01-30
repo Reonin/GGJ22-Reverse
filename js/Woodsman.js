@@ -16,16 +16,16 @@ class Woodsman {
         // const woodsmanMaterial = new BABYLON.StandardMaterial("material", scene);
         // woodsmanMaterial.diffuseColor = BABYLON.Color3.Green();
         // woodsman.material = woodsmanMaterial;
-        woodsman.checkCollisions = true;
+        woodsman.checkCollisions = false;
 
-        const importedAxeModel = axeModel.meshes[0];
-        importedAxeModel.scaling = new BABYLON.Vector3(10, 10, 10);
+        this.importedAxeModel = axeModel.meshes[0];
+        this.importedAxeModel.scaling = new BABYLON.Vector3(10, 10, 10);
 
-        importedAxeModel.position = new BABYLON.Vector3(woodsman.position.x, (woodsman.position.y), woodsman.position.z);
-        importedAxeModel.isPickable = false;
-        importedAxeModel.setParent(woodsman);
+        this.importedAxeModel.position = new BABYLON.Vector3(woodsman.position.x-2, (woodsman.position.y-2), woodsman.position.z);
+        this.importedAxeModel.isPickable = false;
+        //importedAxeModel.setParent(woodsman);
         woodsman.showBoundingBox = true;
-        importedAxeModel.showBoundingBox = true;
+        this.importedAxeModel.showBoundingBox = true;
         //axeSpin face UVs
         // const axeSpinUV = [];
         // axeSpinUV[0] = new BABYLON.Vector4(0, 0, 1, 1);
@@ -58,7 +58,7 @@ class Woodsman {
 
         woodsman.isPickable = false;
         this.mesh = woodsman;
-        this.axeMesh = importedAxeModel;
+        //this.axeMesh = this.importedAxeModel;
         this.scene.registerBeforeRender(() => {
             this.move();
             // this._updateCamera();
@@ -102,9 +102,12 @@ class Woodsman {
 
     move = () => {
         this.mesh.position.x += .1;
+        this.importedAxeModel.position.x  = this.mesh.position.x-2;
+        this.importedAxeModel.position.y  = this.mesh.position.y-4;
+        this.importedAxeModel.position.z = this.mesh.position.z;
         // this.axeMesh.position.x += .1;
         // this.axeMesh.position = this.mesh.position;
-        this.mesh.rotate(BABYLON.Axis.Z, .07, BABYLON.Space.LOCAL);
+        //this.mesh.rotate(BABYLON.Axis.Z, .07, BABYLON.Space.LOCAL);
         // this.axeMesh.rotate(BABYLON.Axis.Z, .07, BABYLON.Space.LOCAL);
     
         //console.log(this.mesh.position.x)
