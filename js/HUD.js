@@ -36,18 +36,21 @@ class HUD {
   }
 
   start = (scene, engine) => {
-    ActionManager.disbaleStartButton(scene);
-    this.gameInit = false;
-    // var element = document.getElementById("PAUSE");
-    // console.log(`Element ${element.innerHTML}`)
-    // element.innerHTML = "";
-    engine.runRenderLoop(function () {
-      scene.render();
-    });
-    this.HUDElementMenu = document.getElementById('START');
-    this.HUDElementMenu.innerHTML = 'PAUSE: ESC'
-    this.HUDElementMenu.id = 'PAUSE'
-
+    if(!this.gameInit){
+      return;
+    }
+    else{ 
+      this.gameInit = false;
+      // var element = document.getElementById("PAUSE");
+      // console.log(`Element ${element.innerHTML}`)
+      // element.innerHTML = "";
+      engine.runRenderLoop(function () {
+        scene.render();
+      });
+      this.HUDElementMenu = document.getElementById('START');
+      this.HUDElementMenu.innerHTML = 'PAUSE: ESC'
+      this.HUDElementMenu.id = 'PAUSE'
+    }
   }
 
   restart = (scene, engine) => {

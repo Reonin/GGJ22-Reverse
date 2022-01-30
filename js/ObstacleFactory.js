@@ -142,7 +142,7 @@ class ObstacleFactory {
         //console.log(`${this.frameTime} - ${this.prevFrameTime} = ${delta}`);
 
 
-        var woodsman = new Woodsman(this.scene, player, wall, woodsman_start_x, woodsman_start_z);
+        var woodsman = new Woodsman(this.scene, player, wall, woodsman_start_x, woodsman_start_z, importedMeshes[3]);
         setTimeout(function () {
             woodsman.mesh.dispose()
         }, 30000);

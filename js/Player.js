@@ -171,7 +171,6 @@ class Player {
     }
 
     setAlive(alive, whoHitMe) {
-        //debugger;
 
         switch (whoHitMe) {
             case 'axe':
@@ -199,7 +198,7 @@ class Player {
         try {
             if (this.transformationState === "humanTop") {
                 var forceDirection = new BABYLON.Vector3(0, 10, 0);
-                var forceMagnitude = 20;
+                var forceMagnitude = 10;
                 var contactLocalRefPoint = BABYLON.Vector3.Zero();
                 // console.log('Applying force')
                 this.mesh.physicsImpostor.applyForce(forceDirection.scale(forceMagnitude), this.mesh.getAbsolutePosition().add(contactLocalRefPoint));

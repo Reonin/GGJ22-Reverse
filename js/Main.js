@@ -62,9 +62,9 @@ const audioMan = new AudioAssetManager(scene);
 const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman.glb", scene);
 const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);
 const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "retro_grunge_skateboard.glb", scene);
+const promiseModel4 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "axe.glb", scene);
 
-
-Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
+Promise.all([promiseModel1, promiseModel2, promiseModel3, promiseModel4]).then((result) => {
 
     console.log('loaded in');
 
@@ -100,7 +100,7 @@ const createScene = function (scene, importedMesh) {
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
-    const wall = new Wall(scene, player);
+   const wall = new Wall(scene, player);
 
     const ObsFactory = new ObstacleFactory(scene, player, wall, hud, -150, 0, true);
     const ObsFactory2 = new ObstacleFactory(scene, player, wall, hud, -150, 5, false);
