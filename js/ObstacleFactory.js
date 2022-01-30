@@ -36,6 +36,55 @@ class ObstacleFactory {
         this.spawnTreeTime = 0;
         this.spawnedTrees = false;
 
+        const mat = new BABYLON.StandardMaterial("");
+        //mat.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/forest.jpg"));
+        mat.visibility = 0.1;
+        const pat = BABYLON.Mesh.NO_FLIP;
+        const options = {
+            sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+            pattern: pat,
+            width: 1000,
+            height: 9,
+            tileSize: 1,
+            tileWidth:1
+        }
+    
+        const wallOptions = {
+            sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+            pattern: pat,
+            width: 1000,
+            height: 18,
+            tileSize: 1,
+            tileWidth:1,   
+        }
+        const rightPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", wallOptions, scene);
+        rightPlane.material = mat;
+        rightPlane.position.z = 22;
+        rightPlane.visibility = 0;
+
+        const leftPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", wallOptions, scene);
+        leftPlane.material = mat;
+        leftPlane.position.z = -22;
+        leftPlane.visibility = 0;
+
+        const forestMaterial = new BABYLON.StandardMaterial("material", this.scene);
+        // forestMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
+        forestMaterial.refractionTexture = new BABYLON.Texture(textureURL.concat("textures/trees.png"), scene);
+        rightPlane.material = forestMaterial;
+        rightPlane.physicsImpostor = new BABYLON.PhysicsImpostor(rightPlane, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0}, scene);
+        rightPlane.checkCollisions = true;
+        rightPlane.isPickable = true;
+        this.meshRightPlane = rightPlane;
+        // this.meshRightPlane.setParent(player.mesh);
+
+        leftPlane.material = forestMaterial;
+        leftPlane.physicsImpostor = new BABYLON.PhysicsImpostor(leftPlane, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0}, scene);
+        leftPlane.checkCollisions = true;
+        leftPlane.isPickable = true;
+        this.meshleftPlane = leftPlane;
+        // this.meshleftPlane.setParent(player.mesh);
+
+
         scene.onBeforeRenderObservable.add(() => {
             this.frameTime = Date.now();
             var randRock = randomIntFromInterval(400, 700);
@@ -85,6 +134,8 @@ class ObstacleFactory {
 
     moveFactoryGenerationX = () => {
         this.mesh.position.x = this.player.mesh.position.x - 140;
+        this.meshRightPlane.position.x = this.player.mesh.position.x;
+        this.meshleftPlane.position.x = this.player.mesh.position.x;
         //console.log(`Obs Factory x : ${this.mesh.position.x}`)
     }
 
