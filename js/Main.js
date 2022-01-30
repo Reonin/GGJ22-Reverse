@@ -1,8 +1,25 @@
 
 
 const canvas = document.getElementById("renderCanvas");
-const engine = new BABYLON.Engine(canvas, true, { stencil: true });
+const engine = new BABYLON.Engine(canvas, true, { stencil: false });
 engine.loadingUIBackgroundColor = "red";
+var loadingScreenDiv = window.document.getElementById("loadingScreen");
+
+function customLoadingScreen() {
+    console.log("customLoadingScreen creation")
+}
+customLoadingScreen.prototype.displayLoadingUI = function () {
+    console.log("customLoadingScreen loading")
+    loadingScreenDiv.innerHTML = "loading curses...";
+};
+customLoadingScreen.prototype.hideLoadingUI = function () {
+    console.log("customLoadingScreen loaded")
+    loadingScreenDiv.style.display = "none";
+};
+var loadingScreen = new customLoadingScreen();
+engine.loadingScreen = loadingScreen;
+
+engine.displayLoadingUI();
 let textureURL = '/GGJ22-Reverse/assets/';
 let importedMeshes = null;
 let obstacles = [];
@@ -37,12 +54,9 @@ function windowWidth() {
     return window.document.compatMode === "CSS1Compat" && docElemProp || body && body.clientWidth || docElemProp;
 }
 const scene = new BABYLON.Scene(engine);
-// let importedMesh = null;
-// let player = null;
-// let moon = null;
-
+const audioMan = new AudioAssetManager(scene);
 /**
- * Weremodel1
+ * Weremodel
  */
 
 const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman.glb", scene);
@@ -66,7 +80,6 @@ Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
 
 
 
-
 const createScene = function (scene, importedMesh) {
 
     scene.clearColor = new BABYLON.Color3.Black;
@@ -78,7 +91,7 @@ const createScene = function (scene, importedMesh) {
     scene.enablePhysics(gravityVector, physicsPlugin);
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
 
-    const audioMan = new AudioAssetManager(scene);
+
     const skybox = new Skybox(scene);
     const ground = new Ground(scene);
     const hud = new HUD(scene, engine);

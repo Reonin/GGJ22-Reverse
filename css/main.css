@@ -92,3 +92,13 @@ input {
    bottom: 0;
    display: none;
 }
+#loadingScreen {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   color: white;
+   font-size: 50px;
+   text-align: center;
+   background-color: #BB464Bcc;
+   z-index: 9999;
+}
