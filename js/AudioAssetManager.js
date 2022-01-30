@@ -70,14 +70,14 @@ class AudioAssetManager {
  * 
  */
     const binaryTask8 = assetsManager.addBinaryFileTask(
-      "A_Cursed_Life_Human_Full task",
-      audioURL.concat("A_Cursed_Life_Human_Full.mp3")
+      "A_Cursed_Life_H_LOOP_2 task",
+      audioURL.concat("A_Cursed_Life_H_LOOP_2.ogg")
     );
     binaryTask8.onSuccess = function (task) {
-      music5 = new BABYLON.Sound("A_Cursed_Life_Human_Full", task.data, scene, that.soundReady, {
+      music5 = new BABYLON.Sound("A_Cursed_Life_H_LOOP_2", task.data, scene, that.soundReady, {
         loop: true,
         autoplay: false,
-        volume: 0.05,
+        volume: 0.1,
       });
       that.humanTrack = music5;
     };
@@ -86,14 +86,14 @@ class AudioAssetManager {
  * 
  */
     const binaryTask9 = assetsManager.addBinaryFileTask(
-      "A_Cursed_Life_Wolf_Full task",
-      audioURL.concat("A_Cursed_Life_Wolf_Full.mp3")
+      "A_Cursed_Life_W_LOOP_2 task",
+      audioURL.concat("A_Cursed_Life_W_LOOP_2.ogg")
     );
     binaryTask9.onSuccess = function (task) {
-      music6 = new BABYLON.Sound("A_Cursed_Life_Wolf_Full", task.data, scene, that.soundReady, {
+      music6 = new BABYLON.Sound("A_Cursed_Life_W_LOOP_2", task.data, scene, that.soundReady, {
         loop: true,
         autoplay: false,
-        volume: 0.05,
+        volume: 0.1,
       });
       that.wolfTrack = music6;
     };
@@ -281,11 +281,11 @@ class AudioAssetManager {
   transformTrack = (state) => {
     if (state === 'wolfTop') {
       this.wolfTrack.setVolume(0, 0.3);
-      this.humanTrack.setVolume(0.05, 0.3);
+      this.humanTrack.setVolume(0.1, 0.3);
     }
     else {
       this.humanTrack.setVolume(0, 0.3);
-      this.wolfTrack.setVolume(0.05, 0.3);
+      this.wolfTrack.setVolume(0.1, 0.3);
     }
   }
 
