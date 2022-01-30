@@ -4,7 +4,7 @@
 class Wall {
 
 
-    constructor(scene, player) {
+    constructor(scene, player, importedMesh) {
 
         // if (ObstacleFactory._instance) {
         //     return ObstacleFactory._instance
@@ -22,13 +22,13 @@ class Wall {
 
         scene.onBeforeRenderObservable.add(() => {
             if (this.gameStart === true) {
-                this.createWall(scene, player);
+                this.createWall(scene, player, importedMesh);
                 this.gameStart = false;
             }
             else {
                 const getRandSpawnTimer = randomIntFromInterval(1600, 1900);
                 if (this.spawnWallTimer > getRandSpawnTimer) {
-                    this.createWall(scene, player);
+                    this.createWall(scene, player, importedMesh);
                     this.spawnWallTimer = 0;
                 }
 
@@ -42,7 +42,7 @@ class Wall {
         return this;
     }
 
-    createWall(scene, player) {
+    createWall(scene, player, importedMesh) {
         const numWall = randomIntFromInterval(1, 4);
         // const numWall = 4;
         // console.log(`Num wall : ${numWall}`)
@@ -100,7 +100,7 @@ class Wall {
             const numDoorOrBreakableWall = randomIntFromInterval(1, 100);
             console.log(numDoorOrBreakableWall)
             if (numDoorOrBreakableWall < 25) {
-                const door = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8);
+                const door = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8,importedMesh[5]);
                 const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 7.5, 4.8);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
@@ -108,7 +108,7 @@ class Wall {
                 obstacles.push(breakableWall.physicsImpostor);
             }
             else if (numDoorOrBreakableWall > 25 && numDoorOrBreakableWall < 50) {
-                const door = new Door(scene, player, this.start_x, 3.5, 7.5, 4.8);
+                const door = new Door(scene, player, this.start_x, 3.5, 7.5, 4.8,importedMesh[5]);
                 const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
@@ -116,8 +116,8 @@ class Wall {
                 obstacles.push(breakableWall.physicsImpostor);
             }
             else if (numDoorOrBreakableWall > 50 && numDoorOrBreakableWall < 75) {
-                const door1 = new Door(scene, player, this.start_x, 3.5, 7.5, 4.8);
-                const door2 = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8);
+                const door1 = new Door(scene, player, this.start_x, 3.5, 7.5, 4.8,importedMesh[5]);
+                const door2 = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8,importedMesh[5]);
                 this.walls.push(door1.mesh);
                 this.walls.push(door2.mesh);
                 obstacles.push(door1.physicsImpostor);
@@ -189,7 +189,7 @@ class Wall {
             // obstacles.push(breakableWall.physicsImpostor);
             const numDoorOrBreakableWall = randomIntFromInterval(1, 100);
             if (numDoorOrBreakableWall < 25) {
-                const door = new Door(scene, player, this.start_x, 3.5, 17, 4.8);
+                const door = new Door(scene, player, this.start_x, 3.5, 17, 4.8,importedMesh[5]);
                 const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
@@ -197,7 +197,7 @@ class Wall {
                 obstacles.push(breakableWall.physicsImpostor);
             }
             else if (numDoorOrBreakableWall > 25 && numDoorOrBreakableWall < 50) {
-                const door = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8);
+                const door = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8,importedMesh[5]);
                 const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 17, 4.8);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
@@ -205,8 +205,8 @@ class Wall {
                 obstacles.push(breakableWall.physicsImpostor);
             }
             else if (numDoorOrBreakableWall > 50 && numDoorOrBreakableWall < 75) {
-                const door1 = new Door(scene, player, this.start_x, 3.5, 17, 4.8);
-                const door2 = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8);
+                const door1 = new Door(scene, player, this.start_x, 3.5, 17, 4.8,importedMesh[5]);
+                const door2 = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8,importedMesh[5]);
                 this.walls.push(door1.mesh);
                 this.walls.push(door2.mesh);
                 obstacles.push(door1.physicsImpostor);
@@ -272,7 +272,7 @@ class Wall {
 
             const numDoorOrBreakableWall = randomIntFromInterval(1, 100);
             if (numDoorOrBreakableWall < 25) {
-                const door = new Door(scene, player, this.start_x, 3.5, -17.3, 4.8);
+                const door = new Door(scene, player, this.start_x, 3.5, -17.3, 4.8,importedMesh[5]);
                 const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 17.3, 4.8);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
@@ -280,7 +280,7 @@ class Wall {
                 obstacles.push(breakableWall.physicsImpostor);
             }
             else if (numDoorOrBreakableWall > 25 && numDoorOrBreakableWall < 50) {
-                const door = new Door(scene, player, this.start_x, 3.5, 17.3, 4.8);
+                const door = new Door(scene, player, this.start_x, 3.5, 17.3, 4.8,importedMesh[5]);
                 const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -17.3, 4.8);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
@@ -288,8 +288,8 @@ class Wall {
                 obstacles.push(breakableWall.physicsImpostor);
             }
             else if (numDoorOrBreakableWall > 50 && numDoorOrBreakableWall < 75) {
-                const door1 = new Door(scene, player, this.start_x, 3.5, -17.3, 4.8);
-                const door2 = new Door(scene, player, this.start_x, 3.5, 17.3, 4.8);
+                const door1 = new Door(scene, player, this.start_x, 3.5, -17.3, 4.8,importedMesh[5]);
+                const door2 = new Door(scene, player, this.start_x, 3.5, 17.3, 4.8,importedMesh[5]);
                 this.walls.push(door1.mesh);
                 this.walls.push(door2.mesh);
                 obstacles.push(door1.physicsImpostor);
@@ -362,7 +362,7 @@ class Wall {
             // obstacles.push(breakableWall.physicsImpostor);
             const numDoorOrBreakableWall = randomIntFromInterval(1, 100);
             if (numDoorOrBreakableWall < 50) {
-                const door = new Door(scene, player, this.start_x, 3.5, 18.5, 4.8);
+                const door = new Door(scene, player, this.start_x, 3.5, 18.5, 4.8,importedMesh[5]);
                 this.walls.push(door.mesh);
                 obstacles.push(door.physicsImpostor);
             }
