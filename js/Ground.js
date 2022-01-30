@@ -6,7 +6,7 @@ class Ground {
 
     constructor(scene) {
         this.scene = scene;
-        const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 50000, height: 40 }, this.scene);
+        const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 50000, height: 60 }, this.scene);
         //ground.position.x = -20;
         //ground.position.y = 2;
         const groundMaterial = new BABYLON.StandardMaterial("material", this.scene);
@@ -19,7 +19,7 @@ class Ground {
         this.mesh = ground;
 
         const mat = new BABYLON.StandardMaterial("");
-        mat.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/forest.jpg"));
+        //mat.diffuseTexture = new BABYLON.Texture(textureURL.concat("textures/forest.jpg"));
         mat.visibility = 0.1;
         const pat = BABYLON.Mesh.NO_FLIP;
         const options = {
@@ -37,15 +37,17 @@ class Ground {
             width: 1000,
             height: 18,
             tileSize: 1,
-            tileWidth:1
+            tileWidth:1,   
         }
         const rightPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", wallOptions, scene);
         rightPlane.material = mat;
-        rightPlane.position.z = 20;
+        rightPlane.position.z = 22;
+        rightPlane.visibility = 0;
 
         const leftPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", wallOptions, scene);
         leftPlane.material = mat;
-        leftPlane.position.z = -20;
+        leftPlane.position.z = -22;
+        leftPlane.visibility = 0;
 
         const forestMaterial = new BABYLON.StandardMaterial("material", this.scene);
         // forestMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
@@ -63,10 +65,10 @@ class Ground {
         this.meshleftPlane = leftPlane;
 
 
-
+        
 
         this.scene.registerBeforeRender(() => {
-
+            
             // this.move();
             // this._updateCamera();
 
@@ -79,4 +81,5 @@ class Ground {
         this.mesh.position.x += -.05;
         //console.log(this.mesh.position.x)
     }
+    
 }

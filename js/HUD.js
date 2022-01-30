@@ -28,7 +28,7 @@ class HUD {
       }
       // console.log(`Game over: ${scene}`);
       // if(this.gameOver === true){
-
+      
       // }
       this.count += 1;
       HUDElement.textContent = 'Points:'.concat(String(Math.round(this.score)));
@@ -95,4 +95,6 @@ class HUD {
   setGameOver(gameOver) {
     this.gameOver = gameOver;
   }
+
+  
 }
