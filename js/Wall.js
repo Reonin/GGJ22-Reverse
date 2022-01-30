@@ -54,7 +54,7 @@ class Wall {
             
             wall1.visibility = 0.0;
 
-            const wallMesh = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
             wallMesh.isPickable = false;
@@ -89,7 +89,7 @@ class Wall {
             // wall2.material = wall2Material;
             wall2.visibility = 0.0;
 
-            const wallMesh2 = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh2 = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
             wallMesh2.isPickable = false;
@@ -113,7 +113,7 @@ class Wall {
 
             wall3.visibility = 0.0;
 
-            const wallMesh3 = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh3 = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
             wallMesh3.isPickable = false;
@@ -170,7 +170,7 @@ class Wall {
             wall1.position.z = 0;
             wall1.visibility = 0.0;
 
-            const wallMesh = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
             wallMesh.isPickable = false;
@@ -190,7 +190,7 @@ class Wall {
             wall2.position.z = 10;
             wall2.visibility = 0.0;
 
-            const wallMesh2 = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh2 = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
             wallMesh2.isPickable = false;
@@ -210,7 +210,7 @@ class Wall {
             wall3.position.z = -15;
             wall3.visibility = 0.0;
 
-            const wallMesh3 = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh3 = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
             wallMesh3.isPickable = false;
@@ -270,7 +270,7 @@ class Wall {
             wall1.position.z = 0;
             wall1.visibility = 0.0;
 
-            const wallMesh = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
             wallMesh.isPickable = false;
@@ -290,7 +290,7 @@ class Wall {
             wall2.position.z = 10;
             wall2.visibility = 0.0;
 
-            const wallMesh2 = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh2 = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
             wallMesh2.isPickable = false;
@@ -310,7 +310,7 @@ class Wall {
             wall3.position.z = -10;
             wall3.visibility = 0.0;
 
-            const wallMesh3 = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh3 = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
             wallMesh3.isPickable = false;
@@ -366,7 +366,7 @@ class Wall {
             wall1.position.z = 8;
             wall1.visibility = 0.0;
 
-            const wallMesh = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
             wallMesh.isPickable = false;
@@ -387,7 +387,7 @@ class Wall {
             wall2.position.z = -5;
             wall2.visibility = 0.0;
 
-            const wallMesh2 = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh2 = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
             wallMesh2.isPickable = false;
@@ -407,7 +407,7 @@ class Wall {
             wall3.position.z = -15;
             wall3.visibility = 0.0;
 
-            const wallMesh3 = importedMesh[6].meshes[0].clone('clonedDoor');
+            const wallMesh3 = importedMesh[7].meshes[0].clone('clonedWall');
             wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
             wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
             wallMesh3.isPickable = false;
