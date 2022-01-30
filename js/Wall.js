@@ -70,7 +70,7 @@ class Wall {
             wall2.position.x = this.start_x;
             wall2.position.y = 3.5;
             wall2.position.z = 15;
-            const wall2Material = new BABYLON.StandardMaterial("materd daial", scene);
+            const wall2Material = new BABYLON.StandardMaterial("material", scene);
             wall2Material.diffuseColor = BABYLON.Color3.FromHexString("#FF0000");
             wall2.material = wall2Material;
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
