@@ -5,6 +5,7 @@ class AudioAssetManager {
   axehitsfxArr = [];
   rockhitsfxArr = [];
   dooropensfxArr = [];
+  howl = null;
   soundsReady = 0;
   constructor(scene) {
     let music1, music2, music3, music4, music5, music6;
@@ -122,13 +123,15 @@ class AudioAssetManager {
     };
 
     const binaryTask7 = assetsManager.addBinaryFileTask(
-      "Wolf_Rock_Hits task",
-      audioURL.concat("Wolf_Rock_Hits.mp3")
+      "Wolf_Howl task",
+      audioURL.concat("Wolf_Howl.ogg")
     );
     binaryTask7.onSuccess = function (task) {
-      sfx3 = new BABYLON.Sound("Wolf_Rock_Hits", task.data, scene, that.soundReady, {
+      sfx3 = new BABYLON.Sound("Wolf_Howl", task.data, scene, that.soundReady, {
         loop: false,
+        volume: 0.4,
       });
+      that.howl = sfx3;
     };
 
     const binaryTask10 = assetsManager.addBinaryFileTask(
@@ -257,6 +260,8 @@ class AudioAssetManager {
       });
       that.dooropensfxArr.push(sfx13) ;
     };
+
+    
 
 
     assetsManager.load();

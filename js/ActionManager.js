@@ -182,6 +182,9 @@ class ActionManager {
                     player.changeForm();
                     moon.phase(scene);
                     audioMan.transformTrack(player.transformationState);
+                    if(audioMan.howl.isPlaying === false){
+                        audioMan.howl.play();
+                    }
                     console.log(player.transformationState);
                 }
             )
