@@ -163,7 +163,6 @@ class ActionManager {
                     parameter: 'y'
                 },
                 function () {
-                    console.log('good luck')
                     hud.start(scene, engine)
 
                 }
@@ -178,14 +177,12 @@ class ActionManager {
                     parameter: 'z'
                 },
                 function () {
-                    // console.log("testsees")
                     player.changeForm();
                     moon.phase(scene);
                     audioMan.transformTrack(player.transformationState);
                     if(audioMan.howl.isPlaying === false){
                         audioMan.howl.play();
                     }
-                    console.log(player.transformationState);
                 }
             )
         );
@@ -193,25 +190,10 @@ class ActionManager {
     }
 
     static pauseActions = (scene) => {
-        console.log(scene.actionManager.actions)
         scene.actionManager.actions.splice(-1)
     }
 
     static addPhaseBack = (scene, player, moon) => {
-        scene.actionManager.registerAction(
-            new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyUpTrigger,
-                    parameter: 'y'
-                },
-                function () {
-                    console.log('good luck')
-                    hud.start(scene, engine)
-
-                }
-            )
-        );
-
         scene.actionManager.registerAction(
             new BABYLON.ExecuteCodeAction(
                 {
@@ -221,7 +203,6 @@ class ActionManager {
                 function () {
                     player.changeForm();
                     moon.phase(scene);
-                    console.log(player.transformationState);
                 }
             )
         );
