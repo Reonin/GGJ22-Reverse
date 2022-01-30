@@ -63,14 +63,15 @@ canvas{ position: absolute; z-index: 1 }
 #MENU {
    position: absolute;
    cursor: pointer;
-   right: 40%;
+   right: 30%;
+   left: 30%;
    margin: 0 auto;
    margin-top: 5%;
    z-index: 2;
    font-family: 'Eater';
-   font-size: 45px;
+   font-size: 25px;
    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-width: .5px;
    -webkit-text-stroke-color: black;
 }
  
