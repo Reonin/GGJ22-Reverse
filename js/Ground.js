@@ -37,15 +37,17 @@ class Ground {
             width: 1000,
             height: 18,
             tileSize: 1,
-            tileWidth:1
+            tileWidth:1,   
         }
         const rightPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", wallOptions, scene);
         rightPlane.material = mat;
         rightPlane.position.z = 20;
+        rightPlane.visibility = 0;
 
         const leftPlane = BABYLON.MeshBuilder.CreateTiledPlane("plane", wallOptions, scene);
         leftPlane.material = mat;
         leftPlane.position.z = -20;
+        leftPlane.visibility = 0;
 
         const forestMaterial = new BABYLON.StandardMaterial("material", this.scene);
         // forestMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
