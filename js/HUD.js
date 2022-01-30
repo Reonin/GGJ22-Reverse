@@ -10,10 +10,14 @@ class HUD {
     this.scene = scene;
     // points indicator
     const HUDElement = document.getElementById('HUD');
-    HUDElement.textContent += 'Points:';
+    HUDElement.textContent += ' Points:';
     // points counter
+    scene.onBeforeRenderObservable.add((thisScene) => {
+      Camera.setCamLateralLeft(scene)
+      document.getElementById('renderCanvas').focus();
     this.count = 0;
     this.score = 0;
+    }
     
 
     scene.onBeforeRenderObservable.add((thisScene, state) => {
@@ -35,6 +39,7 @@ class HUD {
   }
 
   start = (scene, engine) => {
+    Camera.setCamAnterior(scene)
     ActionManager.disbaleStartButton(scene);
     this.gameInit = false; 
     // var element = document.getElementById("PAUSE");
@@ -43,10 +48,9 @@ class HUD {
     engine.runRenderLoop(function () {
         scene.render();
       });
-      this.HUDElementMenu = document.getElementById('START');
-      this.HUDElementMenu.innerHTML = 'PAUSE: ESC'
-      this.HUDElementMenu.id = 'PAUSE'
-
+    this.HUDElementMenu = document.getElementById('START');
+    this.HUDElementMenu.innerHTML = 'PAUSE: ESC'
+    this.HUDElementMenu.id = 'PAUSE'
   }
 
   restart = (scene, engine) => {
