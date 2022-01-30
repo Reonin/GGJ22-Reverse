@@ -28,7 +28,7 @@ class Rock {
                 if (collided.object.name === "player") {
                     // console.log(`${destructiveMeshes[i].object.name}`)
                     player.mesh.dispose();
-                    player.setAlive(false);
+                    player.setAlive(false, rock.object.name);
                     rock.object.dispose();
                     obstacles.splice(i, 1);
                 }

@@ -2,10 +2,12 @@ class AudioAssetManager {
   wolfTrack = null;
   humanTrack = null;
   skateboardRoll = null;
+  axehitsfxArr = [];
+  rockhitsfxArr = [];
   soundsReady = 0;
   constructor(scene) {
     let music1, music2, music3, music4, music5, music6;
-    let sfx1, sfx2, sfx3, sfx4;
+    let sfx1, sfx2, sfx3, sfx4, sfx5, sfx6, sfx7, sfx8, sfx9, sfx10;
     let audioURL = '/GGJ22-Reverse/assets/audio/';
     if (location.hostname === '192.168.20.112') {
       audioURL = '/assets/audio/';
@@ -140,6 +142,82 @@ class AudioAssetManager {
       that.skateboardRoll = sfx4;
     };
 
+/**
+ * axes hitting array
+ */
+    const binaryTask11 = assetsManager.addBinaryFileTask(
+      "Axe_Hit_01 task",
+      audioURL.concat("Axe_Hit_01.ogg")
+    );
+    binaryTask11.onSuccess = function (task) {
+      sfx5 = new BABYLON.Sound("Axe_Hit_01", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.axehitsfxArr.push(sfx5) ;
+    };
+
+    const binaryTask12 = assetsManager.addBinaryFileTask(
+      "Axe_Hit_02 task",
+      audioURL.concat("Axe_Hit_02.ogg")
+    );
+    binaryTask12.onSuccess = function (task) {
+      sfx6 = new BABYLON.Sound("Axe_Hit_02", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.axehitsfxArr.push(sfx6) ;
+    };
+
+    const binaryTask13 = assetsManager.addBinaryFileTask(
+      "Axe_Hit_03 task",
+      audioURL.concat("Axe_Hit_03.ogg")
+    );
+    binaryTask13.onSuccess = function (task) {
+      sfx7 = new BABYLON.Sound("Axe_Hit_03", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.axehitsfxArr.push(sfx7) ;
+    };
+
+    /**rock sfx */
+
+    const binaryTask14 = assetsManager.addBinaryFileTask(
+      "Rock_Hit_01 task",
+      audioURL.concat("Rock_Hit_01.ogg")
+    );
+    binaryTask14.onSuccess = function (task) {
+      sfx8 = new BABYLON.Sound("Rock_Hit_01", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.rockhitsfxArr.push(sfx8) ;
+    };
+
+    const binaryTask15 = assetsManager.addBinaryFileTask(
+      "Rock_Hit_02 task",
+      audioURL.concat("Rock_Hit_02.ogg")
+    );
+    binaryTask15.onSuccess = function (task) {
+      sfx9 = new BABYLON.Sound("Rock_Hit_02", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.rockhitsfxArr.push(sfx9) ;
+    };
+
+    const binaryTask16 = assetsManager.addBinaryFileTask(
+      "Rock_Hit_03 task",
+      audioURL.concat("Rock_Hit_03.ogg")
+    );
+    binaryTask16.onSuccess = function (task) {
+      sfx10 = new BABYLON.Sound("Rock_Hit_03", task.data, scene, that.soundReady, {
+        loop: false,
+        volume: 2,
+      });
+      that.rockhitsfxArr.push(sfx10) ;
+    };
 
 
     assetsManager.load();
@@ -147,7 +225,7 @@ class AudioAssetManager {
 
   soundReady = () => {
     this.soundsReady++;
-    if (this.soundsReady === 10) {
+    if (this.soundsReady === 16) {
       this.wolfTrack.play();
       this.humanTrack.play();
       this.skateboardRoll.play();

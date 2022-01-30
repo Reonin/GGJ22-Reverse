@@ -170,7 +170,22 @@ class Player {
         this.collidedWithGround = collidedWithGround;
     }
 
-    setAlive(alive) {
+    setAlive(alive, whoHitMe) {
+        debugger;
+
+        switch (whoHitMe) {
+            case 'axe':
+                audioMan.axehitsfxArr[Math.floor(Math.random() * audioMan.axehitsfxArr.length)].play();
+              break;
+            case 'rock':
+                audioMan.rockhitsfxArr[Math.floor(Math.random() * audioMan.rockhitsfxArr.length)].play();
+              break;
+            default:
+              console.log('Sorry, we are out of death sounds');
+          }
+     
+
+
         this.alive = alive;
     }
 

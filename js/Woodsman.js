@@ -7,7 +7,7 @@ class Woodsman {
 
     constructor(scene, player, wall, woodsman_start_x, woodsman_start_z) {
         this.scene = scene;
-        const woodsman = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
+        const woodsman = BABYLON.MeshBuilder.CreateBox("axe", {}, scene);
         woodsman.position.x = woodsman_start_x;
         woodsman.position.y = this.woodsman_START_Y;
         woodsman.position.z = woodsman_start_z;
@@ -65,8 +65,9 @@ class Woodsman {
                 // console.log(`Collided with ${collided.object.name}`)
                 if (collided.object.name === "player") {
                     // console.log(`${destructiveMeshes[i].object.name}`)
+                  //  debugger;
                     player.mesh.dispose();
-                    player.setAlive(false);
+                    player.setAlive(false, woodsman.object.name);
                     woodsman.object.dispose();
                     obstacles.splice(i, 1);
                 }
