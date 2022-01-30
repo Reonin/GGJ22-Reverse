@@ -3,7 +3,7 @@ class ActionManager {
     constructor() {
     }
 
-    static establishInputs(scene, player, moon, hud, engine) {
+    static establishInputs(scene, player, moon, hud, engine, audioMan) {
         //console log out which key is pressed
     
 
@@ -149,11 +149,25 @@ class ActionManager {
                     parameter: 'y'
                 },
                 function () {
-                    console.log('good luck');
-                    hud.start(scene, engine);
+                    console.log('good luck')
+                    hud.start(scene, engine)
+
                 }
                 )
             );
+
+        // scene.actionManager.registerAction(
+        //     new BABYLON.ExecuteCodeAction(
+        //         {
+        //             trigger: BABYLON.ActionManager.OnKeyUpTrigger,
+        //             parameter: 'r'
+        //         },
+        //         function () {
+        //             console.log("RESTARTING")
+        //             hud.restart(scene, engine)
+        //         }
+        //         )
+        //     );
     
 
         /** Press Z to transform between states */
@@ -167,6 +181,7 @@ class ActionManager {
                 // console.log("testsees")
                 player.changeForm();
                 moon.phase(scene);
+                audioMan.transformTrack(player.transformationState);
                 console.log(player.transformationState);
             }
             )
@@ -186,11 +201,11 @@ class ActionManager {
     }
 
     static pauseActions = (scene) => {
-        scene.actionManager.actions.splice(11, 1)
+        scene.actionManager.actions.splice(12, 1)
     }
 
     static disbaleStartButton = (scene) => {
-        scene.actionManager.actions.splice(11, 1)
+        scene.actionManager.actions.splice(12, 1)
     }
 
     static addPhaseBack = (scene, player, moon) => {
@@ -211,6 +226,7 @@ class ActionManager {
     }
     
 }
+
 
 
 

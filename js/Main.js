@@ -44,9 +44,11 @@ const scene = new BABYLON.Scene(engine);
 /**
  * Weremodel1
  */
+
 const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman.glb", scene);
 const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);
 const promiseModel3 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "retro_grunge_skateboard.glb", scene);
+
 
 Promise.all([promiseModel1, promiseModel2, promiseModel3]).then((result) => {
 
@@ -91,7 +93,7 @@ const createScene = function(scene, importedMesh) {
     const ObsFactory2 = new ObstacleFactory(scene,player, wall, -150, 5, false);
     // const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
     
-    ActionManager.establishInputs(scene, player, moon, hud, engine);
+    ActionManager.establishInputs(scene, player, moon, hud, engine, audioMan);
     var count = 0;  
     setInterval(function(){
         const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
