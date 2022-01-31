@@ -11,7 +11,7 @@ class Moon {
     sphere.position.x = -9;
     sphere.position.y = 8;
     sphere.position.z = 0;
-
+    sphere.convertToUnIndexedMesh();
     const sphereMaterial = new BABYLON.StandardMaterial('material', scene);
 
     sphere.isPickable = true;
