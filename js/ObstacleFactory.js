@@ -249,7 +249,7 @@ class ObstacleFactory {
     killTrees(importedMesh, player){
         for(var i = 0; i < this.trees.length; i++){
             if(this.trees[i].position.x > player.mesh.position.x + 38){
-                console.log(`Tree is on left side: ${this.trees[i].leftSide}`);
+                // console.log(`Tree is on left side: ${this.trees[i].leftSide}`);
                 if(this.trees[i].leftSide === true){
                     this.trees[i].dispose()
                     this.trees.splice(i,1);

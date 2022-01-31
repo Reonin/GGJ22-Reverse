@@ -55,8 +55,8 @@ class Wall {
             wall1.visibility = 0.0;
 
             const wallMesh = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
+            wallMesh.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 3.5), wall1.position.z);
             wallMesh.isPickable = false;
             wallMesh.setParent(wall1);
 
@@ -90,8 +90,8 @@ class Wall {
             wall2.visibility = 0.0;
 
             const wallMesh2 = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
+            wallMesh2.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 3.5), wall2.position.z);
             wallMesh2.isPickable = false;
             wallMesh2.setParent(wall2);
             
@@ -114,8 +114,8 @@ class Wall {
             wall3.visibility = 0.0;
 
             const wallMesh3 = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
+            wallMesh3.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 3.5), wall3.position.z);
             wallMesh3.isPickable = false;
             wallMesh3.setParent(wall3);
 
@@ -132,7 +132,7 @@ class Wall {
             console.log(numDoorOrBreakableWall)
             if (numDoorOrBreakableWall < 25) {
                 const door = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8,importedMesh[5]);
-                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 7.5, 4.8);
+                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 7.5, 4.8, importedMesh[8]);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
                 obstacles.push(door.physicsImpostor);
@@ -140,7 +140,7 @@ class Wall {
             }
             else if (numDoorOrBreakableWall > 25 && numDoorOrBreakableWall < 50) {
                 const door = new Door(scene, player, this.start_x, 3.5, 7.5, 4.8,importedMesh[5]);
-                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8);
+                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8, importedMesh[8]);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
                 obstacles.push(door.physicsImpostor);
@@ -154,8 +154,8 @@ class Wall {
                 obstacles.push(door1.physicsImpostor);
                 obstacles.push(door2.physicsImpostor);
             } else if (numDoorOrBreakableWall > 75 && numDoorOrBreakableWall < 100) {
-                const breakableWall1 = new BreakableWall(scene, player, this.start_x, 3.5, 7.5, 4.8);
-                const breakableWall2 = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8);
+                const breakableWall1 = new BreakableWall(scene, player, this.start_x, 3.5, 7.5, 4.8, importedMesh[8]);
+                const breakableWall2 = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8, importedMesh[8]);
                 this.walls.push(breakableWall1.mesh);
                 this.walls.push(breakableWall2.mesh);
                 obstacles.push(breakableWall1.physicsImpostor);
@@ -171,8 +171,8 @@ class Wall {
             wall1.visibility = 0.0;
 
             const wallMesh = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
+            wallMesh.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 3.5), wall1.position.z);
             wallMesh.isPickable = false;
             wallMesh.setParent(wall1);
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -191,8 +191,8 @@ class Wall {
             wall2.visibility = 0.0;
 
             const wallMesh2 = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
+            wallMesh2.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 3.5), wall2.position.z);
             wallMesh2.isPickable = false;
             wallMesh2.setParent(wall2);
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -211,8 +211,8 @@ class Wall {
             wall3.visibility = 0.0;
 
             const wallMesh3 = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
+            wallMesh3.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 3.5), wall3.position.z);
             wallMesh3.isPickable = false;
             wallMesh3.setParent(wall3);
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -233,7 +233,7 @@ class Wall {
             const numDoorOrBreakableWall = randomIntFromInterval(1, 100);
             if (numDoorOrBreakableWall < 25) {
                 const door = new Door(scene, player, this.start_x, 3.5, 17, 4.8,importedMesh[5]);
-                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8);
+                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8, importedMesh[8]);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
                 obstacles.push(door.physicsImpostor);
@@ -241,7 +241,7 @@ class Wall {
             }
             else if (numDoorOrBreakableWall > 25 && numDoorOrBreakableWall < 50) {
                 const door = new Door(scene, player, this.start_x, 3.5, -7.5, 4.8,importedMesh[5]);
-                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 17, 4.8);
+                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 17, 4.8, importedMesh[8]);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
                 obstacles.push(door.physicsImpostor);
@@ -255,8 +255,8 @@ class Wall {
                 obstacles.push(door1.physicsImpostor);
                 obstacles.push(door2.physicsImpostor);
             } else if (numDoorOrBreakableWall > 75 && numDoorOrBreakableWall < 100) {
-                const breakableWall1 = new BreakableWall(scene, player, this.start_x, 3.5, 17, 4.8);
-                const breakableWall2 = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8);
+                const breakableWall1 = new BreakableWall(scene, player, this.start_x, 3.5, 17, 4.8, importedMesh[8]);
+                const breakableWall2 = new BreakableWall(scene, player, this.start_x, 3.5, -7.5, 4.8, importedMesh[8]);
                 this.walls.push(breakableWall1.mesh);
                 this.walls.push(breakableWall2.mesh);
                 obstacles.push(breakableWall1.physicsImpostor);
@@ -271,8 +271,8 @@ class Wall {
             wall1.visibility = 0.0;
 
             const wallMesh = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
+            wallMesh.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 3.5), wall1.position.z);
             wallMesh.isPickable = false;
             wallMesh.setParent(wall1);
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -291,8 +291,8 @@ class Wall {
             wall2.visibility = 0.0;
 
             const wallMesh2 = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
+            wallMesh2.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 3.5), wall2.position.z);
             wallMesh2.isPickable = false;
             wallMesh2.setParent(wall2);
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -311,8 +311,8 @@ class Wall {
             wall3.visibility = 0.0;
 
             const wallMesh3 = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
+            wallMesh3.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 3.5), wall3.position.z);
             wallMesh3.isPickable = false;
             wallMesh3.setParent(wall3);
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -328,7 +328,7 @@ class Wall {
             const numDoorOrBreakableWall = randomIntFromInterval(1, 100);
             if (numDoorOrBreakableWall < 25) {
                 const door = new Door(scene, player, this.start_x, 3.5, -17.3, 4.8,importedMesh[5]);
-                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 17.3, 4.8);
+                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 17.3, 4.8, importedMesh[8]);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
                 obstacles.push(door.physicsImpostor);
@@ -336,7 +336,7 @@ class Wall {
             }
             else if (numDoorOrBreakableWall > 25 && numDoorOrBreakableWall < 50) {
                 const door = new Door(scene, player, this.start_x, 3.5, 17.3, 4.8,importedMesh[5]);
-                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -17.3, 4.8);
+                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, -17.3, 4.8, importedMesh[8]);
                 this.walls.push(door.mesh);
                 this.walls.push(breakableWall.mesh);
                 obstacles.push(door.physicsImpostor);
@@ -350,8 +350,8 @@ class Wall {
                 obstacles.push(door1.physicsImpostor);
                 obstacles.push(door2.physicsImpostor);
             } else if (numDoorOrBreakableWall > 75 && numDoorOrBreakableWall < 100) {
-                const breakableWall1 = new BreakableWall(scene, player, this.start_x, 3.5, 17, 4.8);
-                const breakableWall2 = new BreakableWall(scene, player, this.start_x, 3.5, -17, 4.8);
+                const breakableWall1 = new BreakableWall(scene, player, this.start_x, 3.5, 17, 4.8, importedMesh[8]);
+                const breakableWall2 = new BreakableWall(scene, player, this.start_x, 3.5, -17, 4.8, importedMesh[8]);
                 this.walls.push(breakableWall1.mesh);
                 this.walls.push(breakableWall2.mesh);
                 obstacles.push(breakableWall1.physicsImpostor);
@@ -367,8 +367,8 @@ class Wall {
             wall1.visibility = 0.0;
 
             const wallMesh = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 2.5), wall1.position.z);
+            wallMesh.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh.position = new BABYLON.Vector3(wall1.position.x, (wall1.position.y- 3.5), wall1.position.z);
             wallMesh.isPickable = false;
             wallMesh.setParent(wall1);
             wall1.physicsImpostor = new BABYLON.PhysicsImpostor(wall1, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -388,8 +388,8 @@ class Wall {
             wall2.visibility = 0.0;
 
             const wallMesh2 = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh2.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 2.5), wall2.position.z);
+            wallMesh2.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh2.position = new BABYLON.Vector3(wall2.position.x, (wall2.position.y- 3.5), wall2.position.z);
             wallMesh2.isPickable = false;
             wallMesh2.setParent(wall2);
             wall2.physicsImpostor = new BABYLON.PhysicsImpostor(wall2, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -408,8 +408,8 @@ class Wall {
             wall3.visibility = 0.0;
 
             const wallMesh3 = importedMesh[7].meshes[0].clone('clonedWall');
-            wallMesh3.scaling = new BABYLON.Vector3(6,15,5);
-            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 2.5), wall3.position.z);
+            wallMesh3.scaling = new BABYLON.Vector3(5,15,5.77);
+            wallMesh3.position = new BABYLON.Vector3(wall3.position.x, (wall3.position.y- 3.5), wall3.position.z);
             wallMesh3.isPickable = false;
             wallMesh3.setParent(wall3);
             wall3.physicsImpostor = new BABYLON.PhysicsImpostor(wall3, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 100 }, scene);
@@ -434,7 +434,7 @@ class Wall {
                 obstacles.push(door.physicsImpostor);
             }
             else if (numDoorOrBreakableWall > 50 && numDoorOrBreakableWall <= 100) {
-                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 18.5, 3.8);
+                const breakableWall = new BreakableWall(scene, player, this.start_x, 3.5, 18.5, 3.8, importedMesh[8]);
                 this.walls.push(breakableWall.mesh);
                 obstacles.push(breakableWall.physicsImpostor);
 
