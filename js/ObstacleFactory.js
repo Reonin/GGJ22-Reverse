@@ -124,7 +124,7 @@ class ObstacleFactory {
                     this.spawnedTrees = true;
                 }
                 if(this.player.alive === true){
-                    this.killTrees(importedMesh,player);
+                    // this.killTrees(importedMesh,player);
                 }
             }
 
