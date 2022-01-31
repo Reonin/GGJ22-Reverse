@@ -68,8 +68,9 @@ const promiseModel5 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/m
 const promiseModel6 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "forest_house_with_door.glb", scene);
 const promiseModel7 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "tree.glb", scene);
 const promiseModel8 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wood_wall.glb", scene);
+const promiseModel9 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "breakable_wicker_wall.glb", scene); 
 
-Promise.all([promiseModel1, promiseModel2, promiseModel3, promiseModel4, promiseModel5, promiseModel6, promiseModel7, promiseModel8]).then((result) => {
+Promise.all([promiseModel1, promiseModel2, promiseModel3, promiseModel4, promiseModel5, promiseModel6, promiseModel7, promiseModel8, promiseModel9]).then((result) => {
 
     console.log('loaded in');
 
