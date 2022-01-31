@@ -15,7 +15,6 @@ class BreakableWall {
 
         
         this.breakableWallMesh = breakableWallMesh.meshes[0].clone('clonedBreakableWall');
-        this.breakableWallMesh.convertToUnIndexedMesh();
         //  this.breakableWallMesh.rotate.x = Math.PI/2;
         this.breakableWallMesh.scaling = new BABYLON.Vector3(50,25,15);
         this.breakableWallMesh.position = new BABYLON.Vector3(breakableWall.position.x, (breakableWall.position.y- 3.5), breakableWall.position.z);

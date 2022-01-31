@@ -21,7 +21,6 @@ class Woodsman {
         // this.importedAxeModel = axeModel.meshes[0];
       
         this.axeMesh =  axeModel.meshes[0].clone('cloneAxe');
-        this.axeMesh.convertToUnIndexedMesh();
         this.axeMesh.scaling = new BABYLON.Vector3(5, 5, 5);
 
         this.axeMesh.position = new BABYLON.Vector3(woodsman.position.x, (woodsman.position.y- 0.5), woodsman.position.z);

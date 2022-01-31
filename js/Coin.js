@@ -13,7 +13,6 @@ class Coin {
         coin.position.z = coin_start_z;
         const coinMaterial = new BABYLON.StandardMaterial("material", scene);
         coin.material = coinMaterial;
-        coin.convertToUnIndexedMesh();
         // console.log(`Coin spawned ${coin.position}`)
         coinMaterial.diffuseColor = BABYLON.Color3.FromHexString("#C0C0C0");;
         coin.physicsImpostor = new BABYLON.PhysicsImpostor(coin, BABYLON.PhysicsImpostor.BoxImpostor, { mass: .7, restitution: 0.5 }, scene);

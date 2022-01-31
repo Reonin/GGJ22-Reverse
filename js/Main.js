@@ -56,15 +56,11 @@ function windowWidth() {
         body = window.document.body;
     return window.document.compatMode === "CSS1Compat" && docElemProp || body && body.clientWidth || docElemProp;
 }
-const scene = new BABYLON.Scene(engine, {useGeometryUniqueIdsMap: true, useClonedMeshMap: true, useMaterialMeshMap : true});
+const scene = new BABYLON.Scene(engine);
 const audioMan = new AudioAssetManager(scene);
 /**
  * Weremodel
  */
-const optimizerOptions = new BABYLON.SceneOptimizerOptions(60);
-optimizerOptions.addOptimization(new BABYLON.HardwareScalingOptimization(0, 1));
-
-const optimizer = new BABYLON.SceneOptimizer(scene, optimizerOptions);
 
 const promiseModel1 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman.glb", scene);
 const promiseModel2 = BABYLON.SceneLoader.ImportMeshAsync(null, textureURL + "/models/", "wereman_human_skin_mom_tattoo.glb", scene);

@@ -19,7 +19,6 @@ class Rock {
         // rock.showBoundingBox = true;
 
         this.rockMesh = rockModel.meshes[0].clone('clonedRock');
-        this.rockMesh.convertToUnIndexedMesh();
         this.rockMesh.scaling = new BABYLON.Vector3(7,7,7);
         this.rockMesh.position = new BABYLON.Vector3(rock.position.x, (rock.position.y- 0.5), rock.position.z);
         this.rockMesh.isPickable = false;
