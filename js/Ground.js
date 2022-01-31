@@ -18,7 +18,7 @@ class Ground {
         ground.isPickable = true;
         this.mesh = ground;
         
-
+        
         this.scene.registerBeforeRender(() => {
             
             // this.move();

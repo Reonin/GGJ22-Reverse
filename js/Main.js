@@ -22,7 +22,9 @@ engine.loadingScreen = loadingScreen;
 engine.displayLoadingUI();
 let textureURL = '/GGJ22-Reverse/assets/';
 let importedMeshes = null;
+let treeGeneratorStarted = false;
 let obstacles = [];
+let trees = [];
 // let player = null;
 if (location.hostname === "") {
     /** to avoid CORs loading erros
@@ -102,12 +104,12 @@ const createScene = function (scene, importedMesh) {
     const ground = new Ground(scene);
     const hud = new HUD(scene, engine);
     player = new Player(scene, ground, hud, importedMesh, audioMan);
-
+    spawnedTrees = false;
     const moon = new Moon(scene, player);
     const camera = new Camera(scene, player);
 
    const wall = new Wall(scene, player, importedMesh);
-
+   
     const ObsFactory = new ObstacleFactory(scene, player, wall, hud, -150, 0, true, importedMesh);
     const ObsFactory2 = new ObstacleFactory(scene, player, wall, hud, -150, 5, false, importedMesh);
     // const ObsFactory3 = new ObstacleFactory(scene,player, wall, -150, -3, false);
@@ -117,11 +119,73 @@ const createScene = function (scene, importedMesh) {
     setInterval(function () {
         const ObsFactory3 = new ObstacleFactory(scene, player, wall, hud, -150, -3, false, importedMesh);
     }, 30000);
-
+    scene.onBeforeRenderObservable.add(() => {
+        if(spawnedTrees === false && player.alive === true){
+            spawnTrees(importedMesh, player);
+            spawnedTrees = true;
+        }
+        if(player.alive === true){
+            spawnAndKillTrees(importedMesh,player);
+        }
+    });
     return scene;
 
 };
 
+spawnTrees = (importedMesh, player) => {
+    var numTrees = 20;
+    for (var i = 0; i < numTrees; i++) {
+        var treeMesh = importedMesh[6].meshes[0].clone('tree');
+        treeMesh.position = new BABYLON.Vector3(player.mesh.position.x + (i * -4), 0, -22);
+        treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+        treeMesh.isPickable = false;
+        treeMesh.leftSide = true;
+        trees.push(treeMesh);
+        var treeMesh = importedMesh[6].meshes[0].clone('tree');
+        treeMesh.position = new BABYLON.Vector3(player.mesh.position.x + (i * -4), 0, 22);
+        treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+        treeMesh.isPickable = false;
+        treeMesh.leftSide = false;
+        trees.push(treeMesh);
+        // console.log(`Tree spawned at ${treeMesh.position}`)
+    }
+
+    
+}
+
+spawnAndKillTrees = (importedMesh, player) => {
+    for(var i = 0; i < trees.length; i++){
+        if(trees[i].position.x > player.mesh.position.x + 38){
+            // console.log(`Tree is on left side: ${trees[i].leftSide}`);
+            if(trees[i].leftSide === true){
+                console.log(`Removing and creating new tree`)
+                trees[i].dispose()
+                trees.splice(i,1);
+                if(trees.length <= 40){
+                    var treeMesh = importedMesh[6].meshes[0].clone('tree');
+                    treeMesh.position = new BABYLON.Vector3(trees[trees.length - 1].position.x - 4, 0, -22);
+                    treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+                    treeMesh.isPickable = false;
+                    treeMesh.leftSide = true;
+                    trees.push(treeMesh);
+            }
+            }
+            else if(trees[i].leftSide === false){
+                trees[i].dispose()
+                trees.splice(i,1);
+                if(trees.length <= 40){
+                    var treeMesh = importedMesh[6].meshes[0].clone('tree');
+                    treeMesh.position = new BABYLON.Vector3(trees[trees.length - 1].position.x - 4, 0, 22);
+                    treeMesh.scaling = new BABYLON.Vector3(10,10,10);
+                    treeMesh.isPickable = false;
+                    treeMesh.leftSide = false;
+                    trees.push(treeMesh);
+                }
+            }
+            
+        }
+    }
+}
 
 
 randomIntFromInterval = (min, max) => { // min and max included 
