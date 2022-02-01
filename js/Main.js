@@ -43,10 +43,10 @@ function scaletosmallest(ratio) {
     if ((windowWidth() / ratio) <= windowWidth()) {
 
         const canvasEle = document.querySelector("#gamecontainer");
-        canvasEle.style.width = '99%';
+        canvasEle.style.width = '100%';
         canvasEle.style.height = 'auto';
     } else {
-        canvasEle.style.height = '99%';
+        canvasEle.style.height = '100%';
         canvasEle.style.width = 'auto';
     }
 }
